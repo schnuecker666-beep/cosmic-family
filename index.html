@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Cosmic Family Hub</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f8f7ff;min-height:100vh;}
+
+/* ── APP SWITCHER ── */
+#app-switcher{display:flex;align-items:center;gap:0;background:#1a1a2e;position:sticky;top:0;z-index:1000;border-bottom:2px solid #534AB7;}
+.app-tab{flex:1;padding:14px 8px;border:none;background:none;color:#888;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.app-tab.active{color:#fff;background:#534AB7;}
+.app-tab-icon{font-size:20px;}
+
+/* ── APP FRAMES ── */
+.app-frame{display:none;}
+.app-frame.active{display:block;}
+
+/* ══════════════════════════════════════════
+   FITFAMILY STYLES
+══════════════════════════════════════════ */
+:root{
+  --primary:#1d4ed8;--primary-light:#dbeafe;--primary-mid:#3b82f6;
+  --success:#15803d;--success-light:#dcfce7;
+  --warning:#b45309;--warning-light:#fef3c7;
+  --danger:#b91c1c;--danger-light:#fee2e2;
+  --purple:#6d28d9;--purple-light:#ede9fe;
+  --teal:#0f766e;--teal-light:#ccfbf1;
+  --orange:#c2410c;--orange-light:#ffedd5;
+  --gold:#92400e;--gold-light:#fef9c3;
+  --bg:#f8fafc;--surface:#ffffff;--surface2:#f1f5f9;
+  --text:#0f172a;--text2:#475569;--text3:#94a3b8;
+  --border:#e2e8f0;--border2:#cbd5e1;
+  --radius:14px;--radius-sm:9px;--radius-xs:6px;
+}
+#ff-app{max-width:680px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
+#ff-app h1{font-size:26px;font-weight:600}
+#ff-app h2{font-size:21px;font-weight:600}
+#ff-app h3{font-size:18px;font-weight:600}
+.ff-top-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between;}
+.ff-top-bar-title{font-size:20px;font-weight:700;color:var(--primary)}
+.ff-top-bar-sub{font-size:13px;color:var(--text3);margin-top:1px}
+.ff-content{flex:1;padding:16px 18px 100px}
+.ff-bottom-nav{background:var(--surface);border-top:1px solid var(--border);display:flex;}
+.ff-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 12px;border:none;background:none;cursor:pointer;color:var(--text3);font-size:11px;font-weight:500;transition:color .15s}
+.ff-nav-item.active{color:var(--primary)}
+.ff-nav-item svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ff-page{display:none}.ff-page.active{display:block}
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:12px}
+.card-sm{background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);padding:12px 14px;margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 18px;border-radius:var(--radius-sm);border:1px solid var(--border2);background:var(--surface);color:var(--text);font-size:16px;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-success{background:var(--success);color:#fff;border-color:var(--success)}
+.btn-danger{background:var(--danger);color:#fff;border-color:var(--danger)}
+.btn-ghost{border-color:transparent;background:transparent}
+.btn-sm{padding:8px 13px;font-size:15px}
+.btn-xs{padding:5px 10px;font-size:13px;border-radius:var(--radius-xs)}
+.btn-block{width:100%}
+.btn-icon{width:40px;height:40px;padding:0;border-radius:50%}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:600}
+.badge-blue{background:var(--primary-light);color:var(--primary)}
+.badge-green{background:var(--success-light);color:var(--success)}
+.badge-orange{background:var(--orange-light);color:var(--orange)}
+.badge-purple{background:var(--purple-light);color:var(--purple)}
+.badge-teal{background:var(--teal-light);color:var(--teal)}
+.badge-gold{background:var(--gold-light);color:var(--gold)}
+.badge-red{background:var(--danger-light);color:var(--danger)}
+.badge-gray{background:var(--surface2);color:var(--text2)}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:15px;font-weight:600;color:var(--text2);margin-bottom:6px}
+.form-input{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-size:17px;background:var(--surface);color:var(--text);outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--primary);box-shadow:0 0 0 3px #bfdbfe}
+.form-input-lg{font-size:22px;text-align:center;font-weight:600;letter-spacing:1px}
+select.form-input{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:36px}
+.tab-bar{display:flex;background:var(--surface2);border-radius:var(--radius-sm);padding:4px;gap:3px;margin-bottom:16px}
+.tab-btn{flex:1;padding:9px;border-radius:7px;border:none;background:transparent;font-size:15px;font-weight:500;color:var(--text3);cursor:pointer;transition:all .15s}
+.tab-btn.active{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:10px;margin-bottom:14px}
+.stat-card{background:var(--surface2);border-radius:var(--radius-sm);padding:12px;text-align:center}
+.stat-val{font-size:24px;font-weight:700;color:var(--text)}
+.stat-lbl{font-size:13px;color:var(--text3);margin-top:2px}
+.streak-banner{background:var(--gold-light);border:1px solid #fde68a;border-radius:var(--radius);padding:14px 16px;text-align:center;margin-bottom:14px}
+.streak-num{font-size:44px;font-weight:700;color:var(--gold)}
+.profile-scroller{display:flex;gap:10px;overflow-x:auto;padding:0 0 4px;margin-bottom:14px;-webkit-overflow-scrolling:touch}
+.profile-scroller::-webkit-scrollbar{height:3px}
+.profile-chip{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;min-width:64px;padding:8px 10px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--surface);transition:all .15s}
+.profile-chip.active{border-color:var(--primary);background:var(--primary-light)}
+.profile-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#fff}
+.profile-chip-name{font-size:13px;font-weight:600;color:var(--text2);white-space:nowrap}
+.profile-streak-dot{font-size:11px;color:var(--gold);font-weight:600}
+.prog-card{border-radius:var(--radius);border:2px solid var(--border);padding:18px;margin-bottom:12px;cursor:pointer;transition:all .15s;background:var(--surface)}
+.prog-card:hover{border-color:var(--primary-mid)}
+.prog-card.basis{border-left:5px solid #22c55e}
+.prog-card.firstclass{border-left:5px solid var(--primary-mid)}
+.prog-card.master{border-left:5px solid var(--purple)}
+.prog-card-title{font-size:20px;font-weight:700;margin-bottom:4px}
+.prog-card-sub{font-size:15px;color:var(--text2)}
+.prog-card-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.workout-week-header{background:var(--surface2);border-radius:var(--radius-sm);padding:10px 14px;margin:14px 0 8px;text-align:center}
+.workout-week-title{font-size:17px;font-weight:700}
+.workout-week-sub{font-size:13px;color:var(--text3);margin-top:1px}
+.workout-day-card{background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);padding:13px 15px;margin-bottom:8px;cursor:pointer;display:flex;align-items:center;gap:13px;transition:all .15s}
+.workout-day-card:hover{border-color:var(--primary-mid);background:var(--primary-light)}
+.workout-day-card.done{opacity:.65}
+.workout-type-icon{width:44px;height:44px;border-radius:var(--radius-xs);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.workout-day-info{flex:1;min-width:0}
+.workout-day-title{font-size:17px;font-weight:700}
+.workout-day-meta{font-size:13px;color:var(--text3);margin-top:2px}
+.workout-check{width:28px;height:28px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.workout-check.checked{background:var(--success);border-color:var(--success)}
+.ff-modal-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:2000;overflow-y:auto;padding:20px;}
+.ff-modal-overlay.open{display:flex;align-items:flex-start;justify-content:center}
+.modal-box{background:var(--surface);border-radius:var(--radius);width:100%;max-width:500px;padding:22px;margin:auto}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.timer-circle{width:200px;height:200px;margin:0 auto 20px;position:relative}
+.timer-circle svg{transform:rotate(-90deg)}
+.timer-circle-bg{stroke:#e2e8f0;fill:none;stroke-width:10}
+.timer-circle-fg{fill:none;stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .9s linear}
+.timer-text{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.timer-big{font-size:48px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums;letter-spacing:1px}
+.timer-sub{font-size:14px;color:var(--text3);margin-top:2px}
+.exercise-display{background:var(--surface2);border-radius:var(--radius-sm);padding:14px;margin-bottom:14px;text-align:center}
+.exercise-name-big{font-size:22px;font-weight:700;margin-bottom:4px}
+.exercise-desc-small{font-size:14px;color:var(--text2)}
+.next-exercise{font-size:13px;color:var(--text3);text-align:center;margin-bottom:14px}
+.progress-steps{display:flex;gap:4px;margin-bottom:14px;flex-wrap:wrap}
+.step-dot{height:6px;flex:1;border-radius:3px;background:var(--border);min-width:12px;transition:background .3s}
+.step-dot.done-dot{background:var(--success)}
+.step-dot.current-dot{background:var(--primary)}
+.history-entry{border-left:3px solid var(--primary);padding:10px 14px;background:var(--surface);border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:8px;border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.history-date{font-size:13px;color:var(--text3);margin-bottom:3px}
+.history-title{font-size:17px;font-weight:600}
+.history-detail{font-size:14px;color:var(--text2);margin-top:3px}
+.rank-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:8px}
+.rank-pos{font-size:22px;font-weight:700;width:32px;color:var(--text3);flex-shrink:0}
+.rank-pos.gold{color:#d97706}
+.rank-pos.silver{color:#94a3b8}
+.rank-pos.bronze{color:#c2410c}
+.rank-bar-wrap{background:var(--border);border-radius:10px;height:7px;flex:1}
+.rank-bar{height:7px;border-radius:10px;transition:width .4s}
+.section-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.section-title{font-size:19px;font-weight:700}
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0}
+.empty-state{text-align:center;padding:36px 16px;color:var(--text3)}
+.empty-state svg{width:44px;height:44px;stroke:var(--text3);margin:0 auto 10px;display:block}
+.success-toast{display:none;background:var(--success-light);border:1px solid #86efac;border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:12px;color:var(--success);font-size:15px;font-weight:500}
+.exercise-accordion{border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden}
+.exercise-accordion-header{padding:13px 15px;display:flex;align-items:center;gap:10px;cursor:pointer;background:var(--surface);transition:background .15s}
+.exercise-accordion-header:hover{background:var(--surface2)}
+.exercise-accordion-body{display:none;padding:12px 15px;background:var(--surface2);border-top:1px solid var(--border)}
+.exercise-accordion-body.open{display:block}
+.muscle-tag{display:inline-flex;padding:3px 9px;border-radius:20px;font-size:13px;font-weight:500;background:var(--primary-light);color:var(--primary);margin:2px}
+.diff-bar{display:flex;gap:6px;margin-bottom:14px}
+.diff-pill{flex:1;padding:9px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);text-align:center;font-size:15px;font-weight:600;cursor:pointer;transition:all .15s;color:var(--text2)}
+.diff-pill.sel-leicht{background:var(--success-light);border-color:#86efac;color:var(--success)}
+.diff-pill.sel-mittel{background:var(--warning-light);border-color:#fcd34d;color:var(--warning)}
+.diff-pill.sel-schwer{background:var(--danger-light);border-color:#fca5a5;color:var(--danger)}
+.challenge-tile{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .15s}
+.challenge-tile:hover{border-color:var(--primary-mid);background:var(--primary-light)}
+.challenge-icon{width:46px;height:46px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.rest-timer-wrap{background:var(--surface2);border-radius:var(--radius);padding:18px;text-align:center;margin-bottom:14px;border:1px solid var(--border)}
+.rest-big{font-size:52px;font-weight:700;color:var(--text);font-variant-numeric:tabular-nums}
+.wt-cat{background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:all .15s}
+.wt-cat:hover{border-color:#a78bfa;background:var(--purple-light)}
+.profile-edit-card{background:var(--surface);border-radius:var(--radius);border:2px dashed var(--border);padding:18px;margin-bottom:12px;text-align:center;cursor:pointer;transition:border-color .15s}
+.profile-edit-card:hover{border-color:var(--primary)}
+.color-swatch{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:border-color .15s;flex-shrink:0}
+.color-swatch.sel{border-color:var(--text)}
+.swatch-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+canvas{width:100%!important;max-height:160px}
+.prog-progress-bar{background:var(--border);border-radius:10px;height:8px;margin-top:8px}
+.prog-progress-fill{height:8px;border-radius:10px;transition:width .4s}
+
+/* ══════════════════════════════════════════
+   LINGUAQUEST STYLES
+══════════════════════════════════════════ */
+#lq-app{min-height:100vh;background:#f8f7ff;}
+#lq-app *{box-sizing:border-box;}
+.lq-page{display:none;min-height:calc(100vh - 50px);padding:16px;}
+.lq-page.on{display:flex;flex-direction:column;}
+.lq-btn{display:block;width:100%;padding:14px;border-radius:14px;border:none;font-size:16px;font-weight:600;cursor:pointer;transition:transform .1s,opacity .1s;}
+.lq-btn:active{transform:scale(.97);}
+.lq-btn-primary{background:#534AB7;color:#fff;}
+.lq-btn-secondary{background:#EEEDFE;color:#3C3489;}
+.lq-card{background:#fff;border-radius:16px;padding:20px;border:1px solid #e8e6ff;margin-bottom:12px;}
+.lq-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#fff;flex-shrink:0;}
+.lq-tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600;}
+.lq-tag-en{background:#E6F1FB;color:#0C447C;}
+.lq-tag-es{background:#FAEEDA;color:#633806;}
+.lq-xp-bar-wrap{background:#e8e6ff;border-radius:6px;height:10px;overflow:hidden;margin:6px 0;}
+.lq-xp-bar{height:100%;background:#534AB7;border-radius:6px;transition:width .4s;}
+.lq-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.lq-stat{background:#EEEDFE;border-radius:12px;padding:12px;text-align:center;}
+.lq-stat-val{font-size:24px;font-weight:700;color:#3C3489;}
+.lq-stat-lbl{font-size:11px;color:#5F5E5A;margin-top:2px;}
+.lq-option-btn{display:block;width:100%;padding:14px 16px;border-radius:12px;border:2px solid #e8e6ff;background:#fff;font-size:15px;font-weight:500;cursor:pointer;text-align:left;margin-bottom:10px;transition:all .15s;color:#1a1a2e;}
+.lq-option-btn:active{transform:scale(.98);}
+.lq-option-btn.correct{border-color:#639922;background:#EAF3DE;color:#27500A;}
+.lq-option-btn.wrong{border-color:#A32D2D;background:#FCEBEB;color:#501313;}
+.lq-letter-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0;}
+.lq-letter-btn{width:44px;height:44px;border-radius:10px;border:2px solid #e8e6ff;background:#fff;font-size:18px;font-weight:700;cursor:pointer;color:#3C3489;transition:all .1s;}
+.lq-letter-btn:active{transform:scale(.9);}
+.lq-letter-btn.used{opacity:.3;}
+.lq-answer-boxes{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.lq-ans-box{width:40px;height:44px;border-radius:8px;border:2px solid #AFA9EC;background:#EEEDFE;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#3C3489;cursor:pointer;}
+.lq-ans-box.filled{border-color:#534AB7;background:#534AB7;color:#fff;}
+.lq-progress-wrap{display:flex;gap:6px;margin-bottom:16px;}
+.lq-progress-dot{flex:1;height:6px;border-radius:3px;background:#e8e6ff;}
+.lq-progress-dot.done{background:#534AB7;}
+.lq-progress-dot.current{background:#AFA9EC;}
+.lq-level-badge{display:inline-flex;align-items:center;gap:6px;background:#534AB7;color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:600;}
+.lq-lang-switch{display:flex;gap:8px;margin-bottom:16px;}
+.lq-lang-btn{flex:1;padding:10px;border-radius:10px;border:2px solid #e8e6ff;background:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;color:#5F5E5A;}
+.lq-lang-btn.on{border-color:#534AB7;background:#EEEDFE;color:#3C3489;}
+.lq-mode-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.lq-mode-card{background:#fff;border:2px solid #e8e6ff;border-radius:14px;padding:16px;cursor:pointer;text-align:center;transition:all .15s;}
+.lq-mode-card:active{transform:scale(.97);}
+.lq-mode-card:hover{border-color:#AFA9EC;}
+.lq-mode-icon{font-size:30px;margin-bottom:6px;}
+.lq-mode-name{font-size:13px;font-weight:600;color:#3C3489;}
+.lq-q-word{font-size:32px;font-weight:700;text-align:center;color:#1a1a2e;margin:20px 0 8px;}
+.lq-q-hint{font-size:13px;color:#888780;text-align:center;margin-bottom:20px;}
+.lq-result-emoji{font-size:64px;text-align:center;margin:20px 0;}
+.lq-result-title{font-size:26px;font-weight:700;text-align:center;color:#3C3489;margin-bottom:6px;}
+.lq-result-sub{font-size:15px;color:#888780;text-align:center;margin-bottom:20px;}
+.lq-hs-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0eeff;}
+.lq-hs-row:last-child{border-bottom:none;}
+.lq-back-btn{background:none;border:none;font-size:14px;color:#888780;cursor:pointer;padding:0;margin-bottom:16px;}
+.lq-text-in{display:block;width:100%;padding:12px;border-radius:10px;border:2px solid #e8e6ff;font-size:16px;color:#1a1a2e;background:#fff;}
+.lq-text-in:focus{outline:none;border-color:#534AB7;}
+.lq-input-lbl{font-size:13px;color:#888780;margin-bottom:4px;display:block;}
+</style>
+</head>
+<body>
+
+<!-- APP SWITCHER -->
+<div id="app-switcher">
+  <button class="app-tab active" onclick="switchApp('fitfamily')" id="tab-fitfamily">
+    <span class="app-tab-icon">💪</span>
+    FitFamily
+  </button>
+  <button class="app-tab" onclick="switchApp('linguaquest')" id="tab-linguaquest">
+    <span class="app-tab-icon">🗺️</span>
+    LinguaQuest
+  </button>
+</div>
+
+<!-- ══════════════ FITFAMILY APP ══════════════ -->
+<div class="app-frame active" id="frame-fitfamily">
+<div id="ff-app">
+  <div class="ff-top-bar">
+    <div>
+      <div class="ff-top-bar-title">FitFamily</div>
+      <div class="ff-top-bar-sub" id="ff-top-sub">Fit ohne Geräte · Mark Lauren</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:24px;font-weight:700;color:#d97706" id="ff-hdr-streak">0</div>
+      <div style="font-size:12px;color:var(--text3)">Streak</div>
+    </div>
+  </div>
+  <div class="ff-content" id="ff-main-content">
+    <div class="ff-page active" id="ff-page-home"><div id="ff-home-inner"></div></div>
+    <div class="ff-page" id="ff-page-programme"><div id="ff-programme-inner"></div></div>
+    <div class="ff-page" id="ff-page-uebungen"><div id="ff-uebungen-inner"></div></div>
+    <div class="ff-page" id="ff-page-challenges"><div id="ff-challenges-inner"></div></div>
+    <div class="ff-page" id="ff-page-verlauf"><div id="ff-verlauf-inner"></div></div>
+    <div class="ff-page" id="ff-page-rangliste"><div id="ff-rangliste-inner"></div></div>
+    <div class="ff-page" id="ff-page-profile"><div id="ff-profile-inner"></div></div>
+  </div>
+  <nav class="ff-bottom-nav">
+    <button class="ff-nav-item active" onclick="ffShowPage('home')" id="ff-nav-home">
+      <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Start
+    </button>
+    <button class="ff-nav-item" onclick="ffShowPage('programme')" id="ff-nav-programme">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Programm
+    </button>
+    <button class="ff-nav-item" onclick="ffShowPage('challenges')" id="ff-nav-challenges">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>Challenges
+    </button>
+    <button class="ff-nav-item" onclick="ffShowPage('verlauf')" id="ff-nav-verlauf">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Verlauf
+    </button>
+    <button class="ff-nav-item" onclick="ffShowPage('profile')" id="ff-nav-profile">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Familie
+    </button>
+  </nav>
+</div>
+<div class="ff-modal-overlay" id="ff-modal-overlay" onclick="ffHandleOverlayClick(event)">
+  <div class="modal-box" id="ff-modal-box"></div>
+</div>
+</div>
+
+<!-- ══════════════ LINGUAQUEST APP ══════════════ -->
+<div class="app-frame" id="frame-linguaquest">
+<div id="lq-app">
+
+<div id="lq-p-home" class="lq-page on">
+  <div style="text-align:center;padding:30px 0 16px;">
+    <div style="font-size:50px;margin-bottom:6px;">🗺️</div>
+    <div style="font-size:26px;font-weight:700;color:#3C3489;">LinguaQuest</div>
+    <p style="color:#888780;margin-top:4px;font-size:14px;">Sprachen lernen wie ein Abenteuer</p>
+  </div>
+  <div class="lq-card" id="lq-profile-list-wrap">
+    <div style="font-size:16px;font-weight:600;margin-bottom:12px;">Wer spielt?</div>
+    <div id="lq-profile-list"><p style="color:#888780;font-size:14px;">Lade Profile...</p></div>
+  </div>
+  <button class="lq-btn lq-btn-secondary" onclick="lqShowPage('lq-p-new-profile')" style="margin-top:4px;">+ Neues Profil</button>
+  <button class="lq-btn lq-btn-secondary" onclick="lqShowHighscore()" style="margin-top:10px;">🏆 Highscore</button>
+</div>
+
+<div id="lq-p-new-profile" class="lq-page">
+  <button class="lq-back-btn" onclick="lqShowPage('lq-p-home')">← Zurück</button>
+  <div style="font-size:20px;font-weight:600;margin-bottom:16px;">Neues Profil</div>
+  <div class="lq-card">
+    <label class="lq-input-lbl">Dein Name</label>
+    <input class="lq-text-in" id="lq-np-name" placeholder="z.B. Papa, Jonas, Maria..." maxlength="20" style="margin-bottom:14px;">
+    <label class="lq-input-lbl">Farbe wählen</label>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px;" id="lq-color-picker">
+      <div class="lq-cp" data-c="purple" onclick="lqPickColor(this)" style="width:40px;height:40px;border-radius:50%;background:#534AB7;cursor:pointer;border:3px solid #3C3489;"></div>
+      <div class="lq-cp" data-c="teal" onclick="lqPickColor(this)" style="width:40px;height:40px;border-radius:50%;background:#1D9E75;cursor:pointer;border:3px solid transparent;"></div>
+      <div class="lq-cp" data-c="coral" onclick="lqPickColor(this)" style="width:40px;height:40px;border-radius:50%;background:#D85A30;cursor:pointer;border:3px solid transparent;"></div>
+      <div class="lq-cp" data-c="blue" onclick="lqPickColor(this)" style="width:40px;height:40px;border-radius:50%;background:#378ADD;cursor:pointer;border:3px solid transparent;"></div>
+      <div class="lq-cp" data-c="pink" onclick="lqPickColor(this)" style="width:40px;height:40px;border-radius:50%;background:#D4537E;cursor:pointer;border:3px solid transparent;"></div>
+    </div>
+  </div>
+  <button class="lq-btn lq-btn-primary" onclick="lqCreateProfile()" style="margin-top:8px;">Profil erstellen</button>
+</div>
+
+<div id="lq-p-dashboard" class="lq-page">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+    <div class="lq-avatar" id="lq-d-avatar"></div>
+    <div style="flex:1;">
+      <div style="font-size:18px;font-weight:700;" id="lq-d-name"></div>
+      <div class="lq-level-badge" id="lq-d-level">Level 1</div>
+    </div>
+    <button class="lq-back-btn" onclick="lqShowPage('lq-p-home')" style="margin-bottom:0;">Wechseln</button>
+  </div>
+  <div style="margin-bottom:6px;">
+    <div style="display:flex;justify-content:space-between;font-size:12px;color:#888780;margin-bottom:4px;"><span>XP</span><span id="lq-d-xp">0/100</span></div>
+    <div class="lq-xp-bar-wrap"><div class="lq-xp-bar" id="lq-d-xp-bar" style="width:0%;"></div></div>
+  </div>
+  <div class="lq-stat-row">
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-d-streak">0</div><div class="lq-stat-lbl">Streak 🔥</div></div>
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-d-coins">0</div><div class="lq-stat-lbl">Münzen 🪙</div></div>
+  </div>
+  <div class="lq-card">
+    <div style="font-size:12px;font-weight:600;color:#888780;margin-bottom:10px;">SPRACHE</div>
+    <div class="lq-lang-switch">
+      <button class="lq-lang-btn on" id="lq-lb-en" onclick="lqSetLang('en')">🇬🇧 Englisch</button>
+      <button class="lq-lang-btn" id="lq-lb-es" onclick="lqSetLang('es')">🇪🇸 Spanisch</button>
+    </div>
+    <div style="font-size:12px;font-weight:600;color:#888780;margin-bottom:10px;">MODUS</div>
+    <div class="lq-mode-row">
+      <div class="lq-mode-card" onclick="lqStartGame('mc')"><div class="lq-mode-icon">❓</div><div class="lq-mode-name">Multiple Choice</div></div>
+      <div class="lq-mode-card" onclick="lqStartGame('spell')"><div class="lq-mode-icon">🔤</div><div class="lq-mode-name">Wort tippen</div></div>
+    </div>
+    <div class="lq-mode-row">
+      <div class="lq-mode-card" onclick="lqStartGame('flash')"><div class="lq-mode-icon">⚡</div><div class="lq-mode-name">Blitz-Karten</div></div>
+      <div class="lq-mode-card" onclick="lqStartGame('translate')"><div class="lq-mode-icon">🔄</div><div class="lq-mode-name">Übersetzen</div></div>
+    </div>
+  </div>
+</div>
+
+<div id="lq-p-game" class="lq-page">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <button class="lq-back-btn" onclick="lqShowPage('lq-p-dashboard')" style="margin-bottom:0;">✕ Beenden</button>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <span class="lq-tag" id="lq-g-lang-tag">EN</span>
+      <span style="font-size:13px;color:#888780;" id="lq-g-counter">1/7</span>
+    </div>
+  </div>
+  <div class="lq-progress-wrap" id="lq-g-dots"></div>
+  <div style="display:flex;justify-content:space-between;font-size:13px;color:#888780;margin-bottom:4px;">
+    <span>🪙 <span id="lq-g-coins">0</span></span>
+    <span>⭐ <span id="lq-g-score">0</span> Punkte</span>
+  </div>
+  <div id="lq-g-content"></div>
+</div>
+
+<div id="lq-p-result" class="lq-page">
+  <div class="lq-result-emoji" id="lq-r-emoji">🎉</div>
+  <div class="lq-result-title" id="lq-r-title">Super!</div>
+  <div class="lq-result-sub" id="lq-r-sub"></div>
+  <div class="lq-stat-row">
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-r-correct">0</div><div class="lq-stat-lbl">Richtig</div></div>
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-r-xp">+0</div><div class="lq-stat-lbl">XP verdient</div></div>
+  </div>
+  <div class="lq-stat-row">
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-r-coins">+0</div><div class="lq-stat-lbl">Münzen 🪙</div></div>
+    <div class="lq-stat"><div class="lq-stat-val" id="lq-r-streak">0</div><div class="lq-stat-lbl">Streak 🔥</div></div>
+  </div>
+  <button class="lq-btn lq-btn-primary" id="lq-r-again" style="margin-top:8px;">Nochmal spielen</button>
+  <button class="lq-btn lq-btn-secondary" onclick="lqShowPage('lq-p-dashboard')" style="margin-top:10px;">Zum Menü</button>
+</div>
+
+<div id="lq-p-highscore" class="lq-page">
+  <button class="lq-back-btn" onclick="lqShowPage('lq-p-home')">← Zurück</button>
+  <div style="font-size:20px;font-weight:600;margin-bottom:16px;">🏆 Highscore</div>
+  <div class="lq-card" id="lq-hs-list"><p style="color:#888780;">Lade...</p></div>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// ═══════════════════════════════════════════════════
+// APP SWITCHER
+// ═══════════════════════════════════════════════════
+function switchApp(app){
+  document.querySelectorAll('.app-frame').forEach(f=>f.classList.remove('active'));
+  document.querySelectorAll('.app-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('frame-'+app).classList.add('active');
+  document.getElementById('tab-'+app).classList.add('active');
+}
+
+// ═══════════════════════════════════════════════════
+// FITFAMILY DATA & LOGIC
+// ═══════════════════════════════════════════════════
+const AVATAR_COLORS=['#2563eb','#16a34a','#ea580c','#7c3aed','#0f766e','#dc2626','#ca8a04','#db2777','#0891b2','#65a30d'];
+const EXERCISES=[
+  {id:'e01',name:'Liegestütze',muscles:['Brust','Trizeps','Schultern'],desc:'Körper Brett-gerade, Ellenbogen nah am Körper.',leicht:'Knie auf dem Boden',mittel:'Normaler Liegestütz',schwer:'Füße erhöht auf Stuhl',dur:[40,50,60]},
+  {id:'e02',name:'Weiter Liegestütz',muscles:['Brust außen','Schultern'],desc:'Hände deutlich breiter als Schulterbreite.',leicht:'Knie auf dem Boden',mittel:'Normaler weiter Liegestütz',schwer:'Füße erhöht, explosiv',dur:[40,50,60]},
+  {id:'e03',name:'Kniebeugen',muscles:['Oberschenkel','Gesäß'],desc:'Füße schulterbreit, Rücken gerade.',leicht:'Auf Stuhl setzen und aufstehen',mittel:'Normale Kniebeugen',schwer:'Sprungkniebeugen',dur:[45,55,65]},
+  {id:'e04',name:'Ausfallschritte',muscles:['Oberschenkel','Gesäß'],desc:'Großer Schritt nach vorne.',leicht:'Statisch, Halt an Wand',mittel:'Wechselnd vorwärts',schwer:'Sprung-Ausfallschritte',dur:[45,50,60]},
+  {id:'e05',name:'Klimmzüge',muscles:['Rücken','Bizeps'],desc:'Schulterbreiter Griff, Kinn über die Stange.',leicht:'Australische Klimmzüge',mittel:'Normale Klimmzüge',schwer:'Enger Griff',dur:[30,40,50]},
+  {id:'e06',name:'Rudern (Tisch)',muscles:['Rücken','Bizeps'],desc:'Unter einem Tisch hängen.',leicht:'Knie angewinkelt',mittel:'Beine gestreckt',schwer:'Beine erhöht',dur:[40,50,60]},
+  {id:'e07',name:'Plank',muscles:['Bauch','Rumpf'],desc:'Unterarme auf Boden, Körper gerade.',leicht:'Plank auf Knien',mittel:'Normaler Plank',schwer:'Seitlicher Plank',dur:[30,45,60]},
+  {id:'e08',name:'Crunches',muscles:['Bauchmuskeln'],desc:'Schulterblätter vom Boden heben.',leicht:'Kleine Bewegung',mittel:'Voller Crunch',schwer:'Mit gestreckten Beinen',dur:[40,50,60]},
+  {id:'e09',name:'Rumpfrotation',muscles:['Schrägbauch'],desc:'Knie seitwärts kippen.',leicht:'Kleine Bewegungen',mittel:'Volle Seite',schwer:'Beine gestreckt',dur:[40,50,60]},
+  {id:'e10',name:'Superman',muscles:['unterer Rücken','Gesäß'],desc:'Arme und Beine gleichzeitig heben.',leicht:'Einzeln alternierend',mittel:'Gegenüberliegende Paare',schwer:'Alle vier gleichzeitig',dur:[40,50,55]},
+  {id:'e11',name:'Bergsteiger',muscles:['Bauch','Herz-Kreislauf'],desc:'Knie abwechselnd zur Brust ziehen.',leicht:'Langsam',mittel:'Mittleres Tempo',schwer:'Maximum-Tempo',dur:[30,40,50]},
+  {id:'e12',name:'Burpees',muscles:['Ganzkörper'],desc:'Squat → Liegestütz-Position → springen.',leicht:'Ohne Sprung',mittel:'Mit Sprung',schwer:'Mit Liegestütz',dur:[30,40,50]},
+  {id:'e13',name:'Dips (Stuhl)',muscles:['Trizeps','Brust'],desc:'Hände auf Stuhlkante.',leicht:'Füße aufgestellt',mittel:'Beine gestreckt',schwer:'Beine erhöht',dur:[35,45,55]},
+  {id:'e14',name:'Seitlicher Liegestütz',muscles:['Brust','Balance'],desc:'Gewicht auf eine Seite verlagern.',leicht:'Auf Knien',mittel:'Archer-Liegestütz',schwer:'Vollständig einseitig',dur:[35,45,55]},
+  {id:'e15',name:'Sprungkniebeugen',muscles:['Beine','Herz-Kreislauf'],desc:'Explosiv nach oben springen.',leicht:'Kleiner Hüpfer',mittel:'Voller Sprung',schwer:'Tuck-Jump',dur:[30,40,50]},
+  {id:'e16',name:'Liegestütz mit Rotation',muscles:['Brust','Core'],desc:'Oben eine Hand zur Decke drehen.',leicht:'Auf Knien',mittel:'Voller Liegestütz',schwer:'Lange Haltezeit',dur:[35,45,55]},
+  {id:'e17',name:'Einbeinige Hüftbrücke',muscles:['Gesäß','Core'],desc:'Ein Bein gestreckt, Hüfte heben.',leicht:'Beide Beine gebeugt',mittel:'Ein Bein gestreckt',schwer:'3-Sek.-Halt oben',dur:[40,50,60]},
+  {id:'e18',name:'Pike Push-Up',muscles:['Schultern','Trizeps'],desc:'Umgekehrtes V, Kopf absenken.',leicht:'Flache V-Position',mittel:'Normaler Pike Push-Up',schwer:'Füße auf Stuhl erhöht',dur:[35,45,55]},
+];
+const WORKOUT_TYPES={
+  SZ:{name:'Satz auf Zeit',short:'SaZ',color:'#1d4ed8',bg:'#dbeafe',emoji:'⏱'},
+  IV:{name:'Intervall',short:'IV',color:'#0f766e',bg:'#ccfbf1',emoji:'🔁'},
+  TB:{name:'Tabata',short:'TB',color:'#7c3aed',bg:'#ede9fe',emoji:'⚡'},
+  SS:{name:'Supersatz',short:'SS',color:'#c2410c',bg:'#ffedd5',emoji:'💪'},
+  ST:{name:'Stapper',short:'ST',color:'#15803d',bg:'#dcfce7',emoji:'🏃'},
+};
+function makeWeek(wNum,blockName,days){return{week:wNum,block:blockName,days:days.map((d,i)=>({day:i+1,...d}))};}
+const PB=[
+  makeWeek(1,'Kraftausdauer-Block',[{type:'SZ',mins:20,muscles:'Rücken & Brust',exercises:['e07','e01','e10','e08']},{type:'SZ',mins:20,muscles:'Beine',exercises:['e03','e04','e17','e03']},{type:'SZ',mins:20,muscles:'Rücken & Brust',exercises:['e01','e06','e08','e07']},{type:'SZ',mins:20,muscles:'Beine',exercises:['e04','e03','e17','e09']}]),
+  makeWeek(2,'Kraftausdauer-Block',[{type:'SZ',mins:24,muscles:'Brust',exercises:['e01','e02','e13','e07']},{type:'SZ',mins:24,muscles:'Beine',exercises:['e03','e04','e15','e17']},{type:'SZ',mins:24,muscles:'Rücken',exercises:['e05','e06','e10','e08']},{type:'SZ',mins:24,muscles:'Core',exercises:['e07','e08','e09','e10']}]),
+  makeWeek(3,'Kraft-Block',[{type:'IV',mins:30,muscles:'Brust',exercises:['e01','e14','e13','e07']},{type:'IV',mins:30,muscles:'Beine',exercises:['e03','e04','e15','e17']},{type:'IV',mins:30,muscles:'Rücken',exercises:['e05','e06','e10','e08']},{type:'IV',mins:30,muscles:'Core',exercises:['e07','e09','e08','e11']}]),
+  makeWeek(4,'Kraft-Block',[{type:'IV',mins:32,muscles:'Brust',exercises:['e01','e16','e02','e13']},{type:'IV',mins:32,muscles:'Beine',exercises:['e03','e04','e15','e12']},{type:'IV',mins:32,muscles:'Rücken',exercises:['e05','e06','e10','e18']},{type:'IV',mins:32,muscles:'Core',exercises:['e07','e08','e09','e11']}]),
+  makeWeek(5,'Power-Block',[{type:'SS',mins:20,muscles:'Brust',exercises:['e01','e02','e13','e16']},{type:'SS',mins:20,muscles:'Beine',exercises:['e03','e15','e04','e17']},{type:'SS',mins:20,muscles:'Rücken',exercises:['e05','e06','e18','e10']},{type:'SS',mins:20,muscles:'Core',exercises:['e07','e09','e08','e11']}]),
+];
+const PF=PB.map(w=>({...w,days:w.days.map(d=>({...d,mins:d.mins+8,exercises:[...d.exercises].reverse()}))}));
+const PM=PB.map(w=>({...w,block:w.block+' (Master)',days:w.days.map(d=>({...d,mins:d.mins+14,exercises:['e12','e15','e11','e05']}))}));
+const PROGRAMS=[
+  {id:'basis',name:'Basis',sub:'Anfänger · 10 Wochen',desc:'Perfekt für den Einstieg.',color:'#22c55e',diff:'leicht',weeks:PB,badges:['Anfänger','4–5 Tage/Woche','20–24 Min']},
+  {id:'firstclass',name:'First Class',sub:'Fortgeschrittene · 10 Wochen',desc:'Für alle die intensiver trainieren wollen.',color:'#3b82f6',diff:'mittel',weeks:PF,badges:['Fortgeschritten','4–5 Tage/Woche','28–36 Min']},
+  {id:'master',name:'Master',sub:'Masterklasse · 10 Wochen',desc:'Das härteste Programm.',color:'#7c3aed',diff:'schwer',weeks:PM,badges:['Experte','5 Tage/Woche','36–48 Min']},
+];
+const CHALLENGES=[
+  {id:'c1',name:'Liegestütz-Challenge',icon:'💪',color:'#dbeafe',type:'reps',unit:'Wiederholungen'},
+  {id:'c2',name:'Kniebeugen-Challenge',icon:'🦵',color:'#dcfce7',type:'reps',unit:'Wiederholungen'},
+  {id:'c3',name:'Plank-Challenge',icon:'🧘',color:'#ede9fe',type:'time',unit:'Sekunden'},
+  {id:'c4',name:'Lauf-Challenge',icon:'🏃',color:'#ffedd5',type:'run',unit:'km'},
+  {id:'c5',name:'Burpee-Challenge',icon:'⚡',color:'#fef9c3',type:'reps',unit:'Wiederholungen'},
+  {id:'c6',name:'Wing Tsun',icon:'🥋',color:'#ccfbf1',type:'wingtsun',unit:''},
+];
+
+let S={profiles:[],activeProfileId:null,entries:[],programProgress:{},diffSel:'leicht',verlaufTab:'alle',timerSec:0,timerRunning:false,timerInt:null,restSec:60,restRunning:false,restInt:null};
+
+async function ffLoad(){
+  try{const r=await window.storage.get('fitfamily_v2');if(r&&r.value){const d=JSON.parse(r.value);Object.assign(S,d);S.timerInt=null;S.restInt=null;}}catch(e){}
+  if(!S.profiles||!S.profiles.length){S.profiles=[{id:'p1',name:'Mama',color:AVATAR_COLORS[2],initials:'MA'},{id:'p2',name:'Papa',color:AVATAR_COLORS[0],initials:'PA'},{id:'p3',name:'Kind 1',color:AVATAR_COLORS[1],initials:'K1'},{id:'p4',name:'Kind 2',color:AVATAR_COLORS[4],initials:'K2'}];S.activeProfileId='p1';}
+}
+async function ffSave(){try{await window.storage.set('fitfamily_v2',JSON.stringify({profiles:S.profiles,activeProfileId:S.activeProfileId,entries:S.entries,programProgress:S.programProgress,diffSel:S.diffSel}));}catch(e){}}
+
+function ffGetInitials(n){return n.trim().split(/\s+/).map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function ffFmtSec(s){const m=Math.floor(s/60);return`${String(m).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`;}
+function ffToday(){return new Date().toISOString().split('T')[0];}
+function ffGetStreak(pid){const days=new Set(S.entries.filter(e=>e.profileId===pid).map(e=>e.date));if(!days.size)return 0;let streak=0,d=new Date();while(true){const ds=d.toISOString().split('T')[0];if(days.has(ds)){streak++;d.setDate(d.getDate()-1);}else break;}return streak;}
+function ffGetProfile(id){return S.profiles.find(p=>p.id===id);}
+function ffGetActive(){return ffGetProfile(S.activeProfileId);}
+function ffGetEx(id){return EXERCISES.find(e=>e.id===id);}
+function ffGetPR(pid,cid){const arr=S.entries.filter(e=>e.profileId===pid&&e.challengeId===cid);if(!arr.length)return null;if(cid==='c4')return arr.reduce((b,e)=>(!b||e.km>b.km)?e:b,null);return arr.reduce((b,e)=>(!b||e.value>b.value)?e:b,null);}
+function ffIsPR(entry){const same=S.entries.filter(e=>e.profileId===entry.profileId&&e.challengeId===entry.challengeId&&e.id!==entry.id);if(!same.length)return true;if(entry.challengeId==='c4')return!same.some(e=>e.km>=entry.km);return!same.some(e=>e.value>=entry.value);}
+function ffFmtEntry(e){if(e.challengeId==='c4')return`${parseFloat(e.km).toFixed(1)} km in ${e.zeit}`;if(e.challengeId==='c3')return`${e.value} Sekunden`;if(e.challengeId==='c6'){if(e.subtype==='form')return`Form: ${e.formName}, ${e.reps} Wdh.`;return`Freies Training: ${e.zeit}`;}return`${e.value} ${e.unit||''}`;}
+function ffAddEntry(entry){S.entries.push(entry);ffSave();}
+function ffUid(){return Date.now().toString(36)+Math.random().toString(36).slice(2);}
+
+function ffShowPage(name){
+  document.querySelectorAll('.ff-page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('ff-page-'+name).classList.add('active');
+  document.querySelectorAll('.ff-nav-item').forEach(b=>b.classList.remove('active'));
+  const nb=document.getElementById('ff-nav-'+name);if(nb)nb.classList.add('active');
+  const renders={home:ffRenderHome,programme:ffRenderProgramme,uebungen:ffRenderUebungen,challenges:ffRenderChallenges,verlauf:ffRenderVerlauf,rangliste:ffRenderRangliste,profile:ffRenderProfile};
+  if(renders[name])renders[name]();
+}
+
+function ffRenderProfileSwitcher(){
+  return`<div class="profile-scroller" id="ff-prof-switch">${S.profiles.map(p=>`<div class="profile-chip ${p.id===S.activeProfileId?'active':''}" onclick="ffSwitchProfile('${p.id}')"><div class="profile-avatar" style="background:${p.color}">${p.initials||ffGetInitials(p.name)}</div><span class="profile-chip-name">${p.name}</span>${ffGetStreak(p.id)>0?`<span class="profile-streak-dot">${ffGetStreak(p.id)}d 🔥</span>`:''}</div>`).join('')}</div>`;
+}
+
+function ffSwitchProfile(id){S.activeProfileId=id;ffSave();document.getElementById('ff-hdr-streak').textContent=ffGetStreak(id);ffRenderHome();}
+
+function ffRenderHome(){
+  const p=ffGetActive();if(!p)return;
+  const streak=ffGetStreak(p.id);
+  const mine=S.entries.filter(e=>e.profileId===p.id);
+  const todayE=mine.filter(e=>e.date===ffToday());
+  const ws=new Date();ws.setDate(ws.getDate()-6);
+  const weekE=mine.filter(e=>new Date(e.date)>=ws);
+  document.getElementById('ff-hdr-streak').textContent=streak;
+  let html=ffRenderProfileSwitcher();
+  html+=`<div class="streak-banner"><div style="font-size:15px;color:#92400e;margin-bottom:4px">🔥 Aktueller Streak</div><div class="streak-num">${streak}</div><div style="font-size:14px;color:#92400e">Tage in Folge aktiv</div></div>`;
+  html+=`<div class="stat-grid"><div class="stat-card"><div class="stat-val">${mine.length}</div><div class="stat-lbl">Gesamt</div></div><div class="stat-card"><div class="stat-val">${todayE.length}</div><div class="stat-lbl">Heute</div></div><div class="stat-card"><div class="stat-val">${weekE.length}</div><div class="stat-lbl">Woche</div></div></div>`;
+  const pp=S.programProgress[p.id];
+  if(pp){const prog=PROGRAMS.find(x=>x.id===pp.programId);if(prog){const done=(pp.completedDays||[]).length;const total=prog.weeks.reduce((s,w)=>s+w.days.length,0);html+=`<div class="card" style="border-left:4px solid ${prog.color}"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div style="font-size:17px;font-weight:700">${prog.name}</div><button class="btn btn-primary btn-sm" onclick="ffShowPage('programme')">Weiter</button></div><div style="font-size:14px;color:var(--text2)">Woche ${pp.currentWeek||1} von 10</div><div class="prog-progress-bar"><div class="prog-progress-fill" style="width:${Math.round((done/total)*100)}%;background:${prog.color}"></div></div></div>`;}}
+  else html+=`<div class="card" style="text-align:center;padding:20px"><button class="btn btn-primary" onclick="ffShowPage('programme')">Programm starten</button></div>`;
+  html+=`<hr class="divider"><div class="section-header"><span class="section-title">Heute</span></div>`;
+  if(!todayE.length)html+=`<div class="empty-state"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>Noch kein Training heute!</div>`;
+  else todayE.slice().reverse().forEach(e=>{const ch=CHALLENGES.find(c=>c.id===e.challengeId)||{name:e.challengeId||'Training',icon:'💪'};html+=`<div class="history-entry"><div class="history-title">${ch.icon} ${ch.name}</div><div class="history-detail">${ffFmtEntry(e)}</div></div>`;});
+  html+=`<hr class="divider"><div class="section-header"><span class="section-title">⏱ Pause-Timer</span></div><div class="rest-timer-wrap"><div class="rest-big" id="ff-rest-display">${ffFmtSec(S.restSec)}</div><div style="font-size:14px;color:var(--text3)">Erholungszeit</div><div style="display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap"><button class="btn btn-sm" onclick="ffSetRest(30)">30s</button><button class="btn btn-sm" onclick="ffSetRest(60)">1 Min</button><button class="btn btn-sm" onclick="ffSetRest(90)">90s</button><button class="btn btn-sm" onclick="ffSetRest(120)">2 Min</button><button class="btn btn-primary btn-sm" id="ff-rest-btn" onclick="ffToggleRest()">▶ Start</button></div></div>`;
+  document.getElementById('ff-home-inner').innerHTML=html;
+}
+
+function ffRenderProgramme(){
+  const p=ffGetActive();if(!p)return;
+  const pp=S.programProgress[p.id];
+  let html=ffRenderProfileSwitcher();
+  if(pp){
+    const prog=PROGRAMS.find(x=>x.id===pp.programId);
+    const done=(pp.completedDays||[]).length;
+    const total=prog.weeks.reduce((s,w)=>s+w.days.length,0);
+    html+=`<div class="card" style="border-left:4px solid ${prog.color};margin-bottom:16px"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px"><div><div style="font-size:20px;font-weight:700">${prog.name}</div><div style="font-size:14px;color:var(--text3)">${prog.sub}</div></div><button class="btn btn-xs btn-danger" onclick="ffResetProg('${p.id}')">Abbrechen</button></div><div style="font-size:15px;color:var(--text2);margin-bottom:6px">${done} von ${total} Einheiten</div><div class="prog-progress-bar"><div class="prog-progress-fill" style="width:${Math.round((done/total)*100)}%;background:${prog.color}"></div></div></div>`;
+    prog.weeks.forEach((wk,wi)=>{
+      const isCW=(wi+1)===pp.currentWeek;
+      html+=`<div class="workout-week-header" style="${isCW?`background:${prog.color}22;border:1px solid ${prog.color}44`:''}"><div class="workout-week-title">${isCW?'▶ ':''}Woche ${wk.week}</div><div class="workout-week-sub">${wk.block}</div></div>`;
+      wk.days.forEach((dy,di)=>{
+        const key=`${pp.programId}_w${wi+1}_d${di+1}`;
+        const done=(pp.completedDays||[]).includes(key);
+        const isNext=!done&&(wi+1)===pp.currentWeek&&(di+1)===pp.currentDay;
+        const wt=WORKOUT_TYPES[dy.type]||WORKOUT_TYPES.SZ;
+        html+=`<div class="workout-day-card ${done?'done':''}" onclick="ffStartWorkout('${p.id}','${pp.programId}',${wi},${di})"><div class="workout-type-icon" style="background:${wt.bg};color:${wt.color};font-size:18px">${wt.emoji}</div><div class="workout-day-info"><div class="workout-day-title">${isNext?'→ ':''}Tag ${dy.day}: ${wt.name}</div><div class="workout-day-meta">${dy.mins} Min · ${dy.muscles}</div></div><div class="workout-check ${done?'checked':''}">${done?`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>`:''}</div></div>`;
+      });
+    });
+  } else {
+    PROGRAMS.forEach(prog=>{html+=`<div class="prog-card ${prog.id}" onclick="ffSelectProg('${p.id}','${prog.id}')"><div class="prog-card-title" style="color:${prog.color}">${prog.name}</div><div class="prog-card-sub">${prog.sub}</div><p style="font-size:15px;color:var(--text2);margin-top:8px">${prog.desc}</p><div class="prog-card-badges">${prog.badges.map(b=>`<span class="badge badge-gray">${b}</span>`).join('')}</div></div>`;});
+  }
+  document.getElementById('ff-programme-inner').innerHTML=html;
+}
+
+function ffSelectProg(pid,progId){S.programProgress[pid]={programId:progId,currentWeek:1,currentDay:1,completedDays:[]};ffSave();ffRenderProgramme();}
+function ffResetProg(pid){if(!confirm('Fortschritt zurücksetzen?'))return;delete S.programProgress[pid];ffSave();ffRenderProgramme();}
+
+function ffStartWorkout(pid,progId,wi,di){
+  const prog=PROGRAMS.find(p=>p.id===progId);
+  const dy=prog.weeks[wi].days[di];
+  const wt=WORKOUT_TYPES[dy.type]||WORKOUT_TYPES.SZ;
+  const exList=dy.exercises.map(id=>ffGetEx(id)).filter(Boolean);
+  ffOpenWorkoutModal(pid,progId,wi,di,dy,wt,exList);
+}
+
+let wState=null;
+function ffOpenWorkoutModal(pid,progId,wi,di,dayData,wt,exercises){
+  wState={pid,progId,wi,di,dayData,wt,exercises,exIdx:0,phaseSec:exercises[0]?exercises[0].dur[['leicht','mittel','schwer'].indexOf(S.diffSel)]||40:40,totalSec:0,running:false,phaseInt:null,totalInt:null,isRest:false,restSec:15};
+  ffRenderWorkoutModal();
+  document.getElementById('ff-modal-overlay').classList.add('open');
+}
+
+function ffRenderWorkoutModal(){
+  if(!wState)return;
+  const ex=wState.exercises[wState.exIdx];
+  const nextEx=wState.exercises[wState.exIdx+1];
+  const r=90;const circ=2*Math.PI*r;
+  const diffIdx=['leicht','mittel','schwer'].indexOf(S.diffSel);
+  const phaseDur=wState.isRest?wState.restSec:(ex?ex.dur[diffIdx]||40:40);
+  const prog=(phaseDur-wState.phaseSec)/phaseDur;
+  const offset=circ*(1-Math.max(0,Math.min(1,prog)));
+  const steps=wState.exercises.map((_,i)=>`<div class="step-dot ${i<wState.exIdx?'done-dot':i===wState.exIdx?'current-dot':''}"></div>`).join('');
+  document.getElementById('ff-modal-box').innerHTML=`
+    <div class="modal-header"><div><div style="font-size:18px;font-weight:700">${wState.wt.emoji} ${wState.wt.name}</div><div style="font-size:13px;color:var(--text3)">Woche ${wState.wi+1} · Tag ${wState.di+1}</div></div><button class="btn btn-ghost btn-icon" onclick="ffCloseWorkout()">✕</button></div>
+    <div class="progress-steps">${steps}</div>
+    <div class="exercise-display"><div class="exercise-name-big">${wState.isRest?'⏸ Pause':ex?ex.name:'Fertig!'}</div>${ex&&!wState.isRest?`<div class="exercise-desc-small">${ex[S.diffSel]||ex.mittel}</div>`:''}</div>
+    <div class="timer-circle"><svg width="200" height="200" viewBox="0 0 200 200"><circle class="timer-circle-bg" cx="100" cy="100" r="90"/><circle class="timer-circle-fg" cx="100" cy="100" r="90" stroke="${wState.isRest?'#22c55e':wState.wt.color}" stroke-dasharray="${circ}" stroke-dashoffset="${offset}" id="ff-timer-arc"/></svg><div class="timer-text"><div class="timer-big" id="ff-wt-timer">${ffFmtSec(wState.phaseSec)}</div><div class="timer-sub">Gesamt: <span id="ff-wt-total">${ffFmtSec(wState.totalSec)}</span></div></div></div>
+    ${nextEx&&!wState.isRest?`<div class="next-exercise">Nächste: <strong>${nextEx.name}</strong></div>`:''}
+    <div style="display:flex;gap:10px;justify-content:center;"><button class="btn ${wState.running?'btn-danger':'btn-primary'} btn-sm" id="ff-wt-btn" onclick="ffToggleWorkout()">${wState.running?'⏸ Pause':'▶ Start'}</button><button class="btn btn-sm" onclick="ffSkipEx()">Überspringen ⏭</button></div>`;
+}
+
+function ffToggleWorkout(){
+  if(!wState)return;
+  if(wState.running){clearInterval(wState.phaseInt);clearInterval(wState.totalInt);wState.running=false;}
+  else{
+    wState.running=true;
+    wState.totalInt=setInterval(()=>{wState.totalSec++;const el=document.getElementById('ff-wt-total');if(el)el.textContent=ffFmtSec(wState.totalSec);},1000);
+    wState.phaseInt=setInterval(()=>{
+      wState.phaseSec--;
+      const el=document.getElementById('ff-wt-timer');if(el)el.textContent=ffFmtSec(wState.phaseSec);
+      const diffIdx=['leicht','mittel','schwer'].indexOf(S.diffSel);
+      const ex=wState.exercises[wState.exIdx];
+      const phaseDur=wState.isRest?wState.restSec:(ex?ex.dur[diffIdx]||40:40);
+      const arc=document.getElementById('ff-timer-arc');
+      if(arc){const r=90;const circ=2*Math.PI*r;arc.style.strokeDashoffset=circ*(1-Math.max(0,Math.min(1,(phaseDur-wState.phaseSec)/phaseDur)));}
+      if(wState.phaseSec<=0){
+        clearInterval(wState.phaseInt);
+        if(wState.isRest){wState.isRest=false;const ex=wState.exercises[wState.exIdx];const di=['leicht','mittel','schwer'].indexOf(S.diffSel);wState.phaseSec=ex?ex.dur[di]||40:40;ffRenderWorkoutModal();ffToggleWorkout();}
+        else{wState.exIdx++;if(wState.exIdx>=wState.exercises.length)ffFinishWorkout();else{wState.isRest=true;wState.phaseSec=15;ffRenderWorkoutModal();ffToggleWorkout();}}
+      }
+    },1000);
+  }
+  const btn=document.getElementById('ff-wt-btn');if(btn)btn.textContent=wState.running?'⏸ Pause':'▶ Start';
+}
+
+function ffSkipEx(){if(!wState)return;clearInterval(wState.phaseInt);wState.exIdx++;if(wState.exIdx>=wState.exercises.length)ffFinishWorkout();else{wState.isRest=false;const di=['leicht','mittel','schwer'].indexOf(S.diffSel);const ex=wState.exercises[wState.exIdx];wState.phaseSec=ex?ex.dur[di]||40:40;ffRenderWorkoutModal();if(wState.running)ffToggleWorkout();}}
+
+function ffFinishWorkout(){
+  clearInterval(wState.phaseInt);clearInterval(wState.totalInt);
+  const key=`${wState.progId}_w${wState.wi+1}_d${wState.di+1}`;
+  const pp=S.programProgress[wState.pid];
+  if(pp&&!(pp.completedDays||[]).includes(key)){
+    pp.completedDays=pp.completedDays||[];pp.completedDays.push(key);
+    const prog=PROGRAMS.find(p=>p.id===wState.progId);
+    const wk=prog.weeks[wState.wi];
+    if(wState.di+1>=wk.days.length){if(wState.wi+1<prog.weeks.length){pp.currentWeek=wState.wi+2;pp.currentDay=1;}}
+    else{pp.currentDay=wState.di+2;}
+  }
+  ffAddEntry({id:ffUid(),profileId:wState.pid,type:'workout',programId:wState.progId,week:wState.wi+1,day:wState.di+1,duration:wState.totalSec,date:ffToday(),ts:Date.now()});
+  document.getElementById('ff-modal-box').innerHTML=`<div style="text-align:center;padding:24px"><div style="font-size:60px;margin-bottom:12px">🎉</div><h2 style="margin-bottom:8px">Training abgeschlossen!</h2><p style="color:var(--text2);margin-bottom:20px">Dauer: ${ffFmtSec(wState.totalSec)}</p><button class="btn btn-primary btn-block" onclick="ffCloseWorkout();ffRenderProgramme()">Zurück</button></div>`;
+  wState=null;
+}
+
+function ffCloseWorkout(){if(wState){clearInterval(wState.phaseInt);clearInterval(wState.totalInt);wState=null;}document.getElementById('ff-modal-overlay').classList.remove('open');}
+function ffHandleOverlayClick(e){if(e.target===document.getElementById('ff-modal-overlay'))ffCloseWorkout();}
+
+function ffRenderUebungen(){
+  const d=S.diffSel;
+  let html=`<div class="diff-bar"><div class="diff-pill ${d==='leicht'?'sel-leicht':''}" onclick="ffSetDiff('leicht',this)">Leicht</div><div class="diff-pill ${d==='mittel'?'sel-mittel':''}" onclick="ffSetDiff('mittel',this)">Mittel</div><div class="diff-pill ${d==='schwer'?'sel-schwer':''}" onclick="ffSetDiff('schwer',this)">Schwer</div></div>`;
+  EXERCISES.forEach(ex=>{html+=`<div class="exercise-accordion"><div class="exercise-accordion-header" onclick="ffToggleAcc('ffa-${ex.id}','ffc-${ex.id}')"><svg id="ffc-${ex.id}" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" style="flex-shrink:0;transition:transform .2s"><path d="m9 18 6-6-6-6"/></svg><div style="flex:1"><div style="font-size:17px;font-weight:600">${ex.name}</div><div style="margin-top:4px">${ex.muscles.map(m=>`<span class="muscle-tag">${m}</span>`).join('')}</div></div></div><div class="exercise-accordion-body" id="ffa-${ex.id}"><p style="color:var(--text2);margin-bottom:10px">${ex.desc}</p><div style="background:${d==='leicht'?'var(--success-light)':d==='mittel'?'var(--warning-light)':'var(--danger-light)'};border-radius:var(--radius-xs);padding:10px 12px"><div style="font-size:14px;font-weight:600;color:${d==='leicht'?'var(--success)':d==='mittel'?'var(--warning)':'var(--danger)'}">${d==='leicht'?'Leicht':d==='mittel'?'Mittel':'Schwer'}</div><div style="font-size:15px">${ex[d]}</div></div></div></div>`;});
+  document.getElementById('ff-uebungen-inner').innerHTML=html;
+}
+
+function ffToggleAcc(id,chvId){const el=document.getElementById(id);const ch=document.getElementById(chvId);const open=el.classList.toggle('open');if(ch)ch.style.transform=open?'rotate(90deg)':'';}
+function ffSetDiff(d,btn){S.diffSel=d;ffSave();document.querySelectorAll('.diff-pill').forEach(el=>el.className='diff-pill');if(btn)btn.className=`diff-pill sel-${d}`;ffRenderUebungen();}
+
+function ffRenderChallenges(){
+  const p=ffGetActive();if(!p)return;
+  let html=ffRenderProfileSwitcher();
+  CHALLENGES.forEach(ch=>{const rec=ffGetPR(p.id,ch.id);html+=`<div class="challenge-tile" onclick="ffOpenChallenge('${ch.id}')"><div class="challenge-icon" style="background:${ch.color};font-size:22px">${ch.icon}</div><div style="flex:1"><div style="font-size:17px;font-weight:700">${ch.name}</div><div style="font-size:14px;color:var(--text3);margin-top:2px">${ch.type==='run'?'Kilometer + Zeit':ch.type==='time'?'Zeit stoppen':ch.type==='wingtsun'?'Formen & Training':'Wiederholungen'}</div></div>${rec?`<span class="badge badge-gold">🏆 ${ffFmtEntry(rec)}</span>`:''}</div>`;});
+  document.getElementById('ff-challenges-inner').innerHTML=html;
+}
+
+function ffOpenChallenge(cid){
+  const ch=CHALLENGES.find(c=>c.id===cid);if(!ch)return;
+  let html='';
+  const hdr=`<div class="modal-header"><h3>${ch.icon} ${ch.name}</h3><button class="btn btn-ghost btn-icon" onclick="ffCloseModal()">✕</button></div>`;
+  if(ch.type==='reps'){html=hdr+`<div id="ff-ch-toast" class="success-toast">✓ Gespeichert!</div><div class="form-group"><label class="form-label">Wiederholungen</label><input type="number" class="form-input form-input-lg" id="ff-ch-val" min="1" placeholder="z.B. 20"></div><button class="btn btn-primary btn-block" onclick="ffSaveReps('${cid}','${ch.unit}')">✓ Eintragen</button>`;}
+  else if(ch.type==='time'){S.timerSec=0;S.timerRunning=false;html=hdr+`<div id="ff-ch-toast" class="success-toast">✓ Gespeichert!</div><div class="rest-timer-wrap"><div class="rest-big" id="ff-ch-timer">00:00</div></div><div style="display:flex;gap:8px;justify-content:center;margin-bottom:14px"><button class="btn btn-primary" id="ff-ch-start" onclick="ffToggleChTimer()">▶ Start</button><button class="btn" onclick="ffResetChTimer()">↺ Reset</button></div><div class="form-group"><label class="form-label">Oder Sekunden eingeben</label><input type="number" class="form-input form-input-lg" id="ff-ch-val" min="1" placeholder="Sekunden"></div><button class="btn btn-primary btn-block" onclick="ffSaveTime('${cid}')">✓ Eintragen</button>`;}
+  else if(ch.type==='run'){html=hdr+`<div id="ff-ch-toast" class="success-toast">✓ Gespeichert!</div><div class="form-group"><label class="form-label">Kilometer</label><input type="number" class="form-input form-input-lg" id="ff-ch-km" min="0.1" step="0.1" placeholder="z.B. 5.3"></div><div class="form-group"><label class="form-label">Zeit (mm:ss)</label><input type="text" class="form-input form-input-lg" id="ff-ch-zeit" placeholder="28:45"></div><button class="btn btn-primary btn-block" onclick="ffSaveRun('${cid}')">🏃 Eintragen</button>`;}
+  else if(ch.type==='wingtsun'){html=hdr+`<div style="display:grid;gap:10px;margin-top:4px"><div class="wt-cat" onclick="ffOpenWTForms()"><div style="font-size:24px;margin-right:4px">🌀</div><div><div style="font-size:17px;font-weight:700">Formen laufen</div></div></div><div class="wt-cat" onclick="ffOpenWTFree()"><div style="font-size:24px;margin-right:4px">🥊</div><div><div style="font-size:17px;font-weight:700">Freies Training</div></div></div></div>`;}
+  document.getElementById('ff-modal-box').innerHTML=html;
+  document.getElementById('ff-modal-overlay').classList.add('open');
+}
+
+function ffCloseModal(){ffClearChTimer();document.getElementById('ff-modal-overlay').classList.remove('open');}
+function ffToggleChTimer(){if(S.timerRunning){clearInterval(S.timerInt);S.timerRunning=false;const b=document.getElementById('ff-ch-start');if(b)b.textContent='▶ Weiter';}else{S.timerRunning=true;const b=document.getElementById('ff-ch-start');if(b)b.textContent='⏸ Stopp';S.timerInt=setInterval(()=>{S.timerSec++;const el=document.getElementById('ff-ch-timer');if(el)el.textContent=ffFmtSec(S.timerSec);const vi=document.getElementById('ff-ch-val');if(vi)vi.value=S.timerSec;},1000);}}
+function ffResetChTimer(){clearInterval(S.timerInt);S.timerRunning=false;S.timerSec=0;const el=document.getElementById('ff-ch-timer');if(el)el.textContent='00:00';const b=document.getElementById('ff-ch-start');if(b)b.textContent='▶ Start';}
+function ffClearChTimer(){if(S.timerInt){clearInterval(S.timerInt);S.timerInt=null;}S.timerRunning=false;}
+function ffShowToast(id){const el=document.getElementById(id);if(el){el.style.display='block';setTimeout(()=>el.style.display='none',2200);}}
+function ffSaveReps(cid,unit){const v=parseInt(document.getElementById('ff-ch-val').value);if(!v||v<1){alert('Bitte eine Zahl eingeben.');return;}ffAddEntry({id:ffUid(),profileId:S.activeProfileId,challengeId:cid,value:v,unit,date:ffToday(),ts:Date.now()});ffShowToast('ff-ch-toast');setTimeout(()=>{ffCloseModal();ffRenderChallenges();},2000);}
+function ffSaveTime(cid){const v=parseInt(document.getElementById('ff-ch-val')?.value)||S.timerSec;if(!v||v<1){alert('Bitte Zeit eingeben.');return;}ffAddEntry({id:ffUid(),profileId:S.activeProfileId,challengeId:cid,value:v,unit:'Sekunden',date:ffToday(),ts:Date.now()});ffShowToast('ff-ch-toast');setTimeout(()=>{ffCloseModal();ffRenderChallenges();},2000);}
+function ffSaveRun(cid){const km=parseFloat(document.getElementById('ff-ch-km').value);const zeit=document.getElementById('ff-ch-zeit').value;if(!km||!zeit){alert('Bitte alle Felder ausfüllen.');return;}ffAddEntry({id:ffUid(),profileId:S.activeProfileId,challengeId:cid,km,zeit,value:km,unit:'km',date:ffToday(),ts:Date.now()});ffShowToast('ff-ch-toast');setTimeout(()=>{ffCloseModal();ffRenderChallenges();},2000);}
+function ffOpenWTForms(){const forms=['Siu Nim Tau (1. Form)','Chum Kiu (2. Form)','Biu Jee (3. Form)','Mook Yan Jong','Luk Dim Boon Kwan','Baat Jaam Do'];document.getElementById('ff-modal-box').innerHTML=`<div class="modal-header"><h3>🌀 Form laufen</h3><button class="btn btn-ghost btn-icon" onclick="ffCloseModal()">✕</button></div><div id="ff-ch-toast" class="success-toast">✓ Gespeichert!</div><div class="form-group"><label class="form-label">Form</label><select class="form-input" id="ff-wt-form">${forms.map(f=>`<option>${f}</option>`).join('')}</select></div><div class="form-group"><label class="form-label">Wiederholungen</label><input type="number" class="form-input form-input-lg" id="ff-wt-reps" min="1" value="1"></div><button class="btn btn-primary btn-block" onclick="ffSaveWTForm()">✓ Eintragen</button>`;}
+function ffOpenWTFree(){S.timerSec=0;S.timerRunning=false;document.getElementById('ff-modal-box').innerHTML=`<div class="modal-header"><h3>🥊 Freies Training</h3><button class="btn btn-ghost btn-icon" onclick="ffCloseModal()">✕</button></div><div id="ff-ch-toast" class="success-toast">✓ Gespeichert!</div><div class="rest-timer-wrap"><div class="rest-big" id="ff-ch-timer">00:00</div></div><div style="display:flex;gap:8px;justify-content:center;margin-bottom:16px"><button class="btn btn-primary" id="ff-ch-start" onclick="ffToggleChTimer()">▶ Start</button><button class="btn" onclick="ffResetChTimer()">↺ Reset</button></div><button class="btn btn-success btn-block" onclick="ffSaveWTFree()">✓ Speichern</button>`;}
+function ffSaveWTForm(){const formName=document.getElementById('ff-wt-form').value;const reps=parseInt(document.getElementById('ff-wt-reps').value)||1;ffAddEntry({id:ffUid(),profileId:S.activeProfileId,challengeId:'c6',subtype:'form',formName,reps,value:reps,unit:'Wdh',date:ffToday(),ts:Date.now()});ffShowToast('ff-ch-toast');setTimeout(()=>{ffCloseModal();ffRenderChallenges();},2000);}
+function ffSaveWTFree(){if(S.timerSec<1){alert('Bitte Timer starten.');return;}ffAddEntry({id:ffUid(),profileId:S.activeProfileId,challengeId:'c6',subtype:'free',zeit:ffFmtSec(S.timerSec),value:S.timerSec,unit:'Sek',date:ffToday(),ts:Date.now()});ffShowToast('ff-ch-toast');setTimeout(()=>{ffCloseModal();ffRenderChallenges();},2000);}
+
+function ffSetRest(s){if(S.restInt){clearInterval(S.restInt);S.restInt=null;S.restRunning=false;}S.restSec=s;const el=document.getElementById('ff-rest-display');if(el)el.textContent=ffFmtSec(s);const b=document.getElementById('ff-rest-btn');if(b)b.textContent='▶ Start';}
+function ffToggleRest(){if(S.restRunning){clearInterval(S.restInt);S.restRunning=false;const b=document.getElementById('ff-rest-btn');if(b)b.textContent='▶ Start';}else{S.restRunning=true;const b=document.getElementById('ff-rest-btn');if(b)b.textContent='⏸ Stopp';S.restInt=setInterval(()=>{if(S.restSec<=0){clearInterval(S.restInt);S.restRunning=false;const b=document.getElementById('ff-rest-btn');if(b)b.textContent='▶ Start';return;}S.restSec--;const el=document.getElementById('ff-rest-display');if(el)el.textContent=ffFmtSec(S.restSec);},1000);}}
+
+function ffRenderVerlauf(){
+  const p=ffGetActive();if(!p)return;
+  const now=new Date();const ws=new Date();ws.setDate(ws.getDate()-6);const ms=new Date(now.getFullYear(),now.getMonth(),1);
+  let all=S.entries.filter(e=>e.profileId===p.id);
+  const t=S.verlaufTab;
+  let filtered=t==='woche'?all.filter(e=>new Date(e.date)>=ws):t==='monat'?all.filter(e=>new Date(e.date)>=ms):all;
+  filtered=filtered.slice().sort((a,b)=>b.ts-a.ts);
+  const last7=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);last7.push(d.toISOString().split('T')[0]);}
+  const counts=last7.map(d=>all.filter(e=>e.date===d).length);
+  const labels=last7.map(d=>new Date(d).toLocaleDateString('de-DE',{weekday:'short'}));
+  let html=ffRenderProfileSwitcher();
+  html+=`<div class="tab-bar"><button class="tab-btn ${t==='alle'?'active':''}" onclick="ffSetVTab('alle',this)">Alle</button><button class="tab-btn ${t==='woche'?'active':''}" onclick="ffSetVTab('woche',this)">Woche</button><button class="tab-btn ${t==='monat'?'active':''}" onclick="ffSetVTab('monat',this)">Monat</button></div>`;
+  html+=`<div style="background:var(--surface);border-radius:var(--radius-sm);border:1px solid var(--border);padding:12px;margin-bottom:14px"><canvas id="ff-vchart" height="140"></canvas></div>`;
+  if(!filtered.length)html+=`<div class="empty-state"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Keine Einträge.</div>`;
+  else filtered.forEach(e=>{const ch=CHALLENGES.find(c=>c.id===e.challengeId);const ds=new Date(e.date).toLocaleDateString('de-DE',{weekday:'short',day:'2-digit',month:'2-digit'});html+=`<div class="history-entry"><div class="history-date">${ds}</div><div class="history-title">${e.type==='workout'?`🏋️ Training W${e.week}T${e.day}`:ch?`${ch.icon} ${ch.name}`:e.challengeId||'Eintrag'}</div><div class="history-detail">${e.type==='workout'?`Dauer: ${ffFmtSec(e.duration||0)}`:ch?ffFmtEntry(e):''}</div></div>`;});
+  document.getElementById('ff-verlauf-inner').innerHTML=html;
+  requestAnimationFrame(()=>{const canvas=document.getElementById('ff-vchart');if(!canvas)return;if(canvas._chart)canvas._chart.destroy();canvas._chart=new Chart(canvas,{type:'bar',data:{labels,datasets:[{label:'Einträge',data:counts,backgroundColor:'#bfdbfe',borderColor:'#3b82f6',borderWidth:1.5,borderRadius:5}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}},x:{grid:{display:false}}}}});});
+}
+
+function ffSetVTab(t,btn){S.verlaufTab=t;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');ffRenderVerlauf();}
+
+function ffRenderRangliste(){
+  const ws=new Date();ws.setDate(ws.getDate()-6);
+  const scores=S.profiles.map(p=>{return{...p,weekCount:S.entries.filter(e=>e.profileId===p.id&&new Date(e.date)>=ws).length,totalCount:S.entries.filter(e=>e.profileId===p.id).length,streak:ffGetStreak(p.id)};}).sort((a,b)=>b.weekCount-a.weekCount);
+  const maxW=Math.max(...scores.map(s=>s.weekCount),1);
+  let html=`<div class="section-header"><span class="section-title">🏅 Familien-Rangliste</span></div>`;
+  scores.forEach((s,i)=>{html+=`<div class="rank-row"><div class="rank-pos ${i===0?'gold':i===1?'silver':i===2?'bronze':''}">${i+1}</div><div class="profile-avatar" style="background:${s.color};width:38px;height:38px;border-radius:50%;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;">${s.initials||ffGetInitials(s.name)}</div><div style="flex:1"><div style="font-size:17px;font-weight:700">${s.name}</div><div style="font-size:13px;color:var(--text3)">${s.weekCount} Einträge · ${s.streak} Tage Streak</div><div class="rank-bar-wrap" style="margin-top:5px"><div class="rank-bar" style="width:${Math.round((s.weekCount/maxW)*100)}%;background:${s.color}"></div></div></div><div style="text-align:right"><div style="font-size:20px;font-weight:700">${s.weekCount}</div></div></div>`;});
+  document.getElementById('ff-rangliste-inner').innerHTML=html;
+}
+
+function ffRenderProfile(){
+  let html=`<div class="section-header"><span class="section-title">Familie verwalten</span></div>`;
+  S.profiles.forEach(p=>{html+=`<div class="card-sm" style="display:flex;align-items:center;gap:12px"><div class="profile-avatar" style="background:${p.color};width:46px;height:46px;border-radius:50%;color:#fff;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;">${p.initials||ffGetInitials(p.name)}</div><div style="flex:1"><div style="font-size:17px;font-weight:700">${p.name}</div><div style="font-size:13px;color:var(--text3)">${S.entries.filter(e=>e.profileId===p.id).length} Einträge</div></div>${S.profiles.length>1?`<button class="btn btn-sm btn-danger" onclick="ffDeleteProfile('${p.id}')">✕</button>`:''}</div>`;});
+  html+=`<div class="profile-edit-card" onclick="ffAddProfile()"><div style="font-size:24px;margin-bottom:6px">＋</div><div style="font-size:16px;font-weight:600;color:var(--primary)">Neues Profil</div></div>`;
+  document.getElementById('ff-profile-inner').innerHTML=html;
+}
+
+function ffAddProfile(){
+  const name=prompt('Name des Familienmitglieds:');if(!name)return;
+  S.profiles.push({id:ffUid(),name:name.trim(),color:AVATAR_COLORS[S.profiles.length%AVATAR_COLORS.length],initials:ffGetInitials(name)});
+  ffSave();ffRenderProfile();
+}
+function ffDeleteProfile(id){if(!confirm('Profil löschen?'))return;S.profiles=S.profiles.filter(p=>p.id!==id);S.entries=S.entries.filter(e=>e.profileId!==id);delete S.programProgress[id];if(S.activeProfileId===id)S.activeProfileId=S.profiles[0]?.id||null;ffSave();ffRenderProfile();}
+
+// ═══════════════════════════════════════════════════
+// LINGUAQUEST LOGIC
+// ═══════════════════════════════════════════════════
+const LQ_COLORS={purple:'#534AB7',teal:'#1D9E75',coral:'#D85A30',blue:'#378ADD',pink:'#D4537E'};
+const LQ_LEVELS=[{name:'Anfänger',xp:0},{name:'Entdecker',xp:100},{name:'Reisender',xp:250},{name:'Abenteurer',xp:500},{name:'Held',xp:900},{name:'Legende',xp:1500}];
+
+let lqProfiles={},lqCurProfile=null,lqLang='en',lqMode='mc';
+let lqQuestions=[],lqIdx=0,lqCorrect=0,lqCoins=0,lqXP=0;
+let lqSpellingAnswer=[],lqSpellingUsed=[],lqFlashRevealed=false,lqSelColor='purple';
+
+async function lqLoadProfiles(){try{const r=await window.storage.get('lq_profiles2');lqProfiles=r?JSON.parse(r.value):{};}catch(e){lqProfiles={};}lqRenderProfiles();}
+async function lqSaveProfiles(){try{await window.storage.set('lq_profiles2',JSON.stringify(lqProfiles));}catch(e){}}
+
+function lqGetLevel(xp){let lv=0;for(let i=0;i<LQ_LEVELS.length;i++){if(xp>=LQ_LEVELS[i].xp)lv=i;}return lv;}
+
+function lqRenderProfiles(){
+  const el=document.getElementById('lq-profile-list');
+  const keys=Object.keys(lqProfiles);
+  if(!keys.length){el.innerHTML='<p style="color:#888780;font-size:14px;">Noch keine Profile. Erstelle dein erstes!</p>';return;}
+  el.innerHTML=keys.map(k=>{const p=lqProfiles[k];const bg=LQ_COLORS[p.color]||'#534AB7';const lv=lqGetLevel(p.xp||0);return`<div onclick="lqSelectProfile('${k}')" style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f0eeff;cursor:pointer;"><div class="lq-avatar" style="background:${bg};">${p.name.slice(0,2).toUpperCase()}</div><div style="flex:1;"><div style="font-weight:600;font-size:15px;color:#1a1a2e;">${p.name}</div><div style="font-size:12px;color:#888780;">Level ${lv+1} · ${p.coins||0} Münzen 🪙</div></div><div style="font-size:20px;">🔥${p.streak||0}</div></div>`;}).join('');
+}
+
+function lqPickColor(el){document.querySelectorAll('.lq-cp').forEach(d=>d.style.border='3px solid transparent');el.style.border='3px solid #1a1a2e';lqSelColor=el.dataset.c;}
+
+function lqCreateProfile(){
+  const name=document.getElementById('lq-np-name').value.trim();
+  if(!name){alert('Bitte einen Namen eingeben!');return;}
+  const key='u_'+Date.now();
+  lqProfiles[key]={name,color:lqSelColor,xp:0,coins:0,streak:0,lastDate:null,total:0,correct:0};
+  lqSaveProfiles();
+  document.getElementById('lq-np-name').value='';
+  lqShowPage('lq-p-home');
+  lqRenderProfiles();
+}
+
+function lqSelectProfile(key){
+  lqCurProfile=key;
+  const p=lqProfiles[key];
+  const bg=LQ_COLORS[p.color]||'#534AB7';
+  document.getElementById('lq-d-avatar').style.background=bg;
+  document.getElementById('lq-d-avatar').style.color='#fff';
+  document.getElementById('lq-d-avatar').textContent=p.name.slice(0,2).toUpperCase();
+  document.getElementById('lq-d-name').textContent=p.name;
+  lqUpdateDash();
+  lqShowPage('lq-p-dashboard');
+}
+
+function lqUpdateDash(){
+  const p=lqProfiles[lqCurProfile];
+  const lv=lqGetLevel(p.xp||0);
+  const nextLv=LQ_LEVELS[Math.min(lv+1,LQ_LEVELS.length-1)];
+  const curLvXP=LQ_LEVELS[lv].xp;
+  const pct=nextLv.xp>curLvXP?Math.round(((p.xp-curLvXP)/(nextLv.xp-curLvXP))*100):100;
+  document.getElementById('lq-d-level').textContent='Level '+(lv+1)+' · '+LQ_LEVELS[lv].name;
+  document.getElementById('lq-d-xp').textContent=(p.xp||0)+'/'+nextLv.xp+' XP';
+  document.getElementById('lq-d-xp-bar').style.width=pct+'%';
+  document.getElementById('lq-d-streak').textContent=p.streak||0;
+  document.getElementById('lq-d-coins').textContent=p.coins||0;
+}
+
+function lqSetLang(l){lqLang=l;document.getElementById('lq-lb-en').classList.toggle('on',l==='en');document.getElementById('lq-lb-es').classList.toggle('on',l==='es');}
+
+function lqShowPage(id){document.querySelectorAll('.lq-page').forEach(p=>p.classList.remove('on'));document.getElementById(id).classList.add('on');}
+
+async function lqStartGame(mode){
+  lqMode=mode;lqQuestions=[];lqIdx=0;lqCorrect=0;lqCoins=0;lqXP=0;lqFlashRevealed=false;
+  const tag=document.getElementById('lq-g-lang-tag');
+  tag.textContent=lqLang==='en'?'EN':'ES';
+  tag.className='lq-tag '+(lqLang==='en'?'lq-tag-en':'lq-tag-es');
+  lqShowPage('lq-p-game');
+  document.getElementById('lq-g-content').innerHTML='<div style="text-align:center;padding:40px 0;color:#888780;">Fragen werden geladen...</div>';
+  await lqLoadQuestions(mode);
+  lqRenderDots();lqRenderQuestion();
+}
+
+async function lqLoadQuestions(mode){
+  const lang=lqLang==='en'?'English':'Spanish';
+  const modeDesc={mc:'multiple choice vocabulary questions',spell:'spelling exercises',flash:'flashcard vocabulary pairs',translate:'sentence translation from German'}[mode];
+  const fmt={mc:`[{"de":"German word","correct":"${lang} word","wrong":["w1","w2","w3"]}]`,spell:`[{"de":"German word","answer":"${lang} word"}]`,flash:`[{"word":"${lang} word","de":"German translation","example":"short example in ${lang}"}]`,translate:`[{"de":"Simple German sentence","answer":"${lang} translation"}]`}[mode];
+  const seed=Math.floor(Math.random()*10000);
+  const topics=['Essen & Trinken','Tiere','Familie','Farben','Zahlen','Kleidung','Wetter','Haus & Zimmer','Schule','Sport','Körper','Stadt & Verkehr','Natur','Gefühle','Berufe','Reisen','Musik','Hobbys','Technik','Einkaufen'];
+  const topic=topics[Math.floor(Math.random()*topics.length)];
+  const usedWords=lqGetUsedWords();
+  try{
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),8000);
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,messages:[{role:'user',content:`Generate 7 A1-A2 level ${lang} ${modeDesc} for a German speaker. Topic: "${topic}" (seed:${seed}). AVOID these already used words: ${usedWords.slice(-30).join(', ')||'none'}. Use ONLY vocabulary related to this topic. Return ONLY JSON array, no markdown. Format: ${fmt} Return exactly 7 items. JSON only.`}]})});
+    clearTimeout(timeout);
+    const d=await r.json();
+    const txt=d.content.map(i=>i.text||'').join('').replace(/```json|```/g,'').trim();
+    lqQuestions=JSON.parse(txt);
+    lqTrackUsedWords(lqQuestions,mode);
+  }catch(e){
+    console.log('KI nicht verfügbar – nutze lokale Datenbank');
+    lqQuestions=lqFallback(mode,lqLang);
+  }
+}
+
+let lqUsedWords={en:[],es:[]};
+function lqGetUsedWords(){return lqUsedWords[lqLang]||[];}
+function lqTrackUsedWords(questions,mode){
+  const words=questions.map(q=>q.de||q.word||'').filter(Boolean);
+  lqUsedWords[lqLang]=[...new Set([...(lqUsedWords[lqLang]||[]),...words])];
+}
+
+function lqFallback(mode,lang){
+  const vocab={
+    en:[
+      {de:'Hund',t:'dog',wrong:['cat','fish','bird']},{de:'Katze',t:'cat',wrong:['dog','horse','bird']},
+      {de:'Vogel',t:'bird',wrong:['fish','dog','cat']},{de:'Fisch',t:'fish',wrong:['bird','cat','dog']},
+      {de:'Pferd',t:'horse',wrong:['cow','pig','sheep']},{de:'Kuh',t:'cow',wrong:['horse','pig','duck']},
+      {de:'Schwein',t:'pig',wrong:['cow','sheep','duck']},{de:'Schaf',t:'sheep',wrong:['pig','cow','goat']},
+      {de:'Ente',t:'duck',wrong:['chicken','goose','swan']},{de:'Huhn',t:'chicken',wrong:['duck','goose','turkey']},
+      {de:'Schule',t:'school',wrong:['park','house','shop']},{de:'Haus',t:'house',wrong:['school','park','shop']},
+      {de:'Auto',t:'car',wrong:['bus','train','bike']},{de:'Bus',t:'bus',wrong:['car','train','plane']},
+      {de:'Zug',t:'train',wrong:['bus','car','bike']},{de:'Fahrrad',t:'bike',wrong:['car','bus','train']},
+      {de:'Flugzeug',t:'plane',wrong:['train','ship','bus']},{de:'Schiff',t:'ship',wrong:['plane','train','car']},
+      {de:'Apfel',t:'apple',wrong:['banana','orange','grape']},{de:'Banane',t:'banana',wrong:['apple','orange','lemon']},
+      {de:'Orange',t:'orange',wrong:['apple','banana','lemon']},{de:'Traube',t:'grape',wrong:['apple','orange','cherry']},
+      {de:'Kirsche',t:'cherry',wrong:['grape','apple','strawberry']},{de:'Erdbeere',t:'strawberry',wrong:['cherry','apple','grape']},
+      {de:'Brot',t:'bread',wrong:['milk','cheese','butter']},{de:'Milch',t:'milk',wrong:['water','juice','tea']},
+      {de:'Wasser',t:'water',wrong:['milk','juice','tea']},{de:'Kaffee',t:'coffee',wrong:['tea','juice','milk']},
+      {de:'Tee',t:'tea',wrong:['coffee','juice','milk']},{de:'Saft',t:'juice',wrong:['tea','coffee','water']},
+      {de:'Käse',t:'cheese',wrong:['butter','bread','milk']},{de:'Butter',t:'butter',wrong:['cheese','bread','milk']},
+      {de:'Fleisch',t:'meat',wrong:['fish','bread','cheese']},{de:'Suppe',t:'soup',wrong:['salad','bread','meat']},
+      {de:'Tisch',t:'table',wrong:['chair','bed','door']},{de:'Stuhl',t:'chair',wrong:['table','bed','window']},
+      {de:'Bett',t:'bed',wrong:['table','chair','sofa']},{de:'Tür',t:'door',wrong:['window','wall','floor']},
+      {de:'Fenster',t:'window',wrong:['door','wall','floor']},{de:'Küche',t:'kitchen',wrong:['bedroom','bathroom','living room']},
+      {de:'Badezimmer',t:'bathroom',wrong:['kitchen','bedroom','living room']},{de:'Schlafzimmer',t:'bedroom',wrong:['bathroom','kitchen','living room']},
+      {de:'Buch',t:'book',wrong:['pen','paper','bag']},{de:'Stift',t:'pen',wrong:['book','paper','ruler']},
+      {de:'Papier',t:'paper',wrong:['pen','book','ruler']},{de:'Tasche',t:'bag',wrong:['pen','book','paper']},
+      {de:'Hemd',t:'shirt',wrong:['trousers','shoes','hat']},{de:'Hose',t:'trousers',wrong:['shirt','shoes','hat']},
+      {de:'Schuhe',t:'shoes',wrong:['shirt','hat','socks']},{de:'Hut',t:'hat',wrong:['shoes','shirt','jacket']},
+      {de:'Jacke',t:'jacket',wrong:['hat','shirt','trousers']},{de:'Kleid',t:'dress',wrong:['shirt','skirt','trousers']},
+      {de:'groß',t:'big',wrong:['small','fast','cold']},{de:'klein',t:'small',wrong:['big','tall','long']},
+      {de:'schnell',t:'fast',wrong:['slow','big','cold']},{de:'langsam',t:'slow',wrong:['fast','small','warm']},
+      {de:'heiß',t:'hot',wrong:['cold','warm','cool']},{de:'kalt',t:'cold',wrong:['hot','warm','dry']},
+      {de:'neu',t:'new',wrong:['old','big','small']},{de:'alt',t:'old',wrong:['new','young','big']},
+      {de:'rot',t:'red',wrong:['blue','green','yellow']},{de:'blau',t:'blue',wrong:['red','green','yellow']},
+      {de:'grün',t:'green',wrong:['red','blue','yellow']},{de:'gelb',t:'yellow',wrong:['red','blue','green']},
+      {de:'schwarz',t:'black',wrong:['white','grey','brown']},{de:'weiß',t:'white',wrong:['black','grey','brown']},
+      {de:'braun',t:'brown',wrong:['black','white','grey']},{de:'grau',t:'grey',wrong:['black','white','brown']},
+      {de:'rosa',t:'pink',wrong:['purple','orange','grey']},{de:'lila',t:'purple',wrong:['pink','orange','grey']},
+      {de:'Mutter',t:'mother',wrong:['father','sister','brother']},{de:'Vater',t:'father',wrong:['mother','uncle','brother']},
+      {de:'Bruder',t:'brother',wrong:['sister','father','cousin']},{de:'Schwester',t:'sister',wrong:['brother','mother','aunt']},
+      {de:'Oma',t:'grandmother',wrong:['grandfather','aunt','mother']},{de:'Opa',t:'grandfather',wrong:['grandmother','uncle','father']},
+      {de:'Onkel',t:'uncle',wrong:['aunt','brother','grandfather']},{de:'Tante',t:'aunt',wrong:['uncle','sister','grandmother']},
+      {de:'essen',t:'to eat',wrong:['to run','to sleep','to fly']},{de:'trinken',t:'to drink',wrong:['to eat','to sleep','to swim']},
+      {de:'schlafen',t:'to sleep',wrong:['to eat','to run','to read']},{de:'laufen',t:'to run',wrong:['to sleep','to swim','to fly']},
+      {de:'lesen',t:'to read',wrong:['to write','to run','to eat']},{de:'schreiben',t:'to write',wrong:['to read','to draw','to run']},
+      {de:'spielen',t:'to play',wrong:['to work','to swim','to cook']},{de:'schwimmen',t:'to swim',wrong:['to run','to fly','to play']},
+      {de:'kochen',t:'to cook',wrong:['to eat','to swim','to play']},{de:'kaufen',t:'to buy',wrong:['to sell','to cook','to run']},
+      {de:'sehen',t:'to see',wrong:['to hear','to feel','to smell']},{de:'hören',t:'to hear',wrong:['to see','to feel','to taste']},
+      {de:'Freund',t:'friend',wrong:['enemy','teacher','doctor']},{de:'Lehrer',t:'teacher',wrong:['doctor','friend','student']},
+      {de:'Arzt',t:'doctor',wrong:['teacher','nurse','student']},{de:'Kind',t:'child',wrong:['adult','baby','teacher']},
+      {de:'Student',t:'student',wrong:['teacher','doctor','child']},{de:'Koch',t:'cook',wrong:['teacher','doctor','farmer']},
+      {de:'Bauer',t:'farmer',wrong:['cook','doctor','teacher']},{de:'Polizist',t:'police officer',wrong:['farmer','doctor','cook']},
+      {de:'Stadt',t:'city',wrong:['village','country','island']},{de:'Straße',t:'street',wrong:['city','park','bridge']},
+      {de:'Park',t:'park',wrong:['street','school','house']},{de:'Brücke',t:'bridge',wrong:['park','street','river']},
+      {de:'Fluss',t:'river',wrong:['bridge','lake','sea']},{de:'See',t:'lake',wrong:['river','sea','bridge']},
+      {de:'Meer',t:'sea',wrong:['lake','river','mountain']},{de:'Berg',t:'mountain',wrong:['sea','river','forest']},
+      {de:'Wald',t:'forest',wrong:['mountain','sea','desert']},{de:'Wüste',t:'desert',wrong:['forest','mountain','sea']},
+      {de:'Baum',t:'tree',wrong:['flower','grass','leaf']},{de:'Blume',t:'flower',wrong:['tree','grass','leaf']},
+      {de:'Gras',t:'grass',wrong:['flower','tree','leaf']},{de:'Blatt',t:'leaf',wrong:['flower','grass','tree']},
+      {de:'Sonne',t:'sun',wrong:['moon','star','cloud']},{de:'Mond',t:'moon',wrong:['sun','star','rain']},
+      {de:'Stern',t:'star',wrong:['moon','sun','cloud']},{de:'Wolke',t:'cloud',wrong:['sun','star','rain']},
+      {de:'Regen',t:'rain',wrong:['sun','snow','wind']},{de:'Schnee',t:'snow',wrong:['rain','sun','wind']},
+      {de:'Wind',t:'wind',wrong:['rain','snow','sun']},{de:'Gewitter',t:'storm',wrong:['wind','rain','snow']},
+      {de:'glücklich',t:'happy',wrong:['sad','angry','tired']},{de:'traurig',t:'sad',wrong:['happy','angry','excited']},
+      {de:'müde',t:'tired',wrong:['happy','excited','angry']},{de:'wütend',t:'angry',wrong:['happy','sad','tired']},
+      {de:'aufgeregt',t:'excited',wrong:['tired','sad','bored']},{de:'langweilig',t:'bored',wrong:['excited','happy','tired']},
+      {de:'hungrig',t:'hungry',wrong:['full','tired','happy']},{de:'durstig',t:'thirsty',wrong:['hungry','tired','happy']},
+      {de:'eins',t:'one',wrong:['two','three','four']},{de:'zwei',t:'two',wrong:['one','three','five']},
+      {de:'drei',t:'three',wrong:['two','four','six']},{de:'vier',t:'four',wrong:['three','five','seven']},
+      {de:'fünf',t:'five',wrong:['four','six','eight']},{de:'zehn',t:'ten',wrong:['five','eight','twelve']},
+    ],
+    es:[
+      {de:'Hund',t:'perro',wrong:['gato','pez','pájaro']},{de:'Katze',t:'gato',wrong:['perro','caballo','pájaro']},
+      {de:'Vogel',t:'pájaro',wrong:['pez','perro','gato']},{de:'Fisch',t:'pez',wrong:['pájaro','gato','perro']},
+      {de:'Pferd',t:'caballo',wrong:['vaca','cerdo','oveja']},{de:'Kuh',t:'vaca',wrong:['caballo','cerdo','pato']},
+      {de:'Schwein',t:'cerdo',wrong:['vaca','oveja','pato']},{de:'Schaf',t:'oveja',wrong:['cerdo','vaca','cabra']},
+      {de:'Ente',t:'pato',wrong:['gallina','ganso','cisne']},{de:'Huhn',t:'gallina',wrong:['pato','ganso','pavo']},
+      {de:'Schule',t:'escuela',wrong:['parque','casa','tienda']},{de:'Haus',t:'casa',wrong:['escuela','parque','tienda']},
+      {de:'Auto',t:'coche',wrong:['autobús','tren','bici']},{de:'Bus',t:'autobús',wrong:['coche','tren','avión']},
+      {de:'Zug',t:'tren',wrong:['autobús','coche','bici']},{de:'Fahrrad',t:'bicicleta',wrong:['coche','autobús','tren']},
+      {de:'Flugzeug',t:'avión',wrong:['tren','barco','autobús']},{de:'Schiff',t:'barco',wrong:['avión','tren','coche']},
+      {de:'Apfel',t:'manzana',wrong:['plátano','naranja','uva']},{de:'Banane',t:'plátano',wrong:['manzana','naranja','limón']},
+      {de:'Orange',t:'naranja',wrong:['manzana','plátano','limón']},{de:'Traube',t:'uva',wrong:['manzana','naranja','cereza']},
+      {de:'Kirsche',t:'cereza',wrong:['uva','manzana','fresa']},{de:'Erdbeere',t:'fresa',wrong:['cereza','manzana','uva']},
+      {de:'Brot',t:'pan',wrong:['leche','queso','mantequilla']},{de:'Milch',t:'leche',wrong:['agua','zumo','té']},
+      {de:'Wasser',t:'agua',wrong:['leche','zumo','té']},{de:'Kaffee',t:'café',wrong:['té','zumo','leche']},
+      {de:'Tee',t:'té',wrong:['café','zumo','leche']},{de:'Saft',t:'zumo',wrong:['té','café','agua']},
+      {de:'Käse',t:'queso',wrong:['mantequilla','pan','leche']},{de:'Butter',t:'mantequilla',wrong:['queso','pan','leche']},
+      {de:'Fleisch',t:'carne',wrong:['pescado','pan','queso']},{de:'Suppe',t:'sopa',wrong:['ensalada','pan','carne']},
+      {de:'Tisch',t:'mesa',wrong:['silla','cama','puerta']},{de:'Stuhl',t:'silla',wrong:['mesa','cama','ventana']},
+      {de:'Bett',t:'cama',wrong:['mesa','silla','sofá']},{de:'Tür',t:'puerta',wrong:['ventana','pared','suelo']},
+      {de:'Fenster',t:'ventana',wrong:['puerta','pared','suelo']},{de:'Küche',t:'cocina',wrong:['dormitorio','baño','salón']},
+      {de:'Badezimmer',t:'baño',wrong:['cocina','dormitorio','salón']},{de:'Schlafzimmer',t:'dormitorio',wrong:['baño','cocina','salón']},
+      {de:'Buch',t:'libro',wrong:['bolígrafo','papel','bolsa']},{de:'Stift',t:'bolígrafo',wrong:['libro','papel','regla']},
+      {de:'Papier',t:'papel',wrong:['bolígrafo','libro','regla']},{de:'Tasche',t:'bolsa',wrong:['bolígrafo','libro','papel']},
+      {de:'Hemd',t:'camisa',wrong:['pantalón','zapatos','sombrero']},{de:'Hose',t:'pantalón',wrong:['camisa','zapatos','sombrero']},
+      {de:'Schuhe',t:'zapatos',wrong:['camisa','sombrero','calcetines']},{de:'Hut',t:'sombrero',wrong:['zapatos','camisa','chaqueta']},
+      {de:'Jacke',t:'chaqueta',wrong:['sombrero','camisa','pantalón']},{de:'Kleid',t:'vestido',wrong:['camisa','falda','pantalón']},
+      {de:'groß',t:'grande',wrong:['pequeño','rápido','frío']},{de:'klein',t:'pequeño',wrong:['grande','alto','largo']},
+      {de:'schnell',t:'rápido',wrong:['lento','grande','frío']},{de:'langsam',t:'lento',wrong:['rápido','pequeño','cálido']},
+      {de:'heiß',t:'caliente',wrong:['frío','cálido','fresco']},{de:'kalt',t:'frío',wrong:['caliente','cálido','seco']},
+      {de:'neu',t:'nuevo',wrong:['viejo','grande','pequeño']},{de:'alt',t:'viejo',wrong:['nuevo','joven','grande']},
+      {de:'rot',t:'rojo',wrong:['azul','verde','amarillo']},{de:'blau',t:'azul',wrong:['rojo','verde','amarillo']},
+      {de:'grün',t:'verde',wrong:['rojo','azul','amarillo']},{de:'gelb',t:'amarillo',wrong:['rojo','azul','verde']},
+      {de:'schwarz',t:'negro',wrong:['blanco','gris','marrón']},{de:'weiß',t:'blanco',wrong:['negro','gris','marrón']},
+      {de:'braun',t:'marrón',wrong:['negro','blanco','gris']},{de:'grau',t:'gris',wrong:['negro','blanco','marrón']},
+      {de:'rosa',t:'rosa',wrong:['morado','naranja','gris']},{de:'lila',t:'morado',wrong:['rosa','naranja','gris']},
+      {de:'Mutter',t:'madre',wrong:['padre','hermana','hermano']},{de:'Vater',t:'padre',wrong:['madre','tío','hermano']},
+      {de:'Bruder',t:'hermano',wrong:['hermana','padre','primo']},{de:'Schwester',t:'hermana',wrong:['hermano','madre','tía']},
+      {de:'Oma',t:'abuela',wrong:['abuelo','tía','madre']},{de:'Opa',t:'abuelo',wrong:['abuela','tío','padre']},
+      {de:'Onkel',t:'tío',wrong:['tía','hermano','abuelo']},{de:'Tante',t:'tía',wrong:['tío','hermana','abuela']},
+      {de:'essen',t:'comer',wrong:['correr','dormir','volar']},{de:'trinken',t:'beber',wrong:['comer','dormir','nadar']},
+      {de:'schlafen',t:'dormir',wrong:['comer','correr','leer']},{de:'laufen',t:'correr',wrong:['dormir','nadar','volar']},
+      {de:'lesen',t:'leer',wrong:['escribir','correr','comer']},{de:'schreiben',t:'escribir',wrong:['leer','dibujar','correr']},
+      {de:'spielen',t:'jugar',wrong:['trabajar','nadar','cocinar']},{de:'schwimmen',t:'nadar',wrong:['correr','volar','jugar']},
+      {de:'kochen',t:'cocinar',wrong:['comer','nadar','jugar']},{de:'kaufen',t:'comprar',wrong:['vender','cocinar','correr']},
+      {de:'sehen',t:'ver',wrong:['oír','sentir','oler']},{de:'hören',t:'oír',wrong:['ver','sentir','probar']},
+      {de:'Freund',t:'amigo',wrong:['enemigo','maestro','médico']},{de:'Lehrer',t:'maestro',wrong:['médico','amigo','alumno']},
+      {de:'Arzt',t:'médico',wrong:['maestro','enfermero','alumno']},{de:'Kind',t:'niño',wrong:['adulto','bebé','maestro']},
+      {de:'Student',t:'estudiante',wrong:['maestro','médico','niño']},{de:'Koch',t:'cocinero',wrong:['maestro','médico','granjero']},
+      {de:'Bauer',t:'granjero',wrong:['cocinero','médico','maestro']},{de:'Polizist',t:'policía',wrong:['granjero','médico','cocinero']},
+      {de:'Stadt',t:'ciudad',wrong:['pueblo','país','isla']},{de:'Straße',t:'calle',wrong:['ciudad','parque','puente']},
+      {de:'Park',t:'parque',wrong:['calle','escuela','casa']},{de:'Brücke',t:'puente',wrong:['parque','calle','río']},
+      {de:'Fluss',t:'río',wrong:['puente','lago','mar']},{de:'See',t:'lago',wrong:['río','mar','puente']},
+      {de:'Meer',t:'mar',wrong:['lago','río','montaña']},{de:'Berg',t:'montaña',wrong:['mar','río','bosque']},
+      {de:'Wald',t:'bosque',wrong:['montaña','mar','desierto']},{de:'Wüste',t:'desierto',wrong:['bosque','montaña','mar']},
+      {de:'Baum',t:'árbol',wrong:['flor','hierba','hoja']},{de:'Blume',t:'flor',wrong:['árbol','hierba','hoja']},
+      {de:'Sonne',t:'sol',wrong:['luna','estrella','nube']},{de:'Mond',t:'luna',wrong:['sol','estrella','lluvia']},
+      {de:'Stern',t:'estrella',wrong:['luna','sol','nube']},{de:'Wolke',t:'nube',wrong:['sol','estrella','lluvia']},
+      {de:'Regen',t:'lluvia',wrong:['sol','nieve','viento']},{de:'Schnee',t:'nieve',wrong:['lluvia','sol','viento']},
+      {de:'glücklich',t:'feliz',wrong:['triste','enfadado','cansado']},{de:'traurig',t:'triste',wrong:['feliz','enfadado','emocionado']},
+      {de:'müde',t:'cansado',wrong:['feliz','emocionado','enfadado']},{de:'wütend',t:'enfadado',wrong:['feliz','triste','cansado']},
+      {de:'hungrig',t:'hambriento',wrong:['lleno','cansado','feliz']},{de:'durstig',t:'sediento',wrong:['hambriento','cansado','feliz']},
+      {de:'eins',t:'uno',wrong:['dos','tres','cuatro']},{de:'zwei',t:'dos',wrong:['uno','tres','cinco']},
+      {de:'drei',t:'tres',wrong:['dos','cuatro','seis']},{de:'vier',t:'cuatro',wrong:['tres','cinco','siete']},
+      {de:'fünf',t:'cinco',wrong:['cuatro','seis','ocho']},{de:'zehn',t:'diez',wrong:['cinco','ocho','doce']},
+    ]
+  };
+  const sentences={
+    en:[
+      {de:'Guten Morgen!',answer:'Good morning!'},{de:'Wie heißt du?',answer:'What is your name?'},
+      {de:'Ich bin müde.',answer:'I am tired.'},{de:'Das ist schön.',answer:'That is beautiful.'},
+      {de:'Ich mag Pizza.',answer:'I like pizza.'},{de:'Wo ist die Schule?',answer:'Where is the school?'},
+      {de:'Danke sehr!',answer:'Thank you very much!'},{de:'Ich habe Hunger.',answer:'I am hungry.'},
+      {de:'Das Wetter ist gut.',answer:'The weather is good.'},{de:'Ich lerne Englisch.',answer:'I am learning English.'},
+      {de:'Wie alt bist du?',answer:'How old are you?'},{de:'Ich bin zehn Jahre alt.',answer:'I am ten years old.'},
+      {de:'Das Buch ist interessant.',answer:'The book is interesting.'},{de:'Ich trinke Wasser.',answer:'I drink water.'},
+      {de:'Wo wohnst du?',answer:'Where do you live?'},{de:'Ich mag Tiere.',answer:'I like animals.'},
+      {de:'Das ist mein Haus.',answer:'That is my house.'},{de:'Ich spiele Fußball.',answer:'I play football.'},
+      {de:'Die Katze ist klein.',answer:'The cat is small.'},{de:'Es regnet heute.',answer:'It is raining today.'},
+      {de:'Ich kaufe Brot.',answer:'I buy bread.'},{de:'Der Hund ist groß.',answer:'The dog is big.'},
+      {de:'Ich gehe in die Schule.',answer:'I go to school.'},{de:'Das Essen ist lecker.',answer:'The food is delicious.'},
+      {de:'Ich habe einen Bruder.',answer:'I have a brother.'},{de:'Sie ist meine Freundin.',answer:'She is my friend.'},
+      {de:'Ich fahre mit dem Bus.',answer:'I travel by bus.'},{de:'Die Sonne scheint.',answer:'The sun is shining.'},
+      {de:'Ich lese ein Buch.',answer:'I am reading a book.'},{de:'Wir spielen zusammen.',answer:'We play together.'},
+    ],
+    es:[
+      {de:'Guten Morgen!',answer:'¡Buenos días!'},{de:'Wie heißt du?',answer:'¿Cómo te llamas?'},
+      {de:'Ich bin müde.',answer:'Estoy cansado.'},{de:'Das ist schön.',answer:'Eso es bonito.'},
+      {de:'Ich mag Pizza.',answer:'Me gusta la pizza.'},{de:'Wo ist die Schule?',answer:'¿Dónde está la escuela?'},
+      {de:'Danke sehr!',answer:'¡Muchas gracias!'},{de:'Ich habe Hunger.',answer:'Tengo hambre.'},
+      {de:'Das Wetter ist gut.',answer:'El tiempo es bueno.'},{de:'Ich lerne Spanisch.',answer:'Estoy aprendiendo español.'},
+      {de:'Wie alt bist du?',answer:'¿Cuántos años tienes?'},{de:'Ich bin zehn Jahre alt.',answer:'Tengo diez años.'},
+      {de:'Das Buch ist interessant.',answer:'El libro es interesante.'},{de:'Ich trinke Wasser.',answer:'Bebo agua.'},
+      {de:'Wo wohnst du?',answer:'¿Dónde vives?'},{de:'Ich mag Tiere.',answer:'Me gustan los animales.'},
+      {de:'Das ist mein Haus.',answer:'Esa es mi casa.'},{de:'Ich spiele Fußball.',answer:'Juego al fútbol.'},
+      {de:'Die Katze ist klein.',answer:'El gato es pequeño.'},{de:'Es regnet heute.',answer:'Hoy llueve.'},
+      {de:'Ich kaufe Brot.',answer:'Compro pan.'},{de:'Der Hund ist groß.',answer:'El perro es grande.'},
+      {de:'Ich gehe in die Schule.',answer:'Voy a la escuela.'},{de:'Das Essen ist lecker.',answer:'La comida está deliciosa.'},
+      {de:'Ich habe einen Bruder.',answer:'Tengo un hermano.'},{de:'Sie ist meine Freundin.',answer:'Ella es mi amiga.'},
+      {de:'Ich fahre mit dem Bus.',answer:'Viajo en autobús.'},{de:'Die Sonne scheint.',answer:'Hace sol.'},
+      {de:'Ich lese ein Buch.',answer:'Estoy leyendo un libro.'},{de:'Wir spielen zusammen.',answer:'Jugamos juntos.'},
+    ]
+  };
+
+  const v=vocab[lang];
+  const used=lqUsedWords[lang]||[];
+  const unused=v.filter(x=>!used.includes(x.de));
+  const pool=unused.length>=7?unused:v;
+  const shuffled=[...pool].sort(()=>Math.random()-.5).slice(0,7);
+  lqTrackUsedWords(shuffled.map(x=>({de:x.de})),'local');
+
+  if(mode==='mc') return shuffled.map(x=>({de:x.de,correct:x.t,wrong:x.wrong}));
+  if(mode==='spell') return shuffled.map(x=>({de:x.de,answer:x.t}));
+  if(mode==='flash') return shuffled.map(x=>({word:x.t,de:x.de,example:`${x.t.charAt(0).toUpperCase()+x.t.slice(1)}!`}));
+  if(mode==='translate') return [...sentences[lang]].filter(s=>!(used.includes(s.de))).sort(()=>Math.random()-.5).slice(0,7);
+}
+
+function lqRenderDots(){const c=document.getElementById('lq-g-dots');c.innerHTML=lqQuestions.map((_,i)=>`<div class="lq-progress-dot${i<lqIdx?' done':i===lqIdx?' current':''}"></div>`).join('');}
+
+function lqRenderQuestion(){
+  if(lqIdx>=lqQuestions.length){lqShowResult();return;}
+  document.getElementById('lq-g-counter').textContent=(lqIdx+1)+'/'+lqQuestions.length;
+  document.getElementById('lq-g-coins').textContent=lqCoins;
+  document.getElementById('lq-g-score').textContent=lqXP;
+  lqRenderDots();
+  const q=lqQuestions[lqIdx];
+  lqFlashRevealed=false;
+  let html='';
+  if(lqMode==='mc'){
+    const opts=[q.correct,...q.wrong].sort(()=>Math.random()-.5);
+    html=`<div class="lq-q-word">${q.de}</div><div class="lq-q-hint">Was bedeutet das auf ${lqLang==='en'?'Englisch':'Spanisch'}?</div>${opts.map(o=>`<button class="lq-option-btn" onclick="lqMcAnswer(this,'${o.replace(/'/g,"\\'")}','${q.correct.replace(/'/g,"\\'")}')"> ${o}</button>`).join('')}`;
+  } else if(lqMode==='flash'){
+    html=`<div class="lq-card" onclick="lqRevealFlash()" id="lq-flash-card" style="text-align:center;cursor:pointer;min-height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;"><div style="font-size:13px;color:#888780;margin-bottom:8px;">Wie heißt auf ${lqLang==='en'?'Englisch':'Spanisch'}:</div><div class="lq-q-word" style="margin:0 0 6px;">${q.de}</div><div style="font-size:13px;color:#AFA9EC;">Tippe zum Aufdecken</div><div id="lq-flash-ans" style="display:none;margin-top:14px;"><div style="font-size:26px;font-weight:700;color:#534AB7;">${q.word}</div><div style="font-size:13px;color:#888780;font-style:italic;margin-top:4px;">"${q.example}"</div></div></div><div id="lq-flash-btns" style="display:none;"><button class="lq-btn" style="background:#EAF3DE;color:#27500A;border:none;margin-bottom:10px;" onclick="lqFlashAnswer(true)">Gewusst ✓ +10 🪙</button><button class="lq-btn" style="background:#FCEBEB;color:#A32D2D;border:none;" onclick="lqFlashAnswer(false)">Nochmal ✗</button></div>`;
+  } else if(lqMode==='spell'){
+    const ans=q.answer.toLowerCase();
+    lqSpellingAnswer=Array(ans.length).fill('');lqSpellingUsed=[];
+    const shuffled=[...ans].sort(()=>Math.random()-.5);
+    const extras='aeiourstln'.split('').filter(c=>!ans.includes(c)).sort(()=>Math.random()-.5).slice(0,3);
+    const letters=[...shuffled,...extras].sort(()=>Math.random()-.5);
+    html=`<div style="text-align:center;margin-bottom:8px;"><div style="font-size:13px;color:#888780;">Buchstabiere auf ${lqLang==='en'?'Englisch':'Spanisch'}:</div><div class="lq-q-word">${q.de}</div></div><div class="lq-answer-boxes" id="lq-ans-boxes">${ans.split('').map((_,i)=>`<div class="lq-ans-box" id="lq-ab-${i}" onclick="lqRemoveLetter(${i})"></div>`).join('')}</div><div class="lq-letter-grid" id="lq-letter-grid">${letters.map((l,i)=>`<button class="lq-letter-btn" id="lq-lb-${i}" onclick="lqAddLetter(${i},'${l}')">${l.toUpperCase()}</button>`).join('')}<button class="lq-letter-btn" onclick="lqBackspace()" style="width:auto;padding:0 12px;font-size:20px;" title="Löschen">⌫</button></div><div id="lq-spell-fb" style="margin-top:8px;text-align:center;"></div>`;
+  } else {
+    html=`<div class="lq-q-word" style="font-size:22px;margin-bottom:6px;">${q.de}</div><div style="font-size:13px;color:#888780;margin-bottom:14px;">Übersetze ins ${lqLang==='en'?'Englische':'Spanische'}</div><input class="lq-text-in" id="lq-tr-in" placeholder="${lqLang==='en'?'English...':'Español...'}" onkeydown="if(event.key==='Enter')lqCheckTranslate()"><button class="lq-btn lq-btn-primary" onclick="lqCheckTranslate()" style="margin-top:10px;">Prüfen</button><div id="lq-tr-fb" style="margin-top:10px;text-align:center;"></div>`;
+  }
+  document.getElementById('lq-g-content').innerHTML=html;
+  if(lqMode==='translate')setTimeout(()=>document.getElementById('lq-tr-in')?.focus(),100);
+}
+
+function lqMcAnswer(btn,chosen,correct){
+  document.querySelectorAll('.lq-option-btn').forEach(b=>b.onclick=null);
+  const ok=chosen===correct;
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok)document.querySelectorAll('.lq-option-btn').forEach(b=>{if(b.textContent.trim()===correct)b.classList.add('correct');});
+  if(ok){lqCoins+=10;lqXP+=15;lqCorrect++;}
+  lqProfiles[lqCurProfile].total=(lqProfiles[lqCurProfile].total||0)+1;
+  if(ok)lqProfiles[lqCurProfile].correct=(lqProfiles[lqCurProfile].correct||0)+1;
+  lqSaveProfiles();
+  setTimeout(()=>{lqIdx++;lqRenderQuestion();},1000);
+}
+
+function lqRevealFlash(){
+  if(lqFlashRevealed)return;lqFlashRevealed=true;
+  document.getElementById('lq-flash-ans').style.display='block';
+  document.getElementById('lq-flash-btns').style.display='block';
+}
+
+function lqFlashAnswer(ok){
+  if(ok){lqCoins+=10;lqXP+=15;lqCorrect++;}
+  lqProfiles[lqCurProfile].total=(lqProfiles[lqCurProfile].total||0)+1;
+  if(ok)lqProfiles[lqCurProfile].correct=(lqProfiles[lqCurProfile].correct||0)+1;
+  lqSaveProfiles();lqIdx++;lqRenderQuestion();
+}
+
+let lqSpellAttempts=0;
+function lqAddLetter(idx,letter){
+  const firstEmpty=lqSpellingAnswer.indexOf('');if(firstEmpty===-1)return;
+  lqSpellingAnswer[firstEmpty]=letter;lqSpellingUsed[firstEmpty]=idx;
+  const box=document.getElementById('lq-ab-'+firstEmpty);
+  if(box){box.textContent=letter.toUpperCase();box.classList.add('filled');box.dataset.src=idx;}
+  document.getElementById('lq-lb-'+idx).classList.add('used');
+  if(lqSpellingAnswer.every(l=>l!=='')){
+    const ans=lqQuestions[lqIdx].answer.toLowerCase();
+    const ok=lqSpellingAnswer.join('')===ans;
+    if(ok){
+      document.getElementById('lq-spell-fb').innerHTML=`<span style="color:#27500A;font-weight:600;font-size:18px;">Richtig! ✓</span>`;
+      lqCoins+=15;lqXP+=20;lqCorrect++;
+      lqProfiles[lqCurProfile].total=(lqProfiles[lqCurProfile].total||0)+1;
+      lqProfiles[lqCurProfile].correct=(lqProfiles[lqCurProfile].correct||0)+1;
+      lqSaveProfiles();
+      setTimeout(()=>{lqSpellingAnswer=[];lqSpellingUsed=[];lqIdx++;lqRenderQuestion();},1000);
+    } else {
+      lqSpellAttempts++;
+      const remaining=3-lqSpellAttempts;
+      const ans=lqQuestions[lqIdx].answer;
+      if(lqSpellAttempts>=3){
+        document.getElementById('lq-spell-fb').innerHTML=`<div style="background:#FAEEDA;border-radius:10px;padding:10px 14px;margin-top:4px;"><span style="color:#633806;font-size:13px;">💡 Die Lösung ist:</span><br><span style="color:#412402;font-weight:700;font-size:22px;">${ans}</span></div>`;
+        lqProfiles[lqCurProfile].total=(lqProfiles[lqCurProfile].total||0)+1;
+        lqSaveProfiles();
+        setTimeout(()=>{lqSpellingAnswer=lqSpellingAnswer.map(()=>'');lqSpellAttempts=0;lqSpellingUsed=[];document.querySelectorAll('.lq-ans-box').forEach(b=>{b.textContent='';b.classList.remove('filled');delete b.dataset.src;});document.querySelectorAll('.lq-letter-btn').forEach(b=>b.classList.remove('used'));const fb=document.getElementById('lq-spell-fb');if(fb)fb.innerHTML='';lqIdx++;lqRenderQuestion();},2500);
+      } else {
+        document.getElementById('lq-spell-fb').innerHTML=`<span style="color:#A32D2D;font-weight:600;">Nicht ganz – nochmal versuchen! 💪 (noch ${remaining}x)</span>`;
+        setTimeout(()=>{
+          lqSpellingAnswer=lqSpellingAnswer.map(()=>'');
+          lqSpellingUsed=[];
+          const fb=document.getElementById('lq-spell-fb');
+          if(fb)fb.innerHTML='';
+          document.querySelectorAll('.lq-ans-box').forEach(b=>{b.textContent='';b.classList.remove('filled');delete b.dataset.src;});
+          document.querySelectorAll('.lq-letter-btn').forEach(b=>b.classList.remove('used'));
+        },900);
+      }
+    }
+  }
+}
+
+function lqBackspace(){
+  const lastFilled=lqSpellingAnswer.map((l,i)=>l?i:-1).filter(i=>i>=0).pop();
+  if(lastFilled===undefined)return;
+  lqRemoveLetter(lastFilled);
+}
+
+function lqRemoveLetter(boxIdx){
+  if(!lqSpellingAnswer[boxIdx])return;
+  const srcIdx=parseInt(document.getElementById('lq-ab-'+boxIdx)?.dataset.src||'-1');
+  lqSpellingAnswer[boxIdx]='';
+  const box=document.getElementById('lq-ab-'+boxIdx);
+  if(box){box.textContent='';box.classList.remove('filled');}
+  if(srcIdx>=0){const lb=document.getElementById('lq-lb-'+srcIdx);if(lb)lb.classList.remove('used');}
+}
+
+function lqCheckTranslate(){
+  const val=document.getElementById('lq-tr-in').value.trim().toLowerCase();
+  const ans=lqQuestions[lqIdx].answer.toLowerCase().replace(/[¡¿.,!?]/g,'');
+  const ok=val.replace(/[¡¿.,!?]/g,'')===ans||val===ans;
+  document.getElementById('lq-tr-fb').innerHTML=ok?`<span style="color:#27500A;font-weight:600;">Richtig! ✓</span>`:`<span style="color:#A32D2D;font-weight:600;">Antwort: ${lqQuestions[lqIdx].answer}</span>`;
+  document.getElementById('lq-tr-in').disabled=true;
+  if(ok){lqCoins+=15;lqXP+=20;lqCorrect++;}
+  lqProfiles[lqCurProfile].total=(lqProfiles[lqCurProfile].total||0)+1;
+  if(ok)lqProfiles[lqCurProfile].correct=(lqProfiles[lqCurProfile].correct||0)+1;
+  lqSaveProfiles();
+  setTimeout(()=>{lqIdx++;lqRenderQuestion();},1400);
+}
+
+function lqShowResult(){
+  const p=lqProfiles[lqCurProfile];
+  p.coins=(p.coins||0)+lqCoins;p.xp=(p.xp||0)+lqXP;
+  const today=new Date().toDateString();
+  if(p.lastDate!==today){const yest=new Date(Date.now()-86400000).toDateString();p.streak=p.lastDate===yest?(p.streak||0)+1:1;p.lastDate=today;}
+  lqSaveProfiles();
+  const pct=Math.round(lqCorrect/lqQuestions.length*100);
+  document.getElementById('lq-r-emoji').textContent=pct>=80?'🎉':pct>=50?'👍':'💪';
+  document.getElementById('lq-r-title').textContent=pct>=80?'Fantastisch!':pct>=50?'Gut gemacht!':'Weiter üben!';
+  document.getElementById('lq-r-sub').textContent=lqCorrect+' von '+lqQuestions.length+' richtig ('+pct+'%)';
+  document.getElementById('lq-r-correct').textContent=lqCorrect+'/'+lqQuestions.length;
+  document.getElementById('lq-r-xp').textContent='+'+lqXP+' XP';
+  document.getElementById('lq-r-coins').textContent='+'+lqCoins;
+  document.getElementById('lq-r-streak').textContent=p.streak;
+  document.getElementById('lq-r-again').onclick=()=>{lqQuestions=[];lqStartGame(lqMode);};
+  lqShowPage('lq-p-result');
+}
+
+async function lqShowHighscore(){
+  lqShowPage('lq-p-highscore');
+  const keys=Object.keys(lqProfiles);
+  if(!keys.length){document.getElementById('lq-hs-list').innerHTML='<p style="color:#888780;">Noch keine Spieler.</p>';return;}
+  const sorted=keys.map(k=>({...lqProfiles[k],key:k})).sort((a,b)=>(b.xp||0)-(a.xp||0));
+  const medals=['🥇','🥈','🥉'];
+  document.getElementById('lq-hs-list').innerHTML=sorted.map((p,i)=>{const bg=LQ_COLORS[p.color]||'#534AB7';const lv=lqGetLevel(p.xp||0);return`<div class="lq-hs-row"><div style="font-size:20px;width:32px;text-align:center;">${medals[i]||'#'+(i+1)}</div><div class="lq-avatar" style="background:${bg};width:36px;height:36px;font-size:14px;">${p.name.slice(0,2).toUpperCase()}</div><div style="flex:1;"><div style="font-weight:600;font-size:15px;color:#1a1a2e;">${p.name}</div><div style="font-size:12px;color:#888780;">Level ${lv+1} · ${p.coins||0} 🪙</div></div><div style="font-size:16px;font-weight:700;color:#534AB7;">${p.xp||0} XP</div></div>`;}).join('');
+}
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+async function init(){
+  await ffLoad();
+  await lqLoadProfiles();
+  document.getElementById('ff-hdr-streak').textContent=ffGetStreak(S.activeProfileId)||0;
+  ffRenderHome();
+}
+init();
+</script>
+</body>
+</html>
