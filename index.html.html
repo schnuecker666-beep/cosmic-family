@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LinguaFamily">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAAsDD9RAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgNzkuMWI2NWE3OWI0LCAyMDIyLzA2LzEzLTIyOjAxOjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjMuNSAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjItMTEtMjFUMTU6MjE6MjkrMDE6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjItMTEtMjFUMTU6MjE6MjkrMDE6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDIyLTExLTIxVDE1OjIxOjI5KzAxOjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjUzOWNjOGI2LTc0MTQtNGQ4Yy1iZGQ4LWUwZjgxYmU5NjM4YiIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOmZhMjRiMjQxLWY0MzQtNWU0OC1iOTJmLWQ1MzVlNjAyMTBhNyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjUzOWNjOGI2LTc0MTQtNGQ4Yy1iZGQ4LWUwZjgxYmU5NjM4YiIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjUzOWNjOGI2LTc0MTQtNGQ4Yy1iZGQ4LWUwZjgxYmU5NjM4YiIgc3RFdnQ6d2hlbj0iMjAyMi0xMS0yMVQxNToyMToyOSswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIDIzLjUgKE1hY2ludG9zaCkiLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+"><script>
+// Generate PNG icon via canvas and set it
+(function(){
+  try{
+    const c=document.createElement('canvas');c.width=180;c.height=180;
+    const ctx=c.getContext('2d');
+    const g=ctx.createLinearGradient(0,0,180,180);
+    g.addColorStop(0,'#16a34a');g.addColorStop(1,'#15803d');
+    ctx.fillStyle=g;
+    ctx.beginPath();ctx.roundRect(0,0,180,180,40);ctx.fill();
+    ctx.font='90px serif';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('🌍',90,80);
+    ctx.fillStyle='#fff';ctx.font='bold 22px system-ui';
+    ctx.fillText('Lingua',90,140);ctx.fillText('Family',90,163);
+    const url=c.toDataURL('image/png');
+    const link=document.querySelector('link[rel="apple-touch-icon"]');
+    if(link)link.href=url;
+  }catch(e){}
+})();
+</script>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>LinguaFamily</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+:root{
+  --bg:#f0fdf4;--surface:#ffffff;--surface2:#f0fdf4;--surface3:#dcfce7;
+  --accent:#16a34a;--accent2:#22c55e;--accent3:#4ade80;
+  --gold:#d97706;--gold2:#f59e0b;
+  --green:#15803d;--green2:#16a34a;
+  --red:#dc2626;--red2:#fca5a5;
+  --blue:#2563eb;--blue2:#93c5fd;
+  --text:#14532d;--text2:#166534;--text3:#4b5563;
+  --border:#bbf7d0;--border2:#86efac;
+  --radius:16px;--radius-sm:10px;--radius-xs:6px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;font-size:17px;}
+.screen{display:none;min-height:100vh;flex-direction:column;}
+.screen.on{display:flex;}
+
+/* Header */
+.hdr{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;background:var(--accent);border-bottom:1px solid var(--border);}
+.hdr-title{font-size:22px;font-weight:800;color:#fff;}
+.hdr-sub{font-size:13px;color:#dcfce7;margin-top:2px;}
+
+/* Buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 20px;border-radius:var(--radius-sm);border:none;font-size:17px;font-weight:700;cursor:pointer;transition:all .2s;width:100%;}
+.btn:active{transform:scale(.97);}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-secondary{background:var(--surface2);color:var(--text);border:2px solid var(--border2);}
+.btn-ghost{background:transparent;color:var(--text2);border:2px solid var(--border2);}
+.btn-success{background:var(--green);color:#fff;}
+.btn-sm{padding:12px 16px;font-size:15px;}
+.btn+.btn{margin-top:10px;}
+
+/* Cards */
+.card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:20px;margin-bottom:12px;}
+.card-sm{background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border);padding:14px;margin-bottom:10px;}
+
+/* Badge */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:600;}
+.badge-purple{background:#4c1d95;color:var(--accent3);}
+.badge-gold{background:#78350f;color:var(--gold2);}
+.badge-green{background:#064e3b;color:var(--green2);}
+.badge-blue{background:#1e3a5f;color:var(--blue2);}
+.badge-red{background:#7f1d1d;color:var(--red2);}
+
+/* Progress */
+.progress-wrap{background:var(--border);border-radius:10px;height:8px;overflow:hidden;}
+.progress-fill{height:100%;border-radius:10px;transition:width .4s;}
+
+/* XP Bar */
+.xp-bar-wrap{background:var(--border);border-radius:4px;height:6px;overflow:hidden;margin:4px 0;}
+.xp-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transition:width .4s;}
+
+/* Avatar */
+.avatar{border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex-shrink:0;}
+
+/* Stat boxes */
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.stat-box{background:var(--surface2);border-radius:var(--radius-sm);padding:14px;text-align:center;border:1px solid var(--border);}
+.stat-val{font-size:26px;font-weight:700;}
+.stat-lbl{font-size:11px;color:var(--text2);margin-top:3px;}
+
+/* Tabs */
+.tab-row{display:flex;background:var(--surface2);border-radius:var(--radius-sm);padding:4px;gap:4px;margin-bottom:16px;}
+.tab{flex:1;padding:9px;border-radius:8px;border:none;background:transparent;font-size:13px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .2s;}
+.tab.on{background:var(--accent);color:#fff;}
+
+/* Lang selector */
+.lang-row{display:flex;gap:10px;margin-bottom:16px;}
+.lang-btn{flex:1;padding:12px;border-radius:var(--radius-sm);border:2px solid var(--border2);background:var(--surface2);font-size:14px;font-weight:600;cursor:pointer;color:var(--text2);transition:all .2s;text-align:center;}
+.lang-btn.on{border-color:var(--accent);background:#2d1f6e;color:var(--accent3);}
+
+/* Level pills */
+.level-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.level-pill{padding:8px 16px;border-radius:20px;border:2px solid var(--border2);background:var(--surface2);font-size:13px;font-weight:600;cursor:pointer;color:var(--text2);transition:all .2s;}
+.level-pill.on{border-color:var(--gold);background:#3d2a00;color:var(--gold2);}
+
+/* Lesson card */
+.lesson-card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);padding:16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s;}
+.lesson-card:active{transform:scale(.98);}
+.lesson-card.locked{opacity:.5;cursor:not-allowed;}
+.lesson-card.done{border-color:#064e3b;}
+.lesson-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.lesson-info{flex:1;min-width:0;}
+.lesson-title{font-size:16px;font-weight:700;margin-bottom:3px;}
+.lesson-sub{font-size:12px;color:var(--text2);}
+.lesson-check{width:30px;height:30px;border-radius:50%;border:2px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.lesson-check.done{background:var(--green);border-color:var(--green);}
+
+/* Exercise screen */
+.ex-header{padding:16px 20px;display:flex;align-items:center;gap:12px;background:var(--surface);border-bottom:1px solid var(--border);}
+.ex-progress{flex:1;background:var(--border);border-radius:4px;height:8px;overflow:hidden;}
+.ex-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;transition:width .4s;}
+.ex-content{flex:1;padding:20px;overflow-y:auto;}
+.ex-question{font-size:13px;color:var(--text2);text-align:center;margin-bottom:8px;font-weight:500;letter-spacing:.5px;text-transform:uppercase;}
+.ex-word{font-size:36px;font-weight:700;text-align:center;margin:16px 0 6px;color:var(--text);}
+.ex-context{font-size:14px;color:var(--text2);text-align:center;font-style:italic;margin-bottom:24px;}
+.option{display:block;width:100%;padding:16px 18px;border-radius:var(--radius-sm);border:2px solid var(--border2);background:var(--surface2);font-size:16px;font-weight:500;cursor:pointer;text-align:left;margin-bottom:10px;transition:all .2s;color:var(--text);}
+.option:active{transform:scale(.98);}
+.option.correct{border-color:var(--green);background:#064e3b;color:var(--green2);}
+.option.wrong{border-color:var(--red);background:#7f1d1d;color:var(--red2);}
+.option.reveal{border-color:var(--green);background:#064e3b;color:var(--green2);}
+
+/* Answer input */
+.ans-input{width:100%;padding:16px;border-radius:var(--radius-sm);border:2px solid var(--border2);background:var(--surface2);font-size:18px;color:var(--text);outline:none;text-align:center;}
+.ans-input:focus{border-color:var(--accent);}
+.ans-input.correct{border-color:var(--green);background:#064e3b;}
+.ans-input.wrong{border-color:var(--red);background:#7f1d1d;}
+
+/* Feedback */
+.feedback{border-radius:var(--radius-sm);padding:14px 16px;margin:12px 0;display:none;}
+.feedback.show{display:block;}
+.feedback.correct{background:#064e3b;border:1px solid var(--green);color:var(--green2);}
+.feedback.wrong{background:#7f1d1d;border:1px solid var(--red);color:var(--red2);}
+.feedback-title{font-size:16px;font-weight:700;margin-bottom:4px;}
+.feedback-text{font-size:14px;opacity:.9;}
+
+/* Spell boxes */
+.spell-boxes{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:16px 0;}
+.spell-box{min-width:38px;height:48px;border-radius:10px;border:2px solid var(--border2);background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--text);cursor:pointer;padding:0 6px;}
+.spell-box.filled{border-color:var(--accent);background:#2d1f6e;color:var(--accent3);}
+.spell-box.correct{border-color:var(--green);background:#064e3b;color:var(--green2);}
+.spell-box.wrong{border-color:var(--red);background:#7f1d1d;color:var(--red2);}
+.letter-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0;}
+.letter-btn{width:46px;height:46px;border-radius:10px;border:2px solid var(--border2);background:var(--surface2);font-size:18px;font-weight:700;cursor:pointer;color:var(--text);transition:all .15s;}
+.letter-btn.used{opacity:.25;}
+.letter-btn:active{transform:scale(.9);}
+
+/* Grammar card */
+.grammar-card{background:#fff;border:2px solid var(--accent);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+.grammar-title{font-size:20px;font-weight:800;color:var(--accent);margin-bottom:12px;}
+.grammar-rule{font-size:16px;color:#1a1a1a;line-height:1.8;margin-bottom:8px;}
+.grammar-example{background:#f0fdf4;border:1px solid var(--border2);border-radius:var(--radius-xs);padding:12px 14px;font-size:15px;color:#166534;font-style:italic;margin-top:10px;}
+
+/* Result */
+.result-emoji{font-size:72px;text-align:center;margin:20px 0;}
+.result-title{font-size:28px;font-weight:700;text-align:center;background:linear-gradient(135deg,var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;}
+.result-sub{font-size:15px;color:var(--text2);text-align:center;margin-bottom:24px;}
+
+/* Nav */
+.bottom-nav{background:var(--surface);border-top:1px solid var(--border);display:flex;padding-bottom:env(safe-area-inset-bottom);}
+.nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 12px;border:none;background:none;cursor:pointer;color:var(--text3);font-size:10px;font-weight:600;transition:color .2s;}
+.nav-btn.on{color:var(--accent2);}
+.nav-icon{font-size:22px;}
+
+/* Profile list */
+.profile-item{display:flex;align-items:center;gap:14px;padding:14px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border);margin-bottom:10px;cursor:pointer;transition:all .2s;}
+.profile-item:active{transform:scale(.98);}
+.profile-item.active-profile{border-color:var(--accent);}
+
+/* Streak flame */
+.streak-display{text-align:center;padding:24px;background:linear-gradient(135deg,#78350f,#92400e);border-radius:var(--radius);margin-bottom:16px;border:1px solid var(--gold);}
+.streak-num{font-size:56px;font-weight:700;color:var(--gold2);}
+
+/* Color picker */
+.color-dot{width:38px;height:38px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .2s;flex-shrink:0;}
+.color-dot.sel{border-color:#fff;transform:scale(1.1);}
+
+/* Misc */
+.divider{border:none;border-top:1px solid var(--border);margin:16px 0;}
+.empty{text-align:center;padding:40px 20px;color:var(--text2);}
+.empty-icon{font-size:48px;margin-bottom:12px;}
+.section-title{font-size:18px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.back-btn{background:none;border:none;color:var(--text2);font-size:24px;cursor:pointer;padding:0;line-height:1;}
+.scroll{flex:1;overflow-y:auto;padding:20px;}
+.content{flex:1;padding:20px;overflow-y:auto;}
+
+/* Placement test */
+.test-question{font-size:20px;font-weight:600;text-align:center;margin:20px 0;color:var(--text);}
+.test-progress{font-size:13px;color:var(--text2);text-align:center;margin-bottom:16px;}
+
+/* Animations */
+@keyframes popIn{0%{transform:scale(.5);opacity:0;}80%{transform:scale(1.1);}100%{transform:scale(1);opacity:1;}}
+@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+.pop{animation:popIn .3s ease;}
+.shake{animation:shake .3s ease;}
+
+/* Tooltip/hint */
+.hint-box{background:#1e1b4b;border:1px solid var(--accent);border-radius:var(--radius-xs);padding:10px 14px;font-size:13px;color:var(--accent3);margin-top:8px;display:none;}
+.hint-box.show{display:block;}
+
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--text2);}
+.spinner{width:36px;height:36px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* TTS button */
+.tts-btn{background:var(--surface2);border:1px solid var(--border2);border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;margin:0 auto 16px;}
+
+/* Word type tag */
+.word-type{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;background:var(--surface3);color:var(--blue2);margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<!-- ══════════════ SCREEN: SPLASH ══════════════ -->
+<div id="s-splash" class="screen on" style="align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0e17,#1a1a2e,#0f3460);">
+  <div style="text-align:center;padding:40px;">
+    <div style="font-size:72px;margin-bottom:16px;">🌍</div>
+    <div style="font-size:36px;font-weight:800;background:linear-gradient(135deg,#a855f7,#f59e0b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;">LinguaFamily</div>
+    <div style="font-size:16px;color:#94a3b8;margin-bottom:40px;">Sprachen lernen für die ganze Familie</div>
+    <button class="btn btn-primary" onclick="showScreen('s-profiles')" style="max-width:300px;">Los geht's 🚀</button>
+  </div>
+</div>
+
+<!-- ══════════════ SCREEN: PROFILES ══════════════ -->
+<div id="s-profiles" class="screen">
+  <div class="hdr">
+    <div><div class="hdr-title">LinguaFamily 🌍</div><div class="hdr-sub">Wer lernt heute?</div></div>
+    <button onclick="showScreen('s-add-profile')" style="background:var(--accent);border:none;color:#fff;border-radius:50%;width:36px;height:36px;font-size:20px;cursor:pointer;">+</button>
+  </div>
+  <div class="scroll" id="profile-list"></div>
+</div>
+
+<!-- ══════════════ SCREEN: ADD PROFILE ══════════════ -->
+<div id="s-add-profile" class="screen">
+  <div class="hdr">
+    <button class="back-btn" onclick="showScreen('s-profiles')">←</button>
+    <div style="flex:1;margin-left:12px;"><div class="hdr-title">Neues Profil</div></div>
+  </div>
+  <div class="scroll">
+    <div class="card">
+      <div style="text-align:center;margin-bottom:20px;">
+        <div class="avatar" id="ap-preview" style="width:72px;height:72px;font-size:26px;margin:0 auto 8px;background:#7c3aed;">?</div>
+      </div>
+      <div style="margin-bottom:14px;"><label style="font-size:13px;color:var(--text2);display:block;margin-bottom:6px;font-weight:600;">NAME</label><input id="ap-name" style="width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border2);background:var(--surface2);font-size:16px;color:var(--text);outline:none;" placeholder="z.B. Papa, Emma, Lukas..." maxlength="20" oninput="apUpdatePreview()"></div>
+      <div style="margin-bottom:14px;"><label style="font-size:13px;color:var(--text2);display:block;margin-bottom:8px;font-weight:600;">FARBE</label><div style="display:flex;gap:10px;flex-wrap:wrap;" id="ap-colors"></div></div>
+    </div>
+    <button class="btn btn-primary" onclick="createProfile()">Profil erstellen ✓</button>
+  </div>
+</div>
+
+<!-- ══════════════ SCREEN: PLACEMENT TEST ══════════════ -->
+<div id="s-placement" class="screen">
+  <div class="hdr">
+    <button class="back-btn" onclick="showScreen('s-profiles')">←</button>
+    <div style="flex:1;margin-left:12px;"><div class="hdr-title">Einstufungstest</div><div class="hdr-sub" id="pt-lang-sub"></div></div>
+  </div>
+  <div class="scroll">
+    <div class="card" style="background:linear-gradient(135deg,#1e1b4b,#2d1f6e);border-color:var(--accent);">
+      <div style="font-size:15px;color:var(--accent3);line-height:1.6;">📊 Dieser kurze Test (10 Fragen) findet dein Niveau – von Anfänger bis Fortgeschritten. Beantworte so gut du kannst!</div>
+    </div>
+    <div id="pt-content"></div>
+  </div>
+</div>
+
+<!-- ══════════════ SCREEN: HOME (Dashboard) ══════════════ -->
+<div id="s-home" class="screen">
+  <div class="hdr">
+    <div id="home-avatar" class="avatar" style="width:40px;height:40px;font-size:16px;margin-right:10px;"></div>
+    <div style="flex:1;"><div class="hdr-title" id="home-name">Hallo!</div><div class="hdr-sub" id="home-level">Level 1</div></div>
+    <button onclick="showScreen('s-profiles')" style="background:none;border:none;color:var(--text2);font-size:22px;cursor:pointer;">👤</button>
+  </div>
+  <div class="scroll" id="home-content"></div>
+  <nav class="bottom-nav">
+    <button class="nav-btn on" onclick="navTo('home')" id="nav-home"><span class="nav-icon">🏠</span>Start</button>
+    <button class="nav-btn" onclick="navTo('learn')" id="nav-learn"><span class="nav-icon">📚</span>Lernen</button>
+    <button class="nav-btn" onclick="navTo('vocab')" id="nav-vocab"><span class="nav-icon">🃏</span>Vokabeln</button>
+    <button class="nav-btn" onclick="navTo('stats')" id="nav-stats"><span class="nav-icon">📊</span>Statistik</button>
+  </nav>
+</div>
+
+<!-- ══════════════ SCREEN: LEARN ══════════════ -->
+<div id="s-learn" class="screen">
+  <div class="hdr">
+    <div><div class="hdr-title">Lernpfad 📚</div><div class="hdr-sub" id="learn-sub"></div></div>
+  </div>
+  <div class="content" id="learn-content"></div>
+  <nav class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('home')" id="nav-home2"><span class="nav-icon">🏠</span>Start</button>
+    <button class="nav-btn on" onclick="navTo('learn')" id="nav-learn2"><span class="nav-icon">📚</span>Lernen</button>
+    <button class="nav-btn" onclick="navTo('vocab')" id="nav-vocab2"><span class="nav-icon">🃏</span>Vokabeln</button>
+    <button class="nav-btn" onclick="navTo('stats')" id="nav-stats2"><span class="nav-icon">📊</span>Statistik</button>
+  </nav>
+</div>
+
+<!-- ══════════════ SCREEN: VOCAB REVIEW (SRS) ══════════════ -->
+<div id="s-vocab" class="screen">
+  <div class="hdr">
+    <div><div class="hdr-title">Vokabeltraining 🃏</div><div class="hdr-sub" id="vocab-sub"></div></div>
+  </div>
+  <div class="content" id="vocab-content"></div>
+  <nav class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('home')" id="nav-home3"><span class="nav-icon">🏠</span>Start</button>
+    <button class="nav-btn" onclick="navTo('learn')" id="nav-learn3"><span class="nav-icon">📚</span>Lernen</button>
+    <button class="nav-btn on" onclick="navTo('vocab')" id="nav-vocab3"><span class="nav-icon">🃏</span>Vokabeln</button>
+    <button class="nav-btn" onclick="navTo('stats')" id="nav-stats3"><span class="nav-icon">📊</span>Statistik</button>
+  </nav>
+</div>
+
+<!-- ══════════════ SCREEN: STATS ══════════════ -->
+<div id="s-stats" class="screen">
+  <div class="hdr">
+    <div><div class="hdr-title">Statistik 📊</div></div>
+  </div>
+  <div class="content" id="stats-content"></div>
+  <nav class="bottom-nav">
+    <button class="nav-btn" onclick="navTo('home')" id="nav-home4"><span class="nav-icon">🏠</span>Start</button>
+    <button class="nav-btn" onclick="navTo('learn')" id="nav-learn4"><span class="nav-icon">📚</span>Lernen</button>
+    <button class="nav-btn" onclick="navTo('vocab')" id="nav-vocab4"><span class="nav-icon">🃏</span>Vokabeln</button>
+    <button class="nav-btn on" onclick="navTo('stats')" id="nav-stats4"><span class="nav-icon">📊</span>Statistik</button>
+  </nav>
+</div>
+
+<!-- ══════════════ SCREEN: EXERCISE ══════════════ -->
+<div id="s-exercise" class="screen">
+  <div class="ex-header">
+    <button class="back-btn" onclick="confirmExitExercise()" style="font-size:20px;">✕</button>
+    <div class="ex-progress" style="margin:0 12px;"><div class="ex-progress-fill" id="ex-prog-fill" style="width:0%;"></div></div>
+    <div style="font-size:13px;color:var(--text2);white-space:nowrap;" id="ex-counter">1/10</div>
+    <div style="margin-left:12px;font-size:13px;color:var(--gold);white-space:nowrap;">❤️ <span id="ex-lives">3</span></div>
+  </div>
+  <div class="ex-content" id="ex-content"></div>
+  <div style="padding:16px 20px;background:var(--surface);border-top:1px solid var(--border);" id="ex-footer"></div>
+</div>
+
+<!-- ══════════════ SCREEN: RESULT ══════════════ -->
+<div id="s-result" class="screen">
+  <div class="scroll" id="result-content"></div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// STORAGE
+// ═══════════════════════════════════════════════════════
+const LS={get:k=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch{return null;}},set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));}catch{}}};
+
+// ═══════════════════════════════════════════════════════
+// CURRICULUM DATA
+// ═══════════════════════════════════════════════════════
+const LEVELS=['A1','A2','B1','B2','C1'];
+const LEVEL_NAMES={A1:'Anfänger',A2:'Grundkenntnisse',B1:'Fortgeschrittene Grundkenntnisse',B2:'Selbständige Sprachverwendung',C1:'Kompetente Sprachverwendung'};
+const LEVEL_COLORS={A1:'#10b981',A2:'#3b82f6',B1:'#f59e0b',B2:'#ef4444',C1:'#7c3aed'};
+
+const CURRICULUM={
+  en:{
+    A1:[
+      {id:'a1e01',title:'Begrüßung & Vorstellung',icon:'👋',color:'#10b981',grammar:'Das Verb "to be" (= sein)',grammarText:'Das englische "to be" entspricht dem deutschen "sein".\nEs hat drei Formen im Präsens:\n\n• I am = ich bin → I am a student.\n• You are = du bist → You are my friend.\n• He/She/It is = er/sie/es ist → She is happy.\n• We/You/They are = wir/ihr/sie sind → They are brothers.\n\nVerneinung: am not / is not (= isn\'t) / are not (= aren\'t)\n• I am not tired. = Ich bin nicht müde.\n• She isn\'t here. = Sie ist nicht hier.\n\nFrage: Am I...? / Is he...? / Are they...?\n• Are you ready? = Bist du bereit?',grammarEx:'Beispiel: Hello! I am Maria. (= Hallo! Ich bin Maria.) I am 12 years old. (= Ich bin 12 Jahre alt.) This is my brother Tom. (= Das ist mein Bruder Tom.) He is 10. (= Er ist 10.)',
+        words:[
+          {de:'Hallo',en:'Hello',type:'interjection',ex:'Hello! Nice to meet you!'},
+          {de:'Guten Morgen',en:'Good morning',type:'phrase',ex:'Good morning! How are you?'},
+          {de:'Auf Wiedersehen',en:'Goodbye',type:'phrase',ex:'Goodbye! See you tomorrow!'},
+          {de:'Bitte',en:'Please',type:'adverb',ex:'Can I have some water, please?'},
+          {de:'Danke',en:'Thank you',type:'phrase',ex:'Thank you very much!'},
+          {de:'Ja',en:'Yes',type:'particle',ex:'Yes, I understand.'},
+          {de:'Nein',en:'No',type:'particle',ex:'No, thank you.'},
+          {de:'Entschuldigung',en:'Excuse me',type:'phrase',ex:'Excuse me, where is the station?'},
+          {de:'Mein Name ist',en:'My name is',type:'phrase',ex:'My name is Anna.'},
+          {de:'Wie geht es dir?',en:'How are you?',type:'phrase',ex:'Hello! How are you today?'},
+        ]},
+      {id:'a1e02',title:'Zahlen & Uhrzeit',icon:'🔢',color:'#3b82f6',grammar:'Kardinal- und Ordinalzahlen',grammarText:'Kardinalzahlen (= wie viele?): one, two, three...\n• one (1), two (2), three (3), four (4), five (5)\n• six (6), seven (7), eight (8), nine (9), ten (10)\n• eleven (11), twelve (12), thirteen (13)...\n• twenty (20), thirty (30), hundred (100)\n\nOrdinalzahlen (= in welcher Reihenfolge?):\n• first (1.), second (2.), third (3.), fourth (4.)...\n• Merke: Meist einfach Zahl + "th" → fifth, sixth...\n\nUhrzeit:\n• It is three o\'clock. = Es ist drei Uhr.\n• half past two = halb drei\n• quarter to five = viertel vor fünf',grammarEx:'Beispiel: I wake up at seven o\'clock. (= Ich stehe um sieben Uhr auf.) My birthday is on the fifteenth of March. (= Mein Geburtstag ist am 15. März.)',
+        words:[
+          {de:'eins',en:'one',type:'number',ex:'I have one cat.'},
+          {de:'zwei',en:'two',type:'number',ex:'She has two brothers.'},
+          {de:'drei',en:'three',type:'number',ex:'There are three apples.'},
+          {de:'vier',en:'four',type:'number',ex:'Four seasons in a year.'},
+          {de:'fünf',en:'five',type:'number',ex:'Five fingers on one hand.'},
+          {de:'zehn',en:'ten',type:'number',ex:'Ten minutes to go.'},
+          {de:'zwanzig',en:'twenty',type:'number',ex:'She is twenty years old.'},
+          {de:'hundert',en:'hundred',type:'number',ex:'One hundred percent.'},
+          {de:'Uhr',en:"o'clock",type:'noun',ex:"It is three o'clock."},
+          {de:'heute',en:'today',type:'adverb',ex:'What are you doing today?'},
+        ]},
+      {id:'a1e03',title:'Family & People',icon:'👨‍👩‍👧',color:'#f59e0b',grammar:'Possessive Adjectives',grammarText:'Possessive adjectives show who something belongs to:\n• my, your, his, her, its, our, their\n• This is my mother.\n• Her brother is tall.',grammarEx:'My father is a doctor. Her mother is a teacher. Their children go to school.',
+        words:[
+          {de:'Mutter',en:'mother',type:'noun',ex:'My mother is a teacher.'},
+          {de:'Vater',en:'father',type:'noun',ex:'My father works in an office.'},
+          {de:'Bruder',en:'brother',type:'noun',ex:'My brother is twelve years old.'},
+          {de:'Schwester',en:'sister',type:'noun',ex:'Her sister plays piano.'},
+          {de:'Kind',en:'child',type:'noun',ex:'The child is playing outside.'},
+          {de:'Großmutter',en:'grandmother',type:'noun',ex:'My grandmother makes great cookies.'},
+          {de:'Großvater',en:'grandfather',type:'noun',ex:'My grandfather tells great stories.'},
+          {de:'Familie',en:'family',type:'noun',ex:'We have a big family.'},
+          {de:'Freund',en:'friend',type:'noun',ex:'She is my best friend.'},
+          {de:'Mensch',en:'person',type:'noun',ex:'She is a very kind person.'},
+        ]},
+      {id:'a1e04',title:'Food & Drink',icon:'🍎',color:'#ef4444',grammar:'Articles: a/an/the',grammarText:'• Use "a" before consonant sounds: a dog, a book\n• Use "an" before vowel sounds: an apple, an egg\n• Use "the" for specific things: the sun, the cat in the garden',grammarEx:'I eat an apple every day. The apple is red. A dog is a good pet.',
+        words:[
+          {de:'Wasser',en:'water',type:'noun',ex:'I drink water every day.'},
+          {de:'Brot',en:'bread',type:'noun',ex:'She buys fresh bread.'},
+          {de:'Apfel',en:'apple',type:'noun',ex:'An apple a day keeps the doctor away.'},
+          {de:'Milch',en:'milk',type:'noun',ex:'Children need to drink milk.'},
+          {de:'Ei',en:'egg',type:'noun',ex:'He eats two eggs for breakfast.'},
+          {de:'Fleisch',en:'meat',type:'noun',ex:'We had meat for dinner.'},
+          {de:'Gemüse',en:'vegetables',type:'noun',ex:'Eat your vegetables!'},
+          {de:'Obst',en:'fruit',type:'noun',ex:'Fresh fruit is healthy.'},
+          {de:'Kaffee',en:'coffee',type:'noun',ex:'I drink coffee in the morning.'},
+          {de:'Kuchen',en:'cake',type:'noun',ex:'She baked a chocolate cake.'},
+        ]},
+      {id:'a1e05',title:'Colors & Adjectives',icon:'🎨',color:'#7c3aed',grammar:'Adjective Position',grammarText:'In English, adjectives come BEFORE the noun:\n• a red car (not: a car red)\n• a big house\n• a beautiful day\nMultiple adjectives: size + color + noun:\n• a small red car',grammarEx:'She has long brown hair. He drives a small blue car. It is a beautiful sunny day.',
+        words:[
+          {de:'rot',en:'red',type:'adjective',ex:'The red rose is beautiful.'},
+          {de:'blau',en:'blue',type:'adjective',ex:'The sky is blue.'},
+          {de:'grün',en:'green',type:'adjective',ex:'The grass is green.'},
+          {de:'gelb',en:'yellow',type:'adjective',ex:'Bananas are yellow.'},
+          {de:'schwarz',en:'black',type:'adjective',ex:'Her cat is black.'},
+          {de:'weiß',en:'white',type:'adjective',ex:'Snow is white.'},
+          {de:'groß',en:'big/tall',type:'adjective',ex:'The Eiffel Tower is very tall.'},
+          {de:'klein',en:'small/short',type:'adjective',ex:'That is a small dog.'},
+          {de:'schön',en:'beautiful',type:'adjective',ex:'What a beautiful sunset!'},
+          {de:'neu',en:'new',type:'adjective',ex:'I have a new phone.'},
+        ]},
+    ],
+    A2:[
+      {id:'a2e01',title:'Daily Routine',icon:'🌅',color:'#10b981',grammar:'Simple Present for Habits',grammarText:'Use Simple Present for regular actions:\n• I wake up at 7am. (ich stehe auf)\n• She goes to school. (sie geht)\n• He doesn\'t eat meat. (er isst nicht)\n• Do you drink coffee? (trinkst du?)',grammarEx:'Every morning I wake up at six. I have breakfast and then go to work. On weekends I sleep longer.',
+        words:[
+          {de:'aufwachen',en:'to wake up',type:'verb',ex:'I wake up at seven every morning.'},
+          {de:'frühstücken',en:'to have breakfast',type:'verb',ex:'We have breakfast together.'},
+          {de:'zur Arbeit gehen',en:'to go to work',type:'phrase',ex:'He goes to work by bus.'},
+          {de:'kochen',en:'to cook',type:'verb',ex:'She loves to cook Italian food.'},
+          {de:'schlafen gehen',en:'to go to bed',type:'phrase',ex:'The children go to bed at nine.'},
+          {de:'duschen',en:'to shower',type:'verb',ex:'I shower every morning.'},
+          {de:'einkaufen',en:'to go shopping',type:'verb',ex:'We go shopping on Saturdays.'},
+          {de:'Hausaufgaben machen',en:'to do homework',type:'phrase',ex:'She does her homework after school.'},
+          {de:'Pause machen',en:'to take a break',type:'phrase',ex:'Let\'s take a break!'},
+          {de:'Sport treiben',en:'to exercise',type:'phrase',ex:'He exercises three times a week.'},
+        ]},
+      {id:'a2e02',title:'Travel & Transport',icon:'✈️',color:'#3b82f6',grammar:'Past Simple',grammarText:'Use Past Simple for finished actions:\n• Regular verbs: add -ed → walked, visited\n• Irregular verbs: go→went, see→saw, take→took\n• I visited Paris last year.\n• We took the train to Berlin.',grammarEx:'Last summer we travelled to Spain. We flew from Munich airport. The flight took two hours.',
+        words:[
+          {de:'Flugzeug',en:'airplane',type:'noun',ex:'The airplane lands at noon.'},
+          {de:'Zug',en:'train',type:'noun',ex:'We took the train to Paris.'},
+          {de:'Hotel',en:'hotel',type:'noun',ex:'We stayed in a nice hotel.'},
+          {de:'Ticket',en:'ticket',type:'noun',ex:'I bought a return ticket.'},
+          {de:'Reisepass',en:'passport',type:'noun',ex:'Don\'t forget your passport!'},
+          {de:'Koffer',en:'suitcase',type:'noun',ex:'My suitcase is too heavy.'},
+          {de:'Bahnhof',en:'train station',type:'noun',ex:'The train station is downtown.'},
+          {de:'Hafen',en:'harbour/port',type:'noun',ex:'The ship left the harbour.'},
+          {de:'reisen',en:'to travel',type:'verb',ex:'I love to travel in summer.'},
+          {de:'buchen',en:'to book',type:'verb',ex:'Did you book the hotel?'},
+        ]},
+    ],
+    B1:[
+      {id:'b1e01',title:'Opinions & Discussions',icon:'💬',color:'#10b981',grammar:'Modal Verbs for Opinion',grammarText:'Express opinions with modal verbs:\n• I think that... / I believe...\n• It might be... / It could be...\n• I should mention... / We ought to...\n• In my opinion... / From my perspective...',grammarEx:'In my opinion, we should invest more in renewable energy. It might be expensive at first, but it could save money long-term.',
+        words:[
+          {de:'Meinung',en:'opinion',type:'noun',ex:'In my opinion, this is wrong.'},
+          {de:'meiner Meinung nach',en:'in my opinion',type:'phrase',ex:'In my opinion, we need change.'},
+          {de:'ich glaube',en:'I believe/think',type:'phrase',ex:'I believe this is correct.'},
+          {de:'zustimmen',en:'to agree',type:'verb',ex:'I agree with your point.'},
+          {de:'widersprechen',en:'to disagree',type:'verb',ex:'I disagree with that statement.'},
+          {de:'Argument',en:'argument',type:'noun',ex:'That is a strong argument.'},
+          {de:'Diskussion',en:'discussion',type:'noun',ex:'We had an interesting discussion.'},
+          {de:'beweisen',en:'to prove',type:'verb',ex:'Can you prove your point?'},
+          {de:'zweifeln',en:'to doubt',type:'verb',ex:'I doubt that is true.'},
+          {de:'überzeugen',en:'to convince',type:'verb',ex:'She convinced everyone.'},
+        ]},
+      {id:'b1e02',title:'Environment & Nature',icon:'🌿',color:'#3b82f6',grammar:'Passive Voice',grammarText:'Use passive voice when the action is more important than who does it:\n• Active: People cut down forests.\n• Passive: Forests are cut down (by people).\n• Form: subject + am/is/are + past participle\n• Rainforests are destroyed every day.',grammarEx:'Every year, millions of trees are cut down. The environment is being damaged by pollution. Species are lost before they are discovered.',
+        words:[
+          {de:'Umwelt',en:'environment',type:'noun',ex:'We must protect the environment.'},
+          {de:'Klimawandel',en:'climate change',type:'noun',ex:'Climate change is a global challenge.'},
+          {de:'erneuerbar',en:'renewable',type:'adjective',ex:'Renewable energy is the future.'},
+          {de:'Verschmutzung',en:'pollution',type:'noun',ex:'Air pollution is dangerous.'},
+          {de:'Nachhaltigkeit',en:'sustainability',type:'noun',ex:'Sustainability must be our goal.'},
+          {de:'recyceln',en:'to recycle',type:'verb',ex:'Please recycle your waste.'},
+          {de:'Treibhausgas',en:'greenhouse gas',type:'noun',ex:'CO2 is a greenhouse gas.'},
+          {de:'Artenvielfalt',en:'biodiversity',type:'noun',ex:'Biodiversity is under threat.'},
+          {de:'Abholzung',en:'deforestation',type:'noun',ex:'Deforestation destroys habitats.'},
+          {de:'Naturschutz',en:'conservation',type:'noun',ex:'Conservation is everyone\'s responsibility.'},
+        ]},
+    ],
+    B2:[
+      {id:'b2e01',title:'Economics & Society',icon:'💼',color:'#10b981',grammar:'Conditionals (Type 2 & 3)',grammarText:'Type 2 – Unlikely/hypothetical:\n• If I were rich, I would travel the world.\nType 3 – Impossible (past):\n• If she had studied, she would have passed.\nMixed:\n• If he had saved money, he would be rich now.',grammarEx:'If governments invested more in education, poverty would decrease. If we had acted earlier, climate change would not be such a crisis now.',
+        words:[
+          {de:'Wirtschaft',en:'economy',type:'noun',ex:'The economy is growing slowly.'},
+          {de:'Inflation',en:'inflation',type:'noun',ex:'Inflation affects purchasing power.'},
+          {de:'Ungleichheit',en:'inequality',type:'noun',ex:'Economic inequality is increasing.'},
+          {de:'Globalisierung',en:'globalisation',type:'noun',ex:'Globalisation has pros and cons.'},
+          {de:'Investition',en:'investment',type:'noun',ex:'Foreign investment creates jobs.'},
+          {de:'Armut',en:'poverty',type:'noun',ex:'We must fight poverty.'},
+          {de:'Wohlstand',en:'prosperity/wealth',type:'noun',ex:'Education leads to prosperity.'},
+          {de:'Haushalt',en:'budget',type:'noun',ex:'The government budget was approved.'},
+          {de:'Schulden',en:'debt',type:'noun',ex:'National debt is a serious issue.'},
+          {de:'Wachstum',en:'growth',type:'noun',ex:'Economic growth benefits society.'},
+        ]},
+    ],
+    C1:[
+      {id:'c1e01',title:'Rhetoric & Persuasion',icon:'🎭',color:'#10b981',grammar:'Advanced Discourse Markers',grammarText:'Sophisticated linking language for C1:\n• Concession: Although, Despite the fact that, Notwithstanding\n• Addition: Furthermore, Moreover, In addition to this\n• Contrast: Nevertheless, On the contrary, Conversely\n• Result: Consequently, As a result, Hence\n• Example: To illustrate, As evidenced by',grammarEx:'Although renewable energy presents significant initial costs, it is, notwithstanding, the most viable long-term solution. Consequently, governments must prioritise investment in this sector.',
+        words:[
+          {de:'überzeugend',en:'compelling/persuasive',type:'adjective',ex:'She made a compelling argument.'},
+          {de:'Rhetorik',en:'rhetoric',type:'noun',ex:'His rhetoric moved the audience.'},
+          {de:'nuanciert',en:'nuanced',type:'adjective',ex:'A nuanced understanding is needed.'},
+          {de:'implizieren',en:'to imply',type:'verb',ex:'What does this statement imply?'},
+          {de:'widerlegen',en:'to refute',type:'verb',ex:'She refuted all his arguments.'},
+          {de:'Untermauerung',en:'substantiation',type:'noun',ex:'The claim needs substantiation.'},
+          {de:'Ambiguität',en:'ambiguity',type:'noun',ex:'The poem is full of ambiguity.'},
+          {de:'Paradoxon',en:'paradox',type:'noun',ex:'This is an interesting paradox.'},
+          {de:'Metapher',en:'metaphor',type:'noun',ex:'Life is a journey – a metaphor.'},
+          {de:'eloquent',en:'eloquent',type:'adjective',ex:'She gave an eloquent speech.'},
+        ]},
+    ],
+  },
+  es:{
+    A1:[
+      {id:'a1s01',title:'Begrüßung & Vorstellung',icon:'👋',color:'#10b981',grammar:'Die Verben SER und ESTAR (= sein)',grammarText:'Spanisch hat zwei Wörter für "sein":\n\n🔵 SER = dauerhafte Eigenschaften (wer/was man ist)\n• Yo soy estudiante. = Ich bin Schüler.\n• Ella es española. = Sie ist Spanierin.\n• Él es alto. = Er ist groß.\n\n🟢 ESTAR = vorübergehende Zustände & Ort\n• Estoy cansado. = Ich bin müde.\n• El libro está en la mesa. = Das Buch liegt auf dem Tisch.\n• ¿Dónde estás? = Wo bist du?\n\n💡 Merkhilfe: SER = dauerhaft, ESTAR = momentan',grammarEx:'Beispiel: ¡Hola! Soy María. (= Ich bin María.) Soy de Alemania. (= Ich komme aus Deutschland.) Pero estoy en Madrid ahora. (= Aber ich bin jetzt in Madrid.) Estoy muy contenta aquí. (= Ich bin sehr glücklich hier.)',
+        words:[
+          {de:'Hallo',es:'¡Hola!',type:'interjection',ex:'¡Hola! ¿Cómo te llamas?'},
+          {de:'Guten Morgen',es:'Buenos días',type:'phrase',ex:'¡Buenos días! ¿Cómo estás?'},
+          {de:'Guten Abend',es:'Buenas tardes',type:'phrase',ex:'¡Buenas tardes, señora García!'},
+          {de:'Auf Wiedersehen',es:'Adiós',type:'phrase',ex:'¡Adiós! ¡Hasta mañana!'},
+          {de:'Bitte',es:'Por favor',type:'adverb',ex:'Un café, por favor.'},
+          {de:'Danke',es:'Gracias',type:'phrase',ex:'¡Muchas gracias!'},
+          {de:'Ja',es:'Sí',type:'particle',ex:'Sí, claro.'},
+          {de:'Nein',es:'No',type:'particle',ex:'No, gracias.'},
+          {de:'Entschuldigung',es:'Perdón / Disculpe',type:'phrase',ex:'Perdón, ¿dónde está el baño?'},
+          {de:'Wie heißt du?',es:'¿Cómo te llamas?',type:'phrase',ex:'¿Cómo te llamas? Me llamo Ana.'},
+        ]},
+      {id:'a1s02',title:'Zahlen & Zeit',icon:'🔢',color:'#3b82f6',grammar:'Die Zahlen auf Spanisch',grammarText:'Zahlen 1–10:\n• uno (1), dos (2), tres (3), cuatro (4), cinco (5)\n• seis (6), siete (7), ocho (8), nueve (9), diez (10)\n\nZahlen 11–20:\n• once (11), doce (12), trece (13), catorce (14), quince (15)\n• dieciséis (16), diecisiete (17), dieciocho (18), diecinueve (19), veinte (20)\n\n⚠️ Wichtig: uno wird vor Substantiven verkürzt:\n• un libro = ein Buch (maskulin)\n• una casa = ein Haus (feminin)',grammarEx:'Beispiel: Tengo veintitrés años. (= Ich bin 23 Jahre alt.) Son las tres. (= Es ist 3 Uhr.) Hay cinco personas. (= Es gibt 5 Personen.)',
+        words:[
+          {de:'eins',es:'uno/una',type:'number',ex:'Tengo un hermano.'},
+          {de:'zwei',es:'dos',type:'number',ex:'Dos cafés, por favor.'},
+          {de:'drei',es:'tres',type:'number',ex:'Tres días de vacaciones.'},
+          {de:'zehn',es:'diez',type:'number',ex:'Son las diez.'},
+          {de:'zwanzig',es:'veinte',type:'number',ex:'Ella tiene veinte años.'},
+          {de:'hundert',es:'cien/ciento',type:'number',ex:'Cien euros.'},
+          {de:'heute',es:'hoy',type:'adverb',ex:'¿Qué haces hoy?'},
+          {de:'morgen',es:'mañana',type:'adverb',ex:'Hasta mañana.'},
+          {de:'gestern',es:'ayer',type:'adverb',ex:'Ayer fui al cine.'},
+          {de:'Woche',es:'semana',type:'noun',ex:'La semana que viene.'},
+        ]},
+      {id:'a1s03',title:'Familie & Personen',icon:'👨‍👩‍👧',color:'#f59e0b',grammar:'Possessivpronomen (Besitzanzeige)',grammarText:'Possessivpronomen zeigen wem etwas gehört.\nSie richten sich nach dem BESITZ (nicht dem Besitzer):\n\n• mi / mis = mein/meine → mi madre (meine Mutter), mis hermanos (meine Brüder)\n• tu / tus = dein/deine → tu padre (dein Vater)\n• su / sus = sein/ihr/Ihr → su familia (seine/ihre Familie)\n• nuestro/a = unser/unsere → nuestro coche, nuestra casa\n\n💡 Anders als Deutsch: kein Unterschied zwischen "sein" und "ihr" → immer "su"',grammarEx:'Beispiel: Mi madre se llama Carmen. (= Meine Mutter heißt Carmen.) Mis padres viven en Madrid. (= Meine Eltern wohnen in Madrid.) Nuestra familia es muy grande. (= Unsere Familie ist sehr groß.)',
+        words:[
+          {de:'Mutter',es:'la madre',type:'noun',ex:'Mi madre es profesora.'},
+          {de:'Vater',es:'el padre',type:'noun',ex:'Mi padre trabaja en una oficina.'},
+          {de:'Bruder',es:'el hermano',type:'noun',ex:'Tengo dos hermanos.'},
+          {de:'Schwester',es:'la hermana',type:'noun',ex:'Mi hermana estudia medicina.'},
+          {de:'Großmutter',es:'la abuela',type:'noun',ex:'Mi abuela hace muy bien la paella.'},
+          {de:'Großvater',es:'el abuelo',type:'noun',ex:'Mi abuelo cuenta historias increíbles.'},
+          {de:'Familie',es:'la familia',type:'noun',ex:'La familia es lo más importante.'},
+          {de:'Kind',es:'el niño / la niña',type:'noun',ex:'Los niños juegan en el parque.'},
+          {de:'Freund/in',es:'el amigo / la amiga',type:'noun',ex:'Ella es mi mejor amiga.'},
+          {de:'Ehemann/frau',es:'el marido / la mujer',type:'noun',ex:'Su marido es médico.'},
+        ]},
+      {id:'a1s04',title:'Essen & Trinken',icon:'🍎',color:'#ef4444',grammar:'Artikel auf Spanisch (bestimmt & unbestimmt)',grammarText:'Bestimmte Artikel (= der/die/das):\n• el (maskulin singular) → el café = der Kaffee\n• la (feminin singular) → la leche = die Milch\n• los (maskulin plural) → los huevos = die Eier\n• las (feminin plural) → las frutas = die Früchte\n\nUnbestimmte Artikel (= ein/eine):\n• un (maskulin) → un café = ein Kaffee\n• una (feminin) → una manzana = ein Apfel\n• unos/unas (plural) → unos tomates = einige Tomaten\n\n💡 Jedes Substantiv hat ein festes Geschlecht – das muss man lernen!',grammarEx:'Beispiel: Quiero un café con leche. (= Ich möchte einen Kaffee mit Milch.) El zumo de naranja es muy bueno. (= Der Orangensaft ist sehr gut.)',
+        words:[
+          {de:'Wasser',es:'el agua (f.)',type:'noun',ex:'Un vaso de agua, por favor.'},
+          {de:'Brot',es:'el pan',type:'noun',ex:'El pan español es delicioso.'},
+          {de:'Apfel',es:'la manzana',type:'noun',ex:'Una manzana al día...'},
+          {de:'Milch',es:'la leche',type:'noun',ex:'Los niños beben leche.'},
+          {de:'Ei',es:'el huevo',type:'noun',ex:'Los huevos fritos son mi desayuno favorito.'},
+          {de:'Fleisch',es:'la carne',type:'noun',ex:'En España comen mucha carne.'},
+          {de:'Gemüse',es:'la verdura',type:'noun',ex:'Como verdura todos los días.'},
+          {de:'Obst',es:'la fruta',type:'noun',ex:'La fruta es muy sana.'},
+          {de:'Kaffee',es:'el café',type:'noun',ex:'Me tomo un café con leche.'},
+          {de:'Wein',es:'el vino',type:'noun',ex:'El vino español es famoso.'},
+        ]},
+      {id:'a1s05',title:'Farben & Beschreibung',icon:'🎨',color:'#7c3aed',grammar:'Adjektive: Angleichung an das Substantiv',grammarText:'Im Spanischen passen sich Adjektive dem Substantiv an!\nSie ändern sich nach Geschlecht (Genus) und Zahl (Numerus):\n\n• Maskulin singular: el coche rojo = das rote Auto\n• Feminin singular: la casa roja = das rote Haus\n• Maskulin plural: los coches rojos = die roten Autos\n• Feminin plural: las casas rojas = die roten Häuser\n\n⚠️ Anders als Deutsch: Adjektiv steht NACH dem Substantiv!\n✅ un coche rojo (= ein rotes Auto)\n❌ un rojo coche\n\nManche Adjektive sind für m/f gleich:\n• el/la estudiante inteligente = der/die intelligente Student/in',grammarEx:'Beispiel: Tengo el pelo castaño. (= Ich habe braune Haare.) Los ojos verdes. (= Grüne Augen.) Mi coche es rojo. (= Mein Auto ist rot.)',
+        words:[
+          {de:'rot',es:'rojo/a',type:'adjective',ex:'La rosa roja es preciosa.'},
+          {de:'blau',es:'azul',type:'adjective',ex:'El cielo es azul.'},
+          {de:'grün',es:'verde',type:'adjective',ex:'Los árboles son verdes.'},
+          {de:'gelb',es:'amarillo/a',type:'adjective',ex:'El sol es amarillo.'},
+          {de:'schwarz',es:'negro/a',type:'adjective',ex:'Su gato es negro.'},
+          {de:'weiß',es:'blanco/a',type:'adjective',ex:'La nieve es blanca.'},
+          {de:'groß',es:'grande',type:'adjective',ex:'Madrid es una ciudad grande.'},
+          {de:'klein',es:'pequeño/a',type:'adjective',ex:'Tengo un piso pequeño.'},
+          {de:'schön',es:'bonito/a / hermoso/a',type:'adjective',ex:'¡Qué día tan bonito!'},
+          {de:'alt',es:'viejo/a / antiguo/a',type:'adjective',ex:'Esta iglesia es muy antigua.'},
+        ]},
+    ],
+    A2:[
+      {id:'a2s01',title:'Rutina Diaria',icon:'🌅',color:'#10b981',grammar:'Verbos Reflexivos',grammarText:'Muchos verbos de rutina son reflexivos (se hacen a uno mismo):\n• levantarse → me levanto (ich stehe auf)\n• ducharse → me ducho\n• vestirse → me visto\n• acostarse → me acuesto\nConjugación: me, te, se, nos, os, se',grammarEx:'Normalmente me levanto a las siete. Me ducho, me visto y desayuno. Por la noche me acuesto a las once.',
+        words:[
+          {de:'aufstehen',es:'levantarse',type:'verb',ex:'Me levanto a las siete.'},
+          {de:'duschen',es:'ducharse',type:'verb',ex:'Me ducho cada mañana.'},
+          {de:'frühstücken',es:'desayunar',type:'verb',ex:'Desayuno café y tostadas.'},
+          {de:'zur Arbeit gehen',es:'ir al trabajo',type:'phrase',ex:'Voy al trabajo en metro.'},
+          {de:'zu Mittag essen',es:'almorzar',type:'verb',ex:'Almorzamos a las dos.'},
+          {de:'sich ausruhen',es:'descansar',type:'verb',ex:'Por la tarde descanso.'},
+          {de:'abendessen',es:'cenar',type:'verb',ex:'Cenamos juntos en familia.'},
+          {de:'schlafen gehen',es:'acostarse',type:'verb',ex:'Los niños se acuestan pronto.'},
+          {de:'einkaufen',es:'hacer la compra',type:'phrase',ex:'Hago la compra los sábados.'},
+          {de:'aufräumen',es:'ordenar / limpiar',type:'verb',ex:'Los domingos limpio la casa.'},
+        ]},
+    ],
+    B1:[
+      {id:'b1s01',title:'Opiniones y Debate',icon:'💬',color:'#10b981',grammar:'El Subjuntivo (Introducción)',grammarText:'El subjuntivo expresa deseos, dudas y opiniones:\n• Espero que + subjuntivo → Espero que venga.\n• Quiero que + subjuntivo → Quiero que estudies.\n• No creo que + subjuntivo → No creo que sea verdad.\n• Es importante que + subjuntivo → Es importante que comas bien.',grammarEx:'Espero que el gobierno tome medidas. Es necesario que todos colaboremos. No creo que sea tan sencillo.',
+        words:[
+          {de:'Meinung',es:'la opinión',type:'noun',ex:'En mi opinión, esto es incorrecto.'},
+          {de:'meiner Meinung nach',es:'en mi opinión / a mi parecer',type:'phrase',ex:'A mi parecer, necesitamos cambios.'},
+          {de:'zustimmen',es:'estar de acuerdo',type:'phrase',ex:'Estoy de acuerdo contigo.'},
+          {de:'widersprechen',es:'no estar de acuerdo',type:'phrase',ex:'No estoy de acuerdo con eso.'},
+          {de:'glauben',es:'creer / pensar',type:'verb',ex:'Creo que tienes razón.'},
+          {de:'vorschlagen',es:'proponer / sugerir',type:'verb',ex:'Te propongo una solución.'},
+          {de:'bezweifeln',es:'dudar',type:'verb',ex:'Dudo que sea cierto.'},
+          {de:'beweisen',es:'demostrar',type:'verb',ex:'¿Puedes demostrarlo?'},
+          {de:'Argument',es:'el argumento',type:'noun',ex:'Es un argumento válido.'},
+          {de:'überzeugen',es:'convencer',type:'verb',ex:'No me has convencido.'},
+        ]},
+    ],
+    B2:[
+      {id:'b2s01',title:'Economía y Sociedad',icon:'💼',color:'#10b981',grammar:'El Condicional',grammarText:'El condicional expresa situaciones hipotéticas:\n• Si tuviera dinero, viajaría al mundo. (hätte/würde)\n• Si hubiera estudiado, habría aprobado.\nEl condicional simple: -ía, -ías, -ía, -íamos, -íais, -ían\n• hablar → hablaría, hablarías...',grammarEx:'Si los gobiernos invirtieran más en educación, habría menos pobreza. Si hubiéramos actuado antes, el cambio climático no sería tan grave.',
+        words:[
+          {de:'Wirtschaft',es:'la economía',type:'noun',ex:'La economía española crece.'},
+          {de:'Inflation',es:'la inflación',type:'noun',ex:'La inflación sube cada mes.'},
+          {de:'Ungleichheit',es:'la desigualdad',type:'noun',ex:'La desigualdad social aumenta.'},
+          {de:'Globalisierung',es:'la globalización',type:'noun',ex:'La globalización tiene ventajas y desventajas.'},
+          {de:'Investition',es:'la inversión',type:'noun',ex:'Se necesita más inversión pública.'},
+          {de:'Armut',es:'la pobreza',type:'noun',ex:'Hay que luchar contra la pobreza.'},
+          {de:'Schulden',es:'la deuda',type:'noun',ex:'La deuda pública preocupa.'},
+          {de:'Wachstum',es:'el crecimiento',type:'noun',ex:'El crecimiento económico es lento.'},
+          {de:'Arbeitslosigkeit',es:'el desempleo',type:'noun',ex:'El desempleo juvenil es alto.'},
+          {de:'Wohlstand',es:'el bienestar / la prosperidad',type:'noun',ex:'El bienestar social es prioritario.'},
+        ]},
+    ],
+    C1:[
+      {id:'c1s01',title:'Retórica y Persuasión',icon:'🎭',color:'#10b981',grammar:'Conectores Discursivos Avanzados',grammarText:'Conectores sofisticados para C1:\n• Concesión: Aunque, A pesar de que, Si bien\n• Adición: Además, Asimismo, Del mismo modo\n• Contraste: Sin embargo, No obstante, Por el contrario\n• Consecuencia: Por lo tanto, En consecuencia, De ahí que\n• Ejemplificación: A saber, Es decir, En concreto',grammarEx:'Si bien las energías renovables suponen una inversión inicial considerable, no obstante constituyen la solución más viable a largo plazo. En consecuencia, los gobiernos deben priorizar este sector.',
+        words:[
+          {de:'überzeugend',es:'convincente / persuasivo',type:'adjective',ex:'Un argumento convincente.'},
+          {de:'nuanciert',es:'matizado/a',type:'adjective',ex:'Una visión más matizada.'},
+          {de:'implizieren',es:'implicar / conllevar',type:'verb',ex:'Esto implica muchos cambios.'},
+          {de:'widerlegen',es:'refutar / rebatir',type:'verb',ex:'Refutó todos sus argumentos.'},
+          {de:'Ambiguität',es:'la ambigüedad',type:'noun',ex:'El texto está lleno de ambigüedad.'},
+          {de:'Paradoxon',es:'la paradoja',type:'noun',ex:'Es una paradoja interesante.'},
+          {de:'Metapher',es:'la metáfora',type:'noun',ex:'Usa una metáfora muy efectiva.'},
+          {de:'eloquent',es:'elocuente',type:'adjective',ex:'Un discurso elocuente.'},
+          {de:'Rhetorik',es:'la retórica',type:'noun',ex:'La retórica política actual.'},
+          {de:'Untermauerung',es:'la fundamentación',type:'noun',ex:'La tesis necesita fundamentación.'},
+        ]},
+    ],
+  }
+};
+
+// Placement test questions
+const PLACEMENT={
+  en:[
+    {q:'What ___ your name?',opts:['is','are','am','be'],ans:'is',level:'A1'},
+    {q:'She ___ to school every day.',opts:['go','goes','going','went'],ans:'goes',level:'A1'},
+    {q:'I ___ TV when she called.',opts:['watched','was watching','watch','am watching'],ans:'was watching',level:'A2'},
+    {q:'By the time he arrived, we ___ already.',opts:['left','have left','had left','were leaving'],ans:'had left',level:'B1'},
+    {q:'If I ___ you, I would apologize.',opts:['am','was','were','had been'],ans:'were',level:'B1'},
+    {q:'The report ___ by the committee yesterday.',opts:['was approved','approved','has approved','had approved'],ans:'was approved',level:'B2'},
+    {q:'She speaks English ___ a native speaker.',opts:['as fluently as','more fluent than','as fluent as','fluently than'],ans:'as fluently as',level:'B2'},
+    {q:'___ the financial crisis, the company managed to survive.',opts:['Despite','Although','However','Nevertheless'],ans:'Despite',level:'C1'},
+    {q:'The legislation was passed ___ fierce opposition.',opts:['notwithstanding','despite of','in spite','regardless'],ans:'notwithstanding',level:'C1'},
+    {q:'Her argument, ___ compelling, fails to account for recent data.',opts:['while','however','although','despite'],ans:'while',level:'C1'},
+  ],
+  es:[
+    {q:'¿___ tu nombre?',opts:['Cómo es','Cómo llamas','Cómo te llamas','Cuál es'],ans:'Cómo te llamas',level:'A1'},
+    {q:'Ella ___ a la escuela todos los días.',opts:['va','voy','vas','van'],ans:'va',level:'A1'},
+    {q:'Ayer ___ al cine con mis amigos.',opts:['fui','voy','iba','he ido'],ans:'fui',level:'A2'},
+    {q:'Cuando llegué, ella ya ___ la carta.',opts:['escribió','escribía','había escrito','ha escrito'],ans:'había escrito',level:'B1'},
+    {q:'Si tuviera más tiempo, ___ más.',opts:['estudiaría','estudia','estudie','estudiara'],ans:'estudiaría',level:'B1'},
+    {q:'El informe ___ por el comité.',opts:['fue aprobado','aprobó','ha aprobado','aprobaría'],ans:'fue aprobado',level:'B2'},
+    {q:'Habla español ___ un nativo.',opts:['tan bien como','más bien que','muy bien como','tan bueno como'],ans:'tan bien como',level:'B2'},
+    {q:'___ la crisis, la empresa logró sobrevivir.',opts:['A pesar de','Aunque','Sin embargo','No obstante'],ans:'A pesar de',level:'C1'},
+    {q:'___ sea tarde, terminaré el trabajo.',opts:['Aunque','A pesar de que','Si bien','Pese a que'],ans:'Aunque',level:'C1'},
+    {q:'Su argumento, ___ convincente, ignora datos recientes.',opts:['si bien','aunque','a pesar','sin embargo'],ans:'si bien',level:'C1'},
+  ]
+};
+
+// ═══════════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════════
+const PROFILE_COLORS=['#7c3aed','#10b981','#ef4444','#f59e0b','#3b82f6','#ec4899','#06b6d4','#84cc16'];
+let profiles=LS.get('lf_profiles')||{};
+let curProfileId=LS.get('lf_cur')||null;
+let selLang='en';
+let selColor=PROFILE_COLORS[0];
+
+// Exercise state
+let exItems=[],exIdx=0,exLives=3,exCorrect=0,exAnswered=false;
+let exLessonId='',exLessonTitle='';
+
+// SRS state
+let srsItems=[],srsIdx=0;
+
+// Placement
+let ptAnswers=[],ptIdx=0,ptLang='en';
+
+function getCur(){return profiles[curProfileId]||null;}
+function saveProfiles(){LS.set('lf_profiles',profiles);}
+function saveCur(){LS.set('lf_cur',curProfileId);}
+
+// ═══════════════════════════════════════════════════════
+// SCREEN MANAGEMENT
+// ═══════════════════════════════════════════════════════
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+}
+
+function navTo(page){
+  const map={home:'s-home',learn:'s-learn',vocab:'s-vocab',stats:'s-stats'};
+  showScreen(map[page]);
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll(`[id^="nav-${page}"]`).forEach(b=>b.classList.add('on'));
+  if(page==='home')renderHome();
+  if(page==='learn')renderLearn();
+  if(page==='vocab')renderVocab();
+  if(page==='stats')renderStats();
+}
+
+// ═══════════════════════════════════════════════════════
+// PROFILE MANAGEMENT
+// ═══════════════════════════════════════════════════════
+function renderProfiles(){
+  const el=document.getElementById('profile-list');
+  const keys=Object.keys(profiles);
+  if(!keys.length){
+    el.innerHTML=`<div class="empty"><div class="empty-icon">👤</div><div style="font-size:18px;font-weight:600;margin-bottom:8px;">Noch kein Profil</div><div style="color:var(--text2);margin-bottom:24px;">Erstelle dein erstes Profil um zu starten!</div><button class="btn btn-primary" onclick="showScreen('s-add-profile')">Profil erstellen</button></div>`;
+    return;
+  }
+  el.innerHTML=keys.map(k=>{
+    const p=profiles[k];
+    const streak=getStreak(k);
+    const totalXP=p.xp||0;
+    const level=getLevel(totalXP);
+    return`<div class="profile-item ${k===curProfileId?'active-profile':''}" onclick="selectProfile('${k}')">
+      <div class="avatar" style="background:${p.color};width:52px;height:52px;font-size:20px;">${p.name.slice(0,2).toUpperCase()}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:17px;font-weight:700;margin-bottom:2px;">${p.name}</div>
+        <div style="font-size:12px;color:var(--text2);">Level ${level} · ${totalXP} XP · 🔥 ${streak} Tage</div>
+        <div class="xp-bar-wrap" style="margin-top:6px;"><div class="xp-bar" style="width:${Math.min((totalXP%500)/5,100)}%;"></div></div>
+      </div>
+      <div style="text-align:right;font-size:20px;">›</div>
+    </div>`;
+  }).join('');
+}
+
+function selectProfile(id){
+  curProfileId=id;saveCur();
+  const p=profiles[id];
+  // Check if needs placement test for either lang
+  if(!p.levels||!p.levels.en||!p.levels.es){
+    // First time – ask which lang to start with
+    showLangSelect(id);
+  } else {
+    goHome();
+  }
+}
+
+function showLangSelect(id){
+  const p=profiles[id];
+  const el=document.getElementById('profile-list');
+  el.innerHTML=`<div class="card" style="background:linear-gradient(135deg,#1e1b4b,#2d1f6e);border-color:var(--accent);">
+    <div style="font-size:20px;font-weight:700;margin-bottom:8px;">Willkommen, ${p.name}! 🎉</div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:20px;">Welche Sprache möchtest du zuerst lernen?</div>
+    <button class="btn btn-primary" onclick="startPlacement('en')" style="margin-bottom:10px;">🇬🇧 Englisch lernen</button>
+    <button class="btn btn-secondary" onclick="startPlacement('es')">🇪🇸 Spanisch lernen</button>
+    ${(p.levels&&(p.levels.en||p.levels.es))?`<button class="btn btn-ghost" onclick="goHome()" style="margin-top:10px;">Weiter ohne Test</button>`:''}
+  </div>`;
+}
+
+function startPlacement(lang){
+  ptLang=lang;ptAnswers=[];ptIdx=0;
+  document.getElementById('pt-lang-sub').textContent=lang==='en'?'🇬🇧 Englisch':'🇪🇸 Spanisch';
+  showScreen('s-placement');
+  renderPlacement();
+}
+
+function renderPlacement(){
+  const q=PLACEMENT[ptLang][ptIdx];
+  const el=document.getElementById('pt-content');
+  el.innerHTML=`<div class="test-progress">Frage ${ptIdx+1} von ${PLACEMENT[ptLang].length}</div>
+    <div class="progress-wrap" style="margin-bottom:20px;"><div class="progress-fill" style="width:${(ptIdx/PLACEMENT[ptLang].length)*100}%;background:var(--accent);"></div></div>
+    <div class="card">
+      <div class="test-question">${q.q}</div>
+      ${q.opts.map(o=>`<button class="option" onclick="ptAnswer('${o}')">${o}</button>`).join('')}
+    </div>`;
+}
+
+function ptAnswer(ans){
+  const q=PLACEMENT[ptLang][ptIdx];
+  ptAnswers.push({correct:ans===q.ans,level:q.level});
+  ptIdx++;
+  if(ptIdx>=PLACEMENT[ptLang].length){
+    finishPlacement();
+  } else {
+    renderPlacement();
+  }
+}
+
+function finishPlacement(){
+  const levelScores={A1:0,A2:0,B1:0,B2:0,C1:0};
+  ptAnswers.forEach(a=>{if(a.correct)levelScores[a.level]++;});
+  let detectedLevel='A1';
+  if(levelScores.C1>=1)detectedLevel='C1';
+  else if(levelScores.B2>=1)detectedLevel='B2';
+  else if(levelScores.B1>=1)detectedLevel='B1';
+  else if(levelScores.A2>=1)detectedLevel='A2';
+
+  const correct=ptAnswers.filter(a=>a.correct).length;
+
+  document.getElementById('pt-content').innerHTML=`<div class="card" style="text-align:center;padding:24px;">
+    <div style="font-size:48px;margin-bottom:12px;">🎯</div>
+    <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Testergebnis: ${detectedLevel}</div>
+    <div style="font-size:14px;color:var(--text2);margin-bottom:20px;">${correct} von ${ptAnswers.length} richtig</div>
+    <div style="font-size:15px;font-weight:600;color:var(--accent3);margin-bottom:12px;">Wähle dein Startniveau:</div>
+    ${LEVELS.map(lv=>`<button class="btn ${lv===detectedLevel?'btn-primary':'btn-secondary'}" onclick="confirmLevel('${lv}')" style="margin-bottom:8px;">
+      <span style="background:${LEVEL_COLORS[lv]};padding:2px 8px;border-radius:6px;font-size:12px;margin-right:8px;">${lv}</span>
+      ${LEVEL_NAMES[lv]}
+      ${lv===detectedLevel?'← Empfohlen':''}
+    </button>`).join('')}
+  </div>`;
+}
+
+function confirmLevel(level){
+  const p=profiles[curProfileId];
+  if(!p.levels)p.levels={};
+  p.levels[ptLang]=level;
+  if(!p.progress)p.progress={};
+  if(!p.progress[ptLang])p.progress[ptLang]={};
+  if(!p.srs)p.srs={};
+  saveProfiles();
+
+  document.getElementById('pt-content').innerHTML=`<div class="card" style="text-align:center;padding:30px;background:linear-gradient(135deg,#064e3b,#065f46);border-color:var(--green);">
+    <div style="font-size:56px;margin-bottom:12px;">✅</div>
+    <div style="font-size:22px;font-weight:700;color:var(--green2);margin-bottom:8px;">Niveau: ${level}</div>
+    <div style="font-size:15px;color:var(--text2);margin-bottom:24px;">${LEVEL_NAMES[level]}</div>
+    <button class="btn btn-success" onclick="goHome()">Jetzt lernen! 🚀</button>
+  </div>`;
+}
+
+// Profile creation
+function apUpdatePreview(){
+  const name=document.getElementById('ap-name').value;
+  const el=document.getElementById('ap-preview');
+  el.textContent=name?name.slice(0,2).toUpperCase():'?';
+  el.style.background=selColor;
+}
+
+function createProfile(){
+  const name=document.getElementById('ap-name').value.trim();
+  if(!name){alert('Bitte einen Namen eingeben!');return;}
+  const id='p_'+Date.now();
+  profiles[id]={name,color:selColor,xp:0,streak:0,lastDate:null,levels:{},progress:{},srs:{en:{},es:{}}};
+  curProfileId=id;
+  saveProfiles();saveCur();
+  document.getElementById('ap-name').value='';
+  showLangSelect(id);
+}
+
+function renderAddProfile(){
+  const colors=document.getElementById('ap-colors');
+  colors.innerHTML=PROFILE_COLORS.map((c,i)=>`<div class="color-dot ${i===0?'sel':''}" style="background:${c}" onclick="pickColor('${c}',this)"></div>`).join('');
+  selColor=PROFILE_COLORS[0];
+}
+
+function pickColor(c,el){
+  selColor=c;
+  document.querySelectorAll('.color-dot').forEach(d=>d.classList.remove('sel'));
+  el.classList.add('sel');
+  apUpdatePreview();
+}
+
+// ═══════════════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════════════
+function goHome(){
+  showScreen('s-home');
+  renderHome();
+}
+
+function getStreak(pid){
+  const p=profiles[pid];if(!p||!p.lastDate)return 0;
+  const today=new Date().toDateString();
+  const yest=new Date(Date.now()-86400000).toDateString();
+  if(p.lastDate===today)return p.streak||0;
+  if(p.lastDate===yest)return p.streak||0;
+  return 0;
+}
+
+function getLevel(xp){return Math.floor(xp/500)+1;}
+
+function getDueCount(pid,lang){
+  const p=profiles[pid];if(!p||!p.srs||!p.srs[lang])return 0;
+  const now=Date.now();
+  return Object.values(p.srs[lang]).filter(v=>!v.nextReview||v.nextReview<=now).length;
+}
+
+function renderHome(){
+  const p=getCur();if(!p)return;
+  const streak=getStreak(curProfileId);
+  const lv=getLevel(p.xp||0);
+  const lang=p.lastLang||'en';
+
+  document.getElementById('home-avatar').style.background=p.color;
+  document.getElementById('home-avatar').textContent=p.name.slice(0,2).toUpperCase();
+  document.getElementById('home-name').textContent=`Hallo, ${p.name}! 👋`;
+  document.getElementById('home-level').textContent=`Level ${lv} · ${p.xp||0} XP`;
+
+  const enLevel=p.levels?.en||'–';
+  const esLevel=p.levels?.es||'–';
+  const enDue=getDueCount(curProfileId,'en');
+  const esDue=getDueCount(curProfileId,'es');
+
+  const totalLessons=Object.keys(p.progress?.en||{}).length+Object.keys(p.progress?.es||{}).length;
+
+  let html=``;
+
+  if(streak>0){
+    html+=`<div class="streak-display"><div style="font-size:13px;color:var(--gold2);margin-bottom:4px;font-weight:600;">🔥 AKTUELLER STREAK</div><div class="streak-num">${streak}</div><div style="font-size:14px;color:var(--gold2);">Tage in Folge gelernt</div></div>`;
+  }
+
+  html+=`<div class="stat-row">
+    <div class="stat-box"><div class="stat-val" style="color:var(--accent2);">${p.xp||0}</div><div class="stat-lbl">Gesamt-XP</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--gold);">${totalLessons}</div><div class="stat-lbl">Lektionen ✓</div></div>
+  </div>`;
+
+  html+=`<div class="section-title">Meine Sprachen</div>`;
+  html+=`<div class="card" onclick="selectHomeLang('en')" style="cursor:pointer;border-color:${lang==='en'?'var(--accent)':'var(--border)'}">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:36px;">🇬🇧</div>
+      <div style="flex:1;">
+        <div style="font-size:17px;font-weight:700;">Englisch</div>
+        <div style="font-size:12px;color:var(--text2);">Niveau: <span class="badge badge-green" style="font-size:11px;">${enLevel}</span></div>
+        ${enDue>0?`<div style="font-size:12px;color:var(--gold);margin-top:4px;">🃏 ${enDue} Vokabeln zu wiederholen</div>`:''}
+      </div>
+      <div style="font-size:22px;color:var(--text2);">›</div>
+    </div>
+  </div>`;
+
+  html+=`<div class="card" onclick="selectHomeLang('es')" style="cursor:pointer;border-color:${lang==='es'?'var(--accent)':'var(--border)'}">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div style="font-size:36px;">🇪🇸</div>
+      <div style="flex:1;">
+        <div style="font-size:17px;font-weight:700;">Spanisch</div>
+        <div style="font-size:12px;color:var(--text2);">Niveau: <span class="badge badge-gold" style="font-size:11px;">${esLevel}</span></div>
+        ${esDue>0?`<div style="font-size:12px;color:var(--gold);margin-top:4px;">🃏 ${esDue} Vokabeln zu wiederholen</div>`:''}
+      </div>
+      <div style="font-size:22px;color:var(--text2);">›</div>
+    </div>
+  </div>`;
+
+  if(!p.levels?.en||!p.levels?.es){
+    const missingLang=!p.levels?.en?'en':'es';
+    html+=`<div class="card" style="background:linear-gradient(135deg,#1e1b4b,#2d1f6e);border-color:var(--accent);cursor:pointer;" onclick="startPlacement('${missingLang}')">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:28px;">${missingLang==='en'?'🇬🇧':'🇪🇸'}</div>
+        <div><div style="font-size:15px;font-weight:600;color:var(--accent3);">Einstufungstest starten</div><div style="font-size:13px;color:var(--text2);">${missingLang==='en'?'Englisch':'Spanisch'} noch nicht eingestuft</div></div>
+      </div>
+    </div>`;
+  }
+
+  html+=`<div class="section-title" style="margin-top:8px;">Schnellstart</div>
+  <button class="btn btn-primary" onclick="navTo('learn')">📚 Lektion starten</button>
+  <button class="btn btn-secondary" onclick="navTo('vocab')" style="margin-top:10px;">🃏 Vokabeln üben</button>`;
+
+  document.getElementById('home-content').innerHTML=html;
+}
+
+function selectHomeLang(lang){
+  const p=getCur();if(!p)return;
+  p.lastLang=lang;saveProfiles();
+  renderHome();
+}
+
+// ═══════════════════════════════════════════════════════
+// LEARN
+// ═══════════════════════════════════════════════════════
+function renderLearn(){
+  const p=getCur();if(!p)return;
+  const lang=p.lastLang||'en';
+  const level=p.levels?.[lang]||'A1';
+  document.getElementById('learn-sub').textContent=`${lang==='en'?'🇬🇧 Englisch':'🇪🇸 Spanisch'} · ${level}`;
+
+  const curriculum=CURRICULUM[lang];
+  let html='';
+
+  // Lang & Level selector
+  html+=`<div class="lang-row">
+    <button class="lang-btn ${lang==='en'?'on':''}" onclick="changeLang('en')">🇬🇧 Englisch</button>
+    <button class="lang-btn ${lang==='es'?'on':''}" onclick="changeLang('es')">🇪🇸 Spanisch</button>
+  </div>`;
+
+  const allLevels=Object.keys(curriculum);
+  const userLevel=p.levels?.[lang]||'A1';
+  const userLevelIdx=LEVELS.indexOf(userLevel);
+
+  LEVELS.forEach((lv,lvIdx)=>{
+    if(!curriculum[lv])return;
+    const unlocked=lvIdx<=userLevelIdx+1;
+    const lessons=curriculum[lv];
+    html+=`<div style="margin-bottom:6px;"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+      <div style="width:36px;height:36px;border-radius:10px;background:${LEVEL_COLORS[lv]};display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff;">${lv}</div>
+      <div><div style="font-size:16px;font-weight:700;">${LEVEL_NAMES[lv]}</div><div style="font-size:12px;color:var(--text2);">${lessons.length} Lektionen</div></div>
+      ${!unlocked?`<span class="badge badge-red" style="margin-left:auto;">🔒 Gesperrt</span>`:''}
+    </div>`;
+    lessons.forEach(lesson=>{
+      const done=p.progress?.[lang]?.[lesson.id];
+      const locked=!unlocked;
+      html+=`<div class="lesson-card ${locked?'locked':''} ${done?'done':''}" onclick="${locked?'':'startLesson(\''+lesson.id+'\',\''+lang+'\')'}">
+        <div class="lesson-icon" style="background:${lesson.color}22;border:1px solid ${lesson.color}44;">${lesson.icon}</div>
+        <div class="lesson-info">
+          <div class="lesson-title">${lesson.title}</div>
+          <div class="lesson-sub">${lesson.words.length} Vokabeln · Grammatik · Übungen</div>
+        </div>
+        <div class="lesson-check ${done?'done':''}">
+          ${done?'<span style="color:#fff;font-size:14px;">✓</span>':locked?'🔒':''}
+        </div>
+      </div>`;
+    });
+    html+='</div>';
+  });
+
+  document.getElementById('learn-content').innerHTML=html;
+}
+
+function changeLang(lang){
+  const p=getCur();if(!p)return;
+  if(!p.levels?.[lang]){startPlacement(lang);return;}
+  p.lastLang=lang;saveProfiles();
+  renderLearn();
+}
+
+// ═══════════════════════════════════════════════════════
+// EXERCISE ENGINE
+// ═══════════════════════════════════════════════════════
+function startLesson(lessonId,lang){
+  const p=getCur();if(!p)return;
+  const curriculum=CURRICULUM[lang];
+  let lesson=null;
+  Object.values(curriculum).forEach(lessons=>lessons.forEach(l=>{if(l.id===lessonId)lesson=l;}));
+  if(!lesson)return;
+
+  exLessonId=lessonId;
+  exLessonTitle=lesson.title;
+  exLives=3;exCorrect=0;exIdx=0;exAnswered=false;
+
+  // Build exercise sequence: grammar intro + word exercises
+  exItems=[];
+
+  // 1. Grammar intro
+  exItems.push({type:'grammar',title:lesson.grammar,text:lesson.grammarText,example:lesson.grammarEx});
+
+  // 2. Word exercises (mix of types)
+  const words=lesson.words;
+  words.forEach((w,i)=>{
+    const types=['mc','translate','spell'];
+    const t=types[i%types.length];
+    exItems.push({type:t,word:w,lang,allWords:words});
+  });
+
+  // 3. Final review question
+  exItems.push({type:'review',words:words.slice(0,4),lang});
+
+  showScreen('s-exercise');
+  renderExercise();
+}
+
+function renderExercise(){
+  if(exIdx>=exItems.length){finishLesson();return;}
+  const item=exItems[exIdx];
+  const pct=Math.round((exIdx/exItems.length)*100);
+  document.getElementById('ex-prog-fill').style.width=pct+'%';
+  document.getElementById('ex-counter').textContent=`${exIdx+1}/${exItems.length}`;
+  document.getElementById('ex-lives').textContent='❤️'.repeat(exLives);
+  exAnswered=false;
+
+  const content=document.getElementById('ex-content');
+  const footer=document.getElementById('ex-footer');
+  footer.innerHTML='';
+
+  if(item.type==='grammar'){
+    content.innerHTML=`<div style="font-size:13px;font-weight:700;color:var(--text2);text-align:center;margin-bottom:12px;letter-spacing:.5px;">📖 GRAMMATIK-LEKTION</div>
+    <div class="grammar-card">
+      <div class="grammar-title">${item.title}</div>
+      <div style="font-size:13px;font-weight:700;color:var(--text2);margin-bottom:8px;">ERKLÄRUNG (auf Deutsch):</div>
+      <div class="grammar-rule">${item.text.replace(/\n/g,'<br>')}</div>
+      <div style="font-size:13px;font-weight:700;color:var(--accent);margin-top:14px;margin-bottom:6px;">BEISPIEL:</div>
+      <div class="grammar-example">${item.example}</div>
+    </div>
+    <div style="background:#fff;border:2px solid var(--border2);border-radius:var(--radius-sm);padding:14px;font-size:14px;color:var(--text2);line-height:1.6;">
+      💡 <strong>Tipp:</strong> Lies die Erklärung in Ruhe durch. Die folgenden Übungen helfen dir, die Grammatik zu festigen!
+    </div>`;
+    footer.innerHTML=`<button class="btn btn-primary" onclick="nextExercise()">Verstanden! Weiter →</button>`;
+    return;
+  }
+
+  if(item.type==='mc'){
+    const w=item.word;
+    const target=item.lang==='en'?w.en:w.es;
+    const wrong=item.allWords.filter(x=>x!==w).sort(()=>Math.random()-.5).slice(0,3).map(x=>item.lang==='en'?x.en:x.es);
+    const opts=[target,...wrong].sort(()=>Math.random()-.5);
+    content.innerHTML=`<div class="ex-question">🇩🇪 Wie heißt das auf ${item.lang==='en'?'Englisch 🇬🇧':'Spanisch 🇪🇸'}?</div>
+      <div class="ex-word">${w.de}</div>
+      <div class="ex-context">Beispiel: ${w.ex}</div>
+      <div class="word-type">${w.type==='noun'?'Substantiv':w.type==='verb'?'Verb':w.type==='adjective'?'Adjektiv':w.type==='phrase'?'Ausdruck':w.type}</div>
+      <div style="margin-top:16px;">${opts.map(o=>`<button class="option" onclick="mcAnswer(this,'${o.replace(/'/g,"\\'")}','${target.replace(/'/g,"\\'")}','${item.lang}','${w.de.replace(/'/g,"\\'")}','${target.replace(/'/g,"\\'")}','${w.ex.replace(/'/g,"\\'")}')">  ${o}</button>`).join('')}</div>
+      <div class="feedback" id="ex-feedback"></div>`;
+    return;
+  }
+
+  if(item.type==='translate'){
+    const w=item.word;
+    const target=item.lang==='en'?w.en:w.es;
+    content.innerHTML=`<div class="ex-question">✍️ Übersetze ins ${item.lang==='en'?'Englische 🇬🇧':'Spanische 🇪🇸'}</div>
+      <div class="ex-word">${w.de}</div>
+      <div class="word-type">${w.type==='noun'?'Substantiv':w.type==='verb'?'Verb':w.type==='adjective'?'Adjektiv':w.type==='phrase'?'Ausdruck':w.type}</div>
+      <div class="ex-context" style="margin-bottom:16px;">Satz: ${w.ex.replace(target,'___')}</div>
+      <button class="tts-btn" onclick="speak('${target}','${item.lang}')" title="Aussprache hören">🔊 Aussprache hören</button>
+      <input class="ans-input" id="tr-input" placeholder="Deine Antwort hier eingeben..." onkeydown="if(event.key==='Enter')checkTranslate('${target.replace(/'/g,"\\'")}','${item.lang}','${w.de.replace(/'/g,"\\'")}','${w.ex.replace(/'/g,"\\'")}')">
+      <div class="hint-box" id="tr-hint"></div>
+      <div class="feedback" id="ex-feedback"></div>`;
+    footer.innerHTML=`<div style="display:flex;gap:8px;">
+      <button class="btn btn-ghost btn-sm" style="flex:1;" onclick="showHint('${target.replace(/'/g,"\\'")}')">💡 Hinweis</button>
+      <button class="btn btn-primary" style="flex:2;" onclick="checkTranslate('${target.replace(/'/g,"\\'")}','${item.lang}','${w.de.replace(/'/g,"\\'")}','${w.ex.replace(/'/g,"\\'")}')">Antwort prüfen ✓</button>
+    </div>`;
+    setTimeout(()=>document.getElementById('tr-input')?.focus(),100);
+    return;
+  }
+
+  if(item.type==='spell'){
+    const w=item.word;
+    const target=(item.lang==='en'?w.en:w.es).toLowerCase().split('/')[0].trim();
+    const letters=[...target].sort(()=>Math.random()-.5);
+    const extras='aeiourstlnd'.split('').filter(c=>!target.includes(c)).sort(()=>Math.random()-.5).slice(0,3);
+    const allLetters=[...letters,...extras].sort(()=>Math.random()-.5);
+    window._spellAnswer=Array(target.length).fill('');
+    window._spellTarget=target;
+    window._spellUsed=[];
+    window._spellLang=item.lang;
+    window._spellWord=w;
+    window._spellAttempts=0;
+
+    content.innerHTML=`<div class="ex-question">🔤 Buchstabiere auf ${item.lang==='en'?'Englisch 🇬🇧':'Spanisch 🇪🇸'}</div>
+      <div class="ex-word">${w.de}</div>
+      <div class="word-type">${w.type==='noun'?'Substantiv':w.type==='verb'?'Verb':w.type==='adjective'?'Adjektiv':w.type==='phrase'?'Ausdruck':w.type}</div>
+      <div style="font-size:14px;color:var(--text2);text-align:center;margin-bottom:8px;">Tippe die Buchstaben in der richtigen Reihenfolge</div>
+      <button class="tts-btn" onclick="speak('${item.lang==='en'?w.en:w.es}','${item.lang}')">🔊 Aussprache hören</button>
+      <div class="spell-boxes" id="spell-boxes">${target.split('').map((_,i)=>`<div class="spell-box" id="sb-${i}" onclick="removeSpellLetter(${i})"></div>`).join('')}</div>
+      <div class="letter-grid">${allLetters.map((l,i)=>`<button class="letter-btn" id="sl-${i}" onclick="addSpellLetter(${i},'${l}')">${l.toUpperCase()}</button>`).join('')}<button class="letter-btn" onclick="spellBackspace()" style="width:auto;padding:0 12px;">⌫</button></div>
+      <div class="feedback" id="ex-feedback"></div>`;
+    return;
+  }
+
+  if(item.type==='review'){
+    const w=item.words[Math.floor(Math.random()*item.words.length)];
+    const target=item.lang==='en'?w.en:w.es;
+    const wrong=item.words.filter(x=>x!==w).map(x=>item.lang==='en'?x.en:x.es);
+    const opts=[target,...wrong].sort(()=>Math.random()-.5);
+    content.innerHTML=`<div class="ex-question">🏁 Abschlussfrage – was hast du gelernt?</div>
+      <div class="ex-word">${w.de}</div>
+      <div class="ex-context">Beispiel: ${w.ex}</div>
+      <div style="margin-top:16px;">${opts.map(o=>`<button class="option" onclick="mcAnswer(this,'${o.replace(/'/g,"\\'")}','${target.replace(/'/g,"\\'")}','${item.lang}','${w.de.replace(/'/g,"\\'")}','${target.replace(/'/g,"\\'")}','${w.ex.replace(/'/g,"\\'")}')"> ${o}</button>`).join('')}</div>
+      <div class="feedback" id="ex-feedback"></div>`;
+    return;
+  }
+}
+
+function speak(text,lang){
+  if(!window.speechSynthesis)return;
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang=lang==='en'?'en-US':'es-ES';
+  u.rate=0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function showHint(target){
+  const hint=document.getElementById('tr-hint');
+  if(hint){hint.textContent=`Tipp: "${target.slice(0,Math.ceil(target.length/2))}..."`;hint.classList.add('show');}
+}
+
+function mcAnswer(btn,chosen,correct,lang,de,en,ex){
+  if(exAnswered)return;
+  exAnswered=true;
+  document.querySelectorAll('.option').forEach(b=>b.onclick=null);
+  const ok=chosen===correct;
+  btn.classList.add(ok?'correct':'wrong');
+  if(!ok){
+    document.querySelectorAll('.option').forEach(b=>{if(b.textContent.trim()===correct)b.classList.add('reveal');});
+    exLives--;document.getElementById('ex-lives').textContent='❤️'.repeat(Math.max(0,exLives));
+  } else {
+    exCorrect++;
+    addToSRS(de,lang,correct,ok);
+  }
+  showFeedback(ok,correct,ex);
+  document.getElementById('ex-footer').innerHTML=`<button class="btn ${ok?'btn-success':'btn-primary'} pop" onclick="nextExercise()">${ok?'Weiter →':'Verstanden →'}</button>`;
+}
+
+function checkTranslate(correct,lang,de,ex){
+  if(exAnswered)return;
+  const input=document.getElementById('tr-input');
+  if(!input)return;
+  const val=input.value.trim().toLowerCase();
+  const ans=correct.toLowerCase().replace(/[¡¿!?.,]/g,'');
+  const ok=val.replace(/[¡¿!?.,]/g,'')===ans||val===correct.toLowerCase();
+  exAnswered=true;
+  input.classList.add(ok?'correct':'wrong');
+  input.disabled=true;
+  if(!ok){exLives--;document.getElementById('ex-lives').textContent='❤️'.repeat(Math.max(0,exLives));}
+  else{exCorrect++;addToSRS(de,lang,correct,ok);}
+  showFeedback(ok,correct,ex);
+  document.getElementById('ex-footer').innerHTML=`<button class="btn ${ok?'btn-success':'btn-primary'} pop" onclick="nextExercise()">${ok?'Weiter →':'Verstanden →'}</button>`;
+}
+
+function showFeedback(ok,correct,ex){
+  const fb=document.getElementById('ex-feedback');
+  if(!fb)return;
+  fb.className=`feedback ${ok?'correct':'wrong'} show`;
+  fb.innerHTML=`<div class="feedback-title">${ok?'✅ Richtig!':'❌ Fast!'}</div><div class="feedback-text">${ok?`Gut gemacht! "${correct}" ist korrekt.`:`Die richtige Antwort ist: <strong>${correct}</strong>`}</div>`;
+  if(ok){speak(correct,window._spellLang||'en');}
+}
+
+// Spell
+function addSpellLetter(idx,letter){
+  const first=window._spellAnswer.indexOf('');if(first===-1)return;
+  window._spellAnswer[first]=letter;window._spellUsed[first]=idx;
+  const box=document.getElementById('sb-'+first);
+  if(box){box.textContent=letter.toUpperCase();box.classList.add('filled');box.dataset.src=idx;}
+  document.getElementById('sl-'+idx)?.classList.add('used');
+  if(window._spellAnswer.every(l=>l)){
+    const typed=window._spellAnswer.join('');
+    const ok=typed===window._spellTarget;
+    if(ok){
+      document.querySelectorAll('.spell-box').forEach(b=>b.classList.add('correct'));
+      exCorrect++;
+      addToSRS(window._spellWord.de,window._spellLang,window._spellTarget,true);
+      showFeedback(true,window._spellTarget,'');
+      document.getElementById('ex-footer').innerHTML=`<button class="btn btn-success pop" onclick="nextExercise()">Weiter →</button>`;
+      speak(window._spellTarget,window._spellLang);
+    } else {
+      exLives--;
+      document.getElementById('ex-lives').textContent='❤️'.repeat(Math.max(0,exLives));
+      document.querySelectorAll('.spell-box').forEach(b=>b.classList.add('wrong'));
+      window._spellAttempts=(window._spellAttempts||0)+1;
+      if(window._spellAttempts>=3){
+        // Nach 3 Fehlversuchen: Lösung zeigen und weiter
+        const fb=document.getElementById('ex-feedback');
+        if(fb){fb.className='feedback wrong show';fb.innerHTML=`<div class="feedback-title">💡 Lösung:</div><div class="feedback-text" style="font-size:22px;font-weight:700;">${window._spellTarget}</div>`;}
+        document.getElementById('ex-footer').innerHTML=`<button class="btn btn-primary pop" onclick="nextExercise()">Weiter →</button>`;
+        window._spellAttempts=0;
+      } else {
+        setTimeout(()=>{
+          window._spellAnswer=Array(window._spellTarget.length).fill('');
+          window._spellUsed=[];
+          document.querySelectorAll('.spell-box').forEach(b=>{b.textContent='';b.classList.remove('filled','wrong','correct');});
+          document.querySelectorAll('.letter-btn').forEach(b=>b.classList.remove('used'));
+          const fb=document.getElementById('ex-feedback');
+          if(fb){fb.className='feedback wrong show';fb.innerHTML=`<div class="feedback-title">Nochmal! 💪 (noch ${3-window._spellAttempts}x)</div>`;}
+        },800);
+      }
+    }
+  }
+}
+
+function removeSpellLetter(boxIdx){
+  if(!window._spellAnswer[boxIdx])return;
+  const srcIdx=parseInt(document.getElementById('sb-'+boxIdx)?.dataset.src||'-1');
+  window._spellAnswer[boxIdx]='';
+  const box=document.getElementById('sb-'+boxIdx);
+  if(box){box.textContent='';box.classList.remove('filled');delete box.dataset.src;}
+  if(srcIdx>=0)document.getElementById('sl-'+srcIdx)?.classList.remove('used');
+}
+
+function spellBackspace(){
+  const last=window._spellAnswer.map((l,i)=>l?i:-1).filter(i=>i>=0).pop();
+  if(last!==undefined)removeSpellLetter(last);
+}
+
+// SRS (Spaced Repetition)
+function addToSRS(de,lang,target,correct){
+  const p=getCur();if(!p)return;
+  if(!p.srs)p.srs={};
+  if(!p.srs[lang])p.srs[lang]={};
+  const key=de;
+  const card=p.srs[lang][key]||{de,target,interval:1,easeFactor:2.5,repetitions:0,nextReview:Date.now()};
+  if(correct){
+    card.repetitions++;
+    if(card.repetitions===1)card.interval=1;
+    else if(card.repetitions===2)card.interval=6;
+    else card.interval=Math.round(card.interval*card.easeFactor);
+    card.easeFactor=Math.max(1.3,card.easeFactor+0.1);
+  } else {
+    card.repetitions=0;card.interval=1;card.easeFactor=Math.max(1.3,card.easeFactor-0.2);
+  }
+  card.nextReview=Date.now()+(card.interval*24*60*60*1000);
+  p.srs[lang][key]=card;
+  saveProfiles();
+}
+
+function nextExercise(){
+  exIdx++;
+  renderExercise();
+}
+
+function confirmExitExercise(){
+  if(confirm('Übung abbrechen? Dein Fortschritt geht verloren.')){
+    showScreen('s-learn');renderLearn();
+  }
+}
+
+function finishLesson(){
+  const p=getCur();if(!p)return;
+  const lang=p.lastLang||'en';
+  if(!p.progress)p.progress={};
+  if(!p.progress[lang])p.progress[lang]={};
+  p.progress[lang][exLessonId]=true;
+  const xpGained=exCorrect*20+(exLives*50);
+  p.xp=(p.xp||0)+xpGained;
+  const today=new Date().toDateString();
+  if(p.lastDate!==today){
+    const yest=new Date(Date.now()-86400000).toDateString();
+    p.streak=p.lastDate===yest?(p.streak||0)+1:1;
+    p.lastDate=today;
+  }
+  saveProfiles();
+
+  const pct=Math.round((exCorrect/(exItems.filter(i=>i.type!=='grammar').length))*100);
+  showScreen('s-result');
+  document.getElementById('result-content').innerHTML=`
+    <div style="padding:30px 20px;text-align:center;">
+      <div class="result-emoji">${pct>=80?'🏆':pct>=60?'🎉':'💪'}</div>
+      <div class="result-title">${pct>=80?'Ausgezeichnet!':pct>=60?'Gut gemacht!':'Weiter üben!'}</div>
+      <div class="result-sub">${exCorrect} Antworten richtig · ${exLives} Leben übrig</div>
+      <div class="stat-row" style="margin:20px 0;">
+        <div class="stat-box"><div class="stat-val" style="color:var(--gold);">+${xpGained}</div><div class="stat-lbl">XP verdient</div></div>
+        <div class="stat-box"><div class="stat-val" style="color:var(--green);">${pct}%</div><div class="stat-lbl">Genauigkeit</div></div>
+      </div>
+      <div class="card" style="text-align:left;margin-bottom:16px;">
+        <div style="font-size:14px;font-weight:600;color:var(--text2);margin-bottom:8px;">✨ NEUE VOKABELN GESPEICHERT</div>
+        <div style="font-size:13px;color:var(--text2);">Die Vokabeln dieser Lektion wurden dem SRS-System hinzugefügt. Du wirst sie zur optimalen Zeit zur Wiederholung bekommen!</div>
+      </div>
+      <button class="btn btn-primary" onclick="navTo('learn')" style="margin-bottom:10px;">Nächste Lektion →</button>
+      <button class="btn btn-secondary" onclick="navTo('home')">Zum Start</button>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// VOCAB (SRS Review)
+// ═══════════════════════════════════════════════════════
+function renderVocab(){
+  const p=getCur();if(!p)return;
+  const lang=p.lastLang||'en';
+  document.getElementById('vocab-sub').textContent=lang==='en'?'🇬🇧 Englisch':'🇪🇸 Spanisch';
+
+  const srs=p.srs?.[lang]||{};
+  const now=Date.now();
+  const due=Object.values(srs).filter(c=>!c.nextReview||c.nextReview<=now);
+  const upcoming=Object.values(srs).filter(c=>c.nextReview>now).sort((a,b)=>a.nextReview-b.nextReview);
+
+  if(!Object.keys(srs).length){
+    document.getElementById('vocab-content').innerHTML=`
+      <div class="lang-row">
+        <button class="lang-btn ${lang==='en'?'on':''}" onclick="changeVocabLang('en')">🇬🇧 Englisch</button>
+        <button class="lang-btn ${lang==='es'?'on':''}" onclick="changeVocabLang('es')">🇪🇸 Spanisch</button>
+      </div>
+      <div class="empty"><div class="empty-icon">🃏</div><div style="font-size:17px;font-weight:600;margin-bottom:8px;">Noch keine Vokabeln</div><div style="color:var(--text2);margin-bottom:20px;">Absolviere zuerst eine Lektion, um Vokabeln zu sammeln!</div><button class="btn btn-primary" onclick="navTo('learn')">Zur Lektion →</button></div>`;
+    return;
+  }
+
+  let html=`<div class="lang-row">
+    <button class="lang-btn ${lang==='en'?'on':''}" onclick="changeVocabLang('en')">🇬🇧 Englisch</button>
+    <button class="lang-btn ${lang==='es'?'on':''}" onclick="changeVocabLang('es')">🇪🇸 Spanisch</button>
+  </div>`;
+
+  html+=`<div class="stat-row">
+    <div class="stat-box"><div class="stat-val" style="color:${due.length>0?'var(--red)':'var(--green)'};">${due.length}</div><div class="stat-lbl">Zu wiederholen</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--blue2);">${Object.keys(srs).length}</div><div class="stat-lbl">Gesamt</div></div>
+  </div>`;
+
+  if(due.length>0){
+    html+=`<button class="btn btn-primary" onclick="startSRS('${lang}')" style="margin-bottom:16px;">🃏 Jetzt ${due.length} Vokabel${due.length!==1?'n':''} wiederholen</button>`;
+  } else {
+    html+=`<div class="card" style="background:#064e3b;border-color:var(--green);text-align:center;padding:20px;margin-bottom:16px;"><div style="font-size:32px;margin-bottom:8px;">✅</div><div style="font-size:16px;font-weight:600;color:var(--green2);">Alles wiederholt!</div><div style="font-size:13px;color:var(--text2);margin-top:4px;">Keine fälligen Vokabeln. Komm morgen wieder!</div></div>`;
+  }
+
+  if(upcoming.length>0){
+    html+=`<div class="section-title">Nächste Wiederholungen</div>`;
+    upcoming.slice(0,5).forEach(c=>{
+      const hrs=Math.ceil((c.nextReview-now)/3600000);
+      html+=`<div class="card-sm" style="display:flex;justify-content:space-between;align-items:center;"><div><div style="font-weight:600;">${c.de}</div><div style="font-size:13px;color:var(--text2);">${c.target}</div></div><span class="badge badge-blue">in ${hrs<24?hrs+'h':Math.ceil(hrs/24)+'d'}</span></div>`;
+    });
+  }
+
+  document.getElementById('vocab-content').innerHTML=html;
+}
+
+function changeVocabLang(lang){
+  const p=getCur();if(!p)return;
+  p.lastLang=lang;saveProfiles();renderVocab();
+}
+
+function startSRS(lang){
+  const p=getCur();if(!p)return;
+  const srs=p.srs?.[lang]||{};
+  const now=Date.now();
+  srsItems=Object.values(srs).filter(c=>!c.nextReview||c.nextReview<=now).sort(()=>Math.random()-.5);
+  srsIdx=0;
+  if(!srsItems.length)return;
+
+  exLives=3;exCorrect=0;exAnswered=false;
+  exLessonId='srs';exLessonTitle='Vokabelwiederholung';
+
+  // Build SRS exercises
+  exItems=srsItems.map(card=>({type:'mc',word:{de:card.de,en:card.target,es:card.target,type:'',ex:card.de},lang,allWords:srsItems.slice(0,10).map(c=>({de:c.de,en:c.target,es:c.target,type:'',ex:''}))}));
+
+  showScreen('s-exercise');renderExercise();
+}
+
+// ═══════════════════════════════════════════════════════
+// STATS
+// ═══════════════════════════════════════════════════════
+function renderStats(){
+  const p=getCur();if(!p)return;
+  const streak=getStreak(curProfileId);
+  const lv=getLevel(p.xp||0);
+  const xpToNext=500-(p.xp%500);
+  const enProgress=Object.keys(p.progress?.en||{}).length;
+  const esProgress=Object.keys(p.progress?.es||{}).length;
+  const enSRS=Object.keys(p.srs?.en||{}).length;
+  const esSRS=Object.keys(p.srs?.es||{}).length;
+
+  // Family highscore
+  const all=Object.entries(profiles).sort(([,a],[,b])=>(b.xp||0)-(a.xp||0));
+
+  let html=`<div class="streak-display"><div style="font-size:13px;color:var(--gold2);margin-bottom:4px;font-weight:600;">🔥 STREAK</div><div class="streak-num">${streak}</div><div style="font-size:14px;color:var(--gold2);">Tage in Folge</div></div>`;
+
+  html+=`<div class="stat-row">
+    <div class="stat-box"><div class="stat-val" style="color:var(--accent2);">${lv}</div><div class="stat-lbl">Level</div></div>
+    <div class="stat-box"><div class="stat-val" style="color:var(--gold);">${p.xp||0}</div><div class="stat-lbl">Gesamt-XP</div></div>
+  </div>`;
+
+  html+=`<div class="card" style="margin-bottom:12px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span style="font-size:14px;color:var(--text2);">XP bis Level ${lv+1}</span><span style="font-size:14px;font-weight:600;">${xpToNext} XP</span></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:${Math.round(((500-xpToNext)/500)*100)}%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+  </div>`;
+
+  html+=`<div class="section-title">Sprachenfortschritt</div>
+  <div class="card-sm" style="margin-bottom:8px;">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>🇬🇧 Englisch · <strong>${p.levels?.en||'–'}</strong></span><span style="font-size:13px;color:var(--text2);">${enProgress} Lektionen</span></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:${Math.min(enProgress*10,100)}%;background:var(--blue);"></div></div>
+    <div style="font-size:12px;color:var(--text2);margin-top:6px;">📚 ${enSRS} Vokabeln gelernt</div>
+  </div>
+  <div class="card-sm">
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>🇪🇸 Spanisch · <strong>${p.levels?.es||'–'}</strong></span><span style="font-size:13px;color:var(--text2);">${esProgress} Lektionen</span></div>
+    <div class="progress-wrap"><div class="progress-fill" style="width:${Math.min(esProgress*10,100)}%;background:var(--accent);"></div></div>
+    <div style="font-size:12px;color:var(--text2);margin-top:6px;">📚 ${esSRS} Vokabeln gelernt</div>
+  </div>`;
+
+  html+=`<div class="section-title" style="margin-top:8px;">🏆 Familien-Rangliste</div>`;
+  const medals=['🥇','🥈','🥉'];
+  all.forEach(([id,pp],i)=>{
+    html+=`<div class="card-sm" style="display:flex;align-items:center;gap:12px;border-color:${id===curProfileId?'var(--accent)':'var(--border)'};">
+      <div style="font-size:22px;width:30px;">${medals[i]||'#'+(i+1)}</div>
+      <div class="avatar" style="background:${pp.color};width:38px;height:38px;font-size:14px;">${pp.name.slice(0,2).toUpperCase()}</div>
+      <div style="flex:1;"><div style="font-weight:600;">${pp.name}</div><div style="font-size:12px;color:var(--text2);">Level ${getLevel(pp.xp||0)} · 🔥${getStreak(id)}</div></div>
+      <div style="font-size:18px;font-weight:700;color:var(--gold);">${pp.xp||0} XP</div>
+    </div>`;
+  });
+
+  document.getElementById('stats-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+function init(){
+  renderProfiles();
+  renderAddProfile();
+  // Show splash for 1.5s then profiles
+  setTimeout(()=>{
+    showScreen('s-profiles');
+    renderProfiles();
+  },1500);
+}
+init();
+</script>
+</body>
+</html>
