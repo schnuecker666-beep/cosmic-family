@@ -265,8 +265,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div style="flex:1;margin-left:12px;"><div class="hdr-title">Einstufungstest</div><div class="hdr-sub" id="pt-lang-sub"></div></div>
   </div>
   <div class="scroll">
-    <div class="card" style="background:linear-gradient(135deg,#1e1b4b,#2d1f6e);border-color:var(--accent);">
-      <div style="font-size:15px;color:var(--accent3);line-height:1.6;">📊 Dieser kurze Test (10 Fragen) findet dein Niveau – von Anfänger bis Fortgeschritten. Beantworte so gut du kannst!</div>
+    <div class="card" style="border:2px solid var(--accent);">
+      <div style="font-size:16px;color:var(--text);line-height:1.7;">📊 Dieser kurze Test (10 Fragen) findet dein Niveau – von Anfänger bis Fortgeschritten. Beantworte so gut du kannst!</div>
     </div>
     <div id="pt-content"></div>
   </div>
@@ -759,13 +759,43 @@ function selectProfile(id){
 function showLangSelect(id){
   const p=profiles[id];
   const el=document.getElementById('profile-list');
-  el.innerHTML=`<div class="card" style="background:linear-gradient(135deg,#1e1b4b,#2d1f6e);border-color:var(--accent);">
-    <div style="font-size:20px;font-weight:700;margin-bottom:8px;">Willkommen, ${p.name}! 🎉</div>
-    <div style="font-size:14px;color:var(--text2);margin-bottom:20px;">Welche Sprache möchtest du zuerst lernen?</div>
-    <button class="btn btn-primary" onclick="startPlacement('en')" style="margin-bottom:10px;">🇬🇧 Englisch lernen</button>
-    <button class="btn btn-secondary" onclick="startPlacement('es')">🇪🇸 Spanisch lernen</button>
-    ${(p.levels&&(p.levels.en||p.levels.es))?`<button class="btn btn-ghost" onclick="goHome()" style="margin-top:10px;">Weiter ohne Test</button>`:''}
+  el.innerHTML=`<div class="card" style="border:2px solid var(--accent);">
+    <div style="font-size:22px;font-weight:800;color:var(--accent);margin-bottom:6px;">Willkommen, ${p.name}! 🎉</div>
+    <div style="font-size:16px;color:var(--text2);margin-bottom:20px;">Welche Sprache möchtest du lernen?</div>
+    <button class="btn btn-primary" onclick="chooseLang('en')" style="margin-bottom:10px;">🇬🇧 Englisch lernen</button>
+    <button class="btn btn-secondary" onclick="chooseLang('es')">🇪🇸 Spanisch lernen</button>
   </div>`;
+}
+
+function chooseLang(lang){
+  const p=profiles[curProfileId];
+  if(!p.levels)p.levels={};
+  if(!p.progress)p.progress={};
+  if(!p.srs)p.srs={};
+  p.lastLang=lang;
+  // Direkt Niveau wählen – kein Test!
+  showLevelSelect(lang);
+}
+
+function showLevelSelect(lang){
+  const el=document.getElementById('profile-list');
+  el.innerHTML=`<div class="card" style="border:2px solid var(--accent);">
+    <div style="font-size:20px;font-weight:800;color:var(--accent);margin-bottom:6px;">Dein Startniveau 🎯</div>
+    <div style="font-size:15px;color:var(--text2);margin-bottom:20px;">Wähle ehrlich dein aktuelles Niveau:</div>
+    ${LEVELS.map(lv=>`<button class="btn btn-secondary" onclick="setLevel('${lang}','${lv}')" style="margin-bottom:10px;text-align:left;display:flex;align-items:center;gap:12px;">
+      <span style="background:${LEVEL_COLORS[lv]};color:#fff;padding:4px 10px;border-radius:8px;font-weight:700;font-size:14px;">${lv}</span>
+      <span style="font-size:15px;font-weight:600;">${LEVEL_NAMES[lv]}</span>
+    </button>`).join('')}
+  </div>`;
+}
+
+function setLevel(lang,level){
+  const p=profiles[curProfileId];
+  p.levels[lang]=level;
+  if(!p.progress[lang])p.progress[lang]={};
+  if(!p.srs[lang])p.srs[lang]={};
+  saveProfiles();
+  goHome();
 }
 
 function startPlacement(lang){
@@ -1087,7 +1117,7 @@ function renderExercise(){
       <div style="font-size:13px;font-weight:700;color:var(--accent);margin-top:14px;margin-bottom:6px;">BEISPIEL:</div>
       <div class="grammar-example">${item.example}</div>
     </div>
-    <div style="background:#fff;border:2px solid var(--border2);border-radius:var(--radius-sm);padding:14px;font-size:14px;color:var(--text2);line-height:1.6;">
+    <div style="background:var(--surface3);border:2px solid var(--border2);border-radius:var(--radius-sm);padding:14px;font-size:15px;color:var(--text);line-height:1.7;">
       💡 <strong>Tipp:</strong> Lies die Erklärung in Ruhe durch. Die folgenden Übungen helfen dir, die Grammatik zu festigen!
     </div>`;
     footer.innerHTML=`<button class="btn btn-primary" onclick="nextExercise()">Verstanden! Weiter →</button>`;
